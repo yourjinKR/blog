@@ -2,4 +2,7 @@
 title: Welcome to yourjin blog
 ---
 
-coming soon...
+안녕하세요, 유어진의 블로그입니다.  
+해당 블로그에서는 공부한 내용들 중에서 정제된 지식들을 포스팅할 예정입니다.  
+
+테스트
