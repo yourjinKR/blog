@@ -6,6 +6,13 @@ import { GlobalConfiguration } from "../cfg"
 
 export type SortFn = (f1: QuartzPluginData, f2: QuartzPluginData) => number
 
+function getOrder(data: QuartzPluginData): number | undefined {
+  const rawOrder = data.frontmatter?.order
+  const order =
+    rawOrder === undefined || rawOrder === null || rawOrder === "" ? NaN : Number(rawOrder)
+  return Number.isFinite(order) ? order : undefined
+}
+
 export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
   return (f1, f2) => {
     // Sort by date/alphabetical
@@ -49,6 +56,25 @@ export function byDateAndAlphabeticalFolderFirst(cfg: GlobalConfiguration): Sort
     const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
     const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
     return f1Title.localeCompare(f2Title)
+  }
+}
+
+export function byOrderAndFolderFirst(cfg: GlobalConfiguration): SortFn {
+  const fallback = byDateAndAlphabeticalFolderFirst(cfg)
+
+  return (f1, f2) => {
+    const order1 = getOrder(f1)
+    const order2 = getOrder(f2)
+
+    if (order1 !== undefined && order2 !== undefined && order1 !== order2) {
+      return order1 - order2
+    } else if (order1 !== undefined && order2 === undefined) {
+      return -1
+    } else if (order1 === undefined && order2 !== undefined) {
+      return 1
+    }
+
+    return fallback(f1, f2)
   }
 }
 
