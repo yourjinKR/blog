@@ -51,7 +51,7 @@ TCP 세그먼트는 헤더와 데이터 필드가 나뉘어져 있다.
 ![[Pasted image 20260708182207.png]]  
 [토스 개발자 센터](https://docs.tosspayments.com/resources/glossary/tcp#tcp-%EC%84%B8%EA%B7%B8%EB%A8%BC%ED%8A%B8)  
 
-#### TCP 3-way Handshake (가상 연결)
+#### TCP 3-way Handshake
 
 데이터를 발송하는 애플리케이션, 수신하는 애플리케이션 모두 준비가 됐다는 것을 보장하기 위해 TCP 연결을 생성할때는 3-way 핸드쉐이크를 사용한다.  
 
