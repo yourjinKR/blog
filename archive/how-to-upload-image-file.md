@@ -5,7 +5,7 @@ title: 이미지 업로드 방식
 
 서버 중계 업로드는 말그대로 파일의 관리 주체를 서버 중심으로 하는 것이다.  
 
-기본적으로 multipart/form-data로 이미지 전송하여 
+기본적으로 multipart/form-data로 이미지 전송하여  
 백엔드에서 파일크기, MIME type, 확장자 , 이미지 디코딩 검증을 수행하여 R2에 업로드하는 방식이다.
 
 해당 방식은 한 곳(서버)에서 모든걸 담당한다는 점에서 검증을 안정적으로 처리할 수 있다.  
@@ -36,7 +36,6 @@ presigned PUT URL 방식은 서버에서 직접 파일을 처리하는 것이 �
 버킷 자체에서 url를 생성하고 해당 url으로 직접 업로드 하는 방식이다.  
 
 ![[Pasted image 20260601192434.png|475]]
-https://ipekogosu.tistory.com/59
 
 해당 방식을 통해 서버의 부담을 줄일 수 있다.  
 그러나 해당 방식에도 **추가적인 이슈가 존재**한다.  
@@ -68,6 +67,6 @@ https://ipekogosu.tistory.com/59
 
 ## 출처 및 참고자료
 
-[velog 1](https://velog.io/@gunwoo7179/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%ED%94%8C%EB%A0%88%EC%96%B4-R2%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%82%AC%EC%A7%84-%EC%97%85%EB%A1%9C%EB%93%9C-%EC%98%88%EC%A0%9C)
-https://ipekogosu.tistory.com/59  
+[velog 1](https://velog.io/@gunwoo7179/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%ED%94%8C%EB%A0%88%EC%96%B4-R2%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%82%AC%EC%A7%84-%EC%97%85%EB%A1%9C%EB%93%9C-%EC%98%88%EC%A0%9C)  
+https://ipekogosu.tistory.com/59    
 https://developers.cloudflare.com/r2/api/s3/presigned-urls/
