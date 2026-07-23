@@ -1,23 +1,20 @@
 ---
-title: CHECK 제약 조건에 대한 H2 이슈
+title: H2 2.4.240에서 CHECK 제약 버그
 tags:
   - 프로그라피
   - Spring
   - H2
   - JPA
   - 트러블슈팅
+date: 2026-07-23
 ---
-## 관련 PR
+## 원인 및 해결 방법
 
-https://github.com/prography/11th-1team-BE/pull/196
-
-## 개요
-
-H2 관련해서 이슈가 발생했다.  
+최신 버전인 H2 2.4.240은 CHECK 제약식을 생성한 세션이 닫힌 뒤 다른 **세션**에서 INSERT하면, 제약식이 이전 **세션**을 참조하면서 동일한 예외를 발생시킬 수 있다고 한다.  
 
 ![[Pasted image 20260723211729.png|430]]
 
-결론적으로 아래와 같은 버전으로 고정히여 문제를 해결할 수 있다.
+결론적으로 아래와 같은 버전으로 고정하여 문제를 해결할 수 있다.
 
 ```groovy
 runtimeOnly 'com.h2database:h2:2.3.232'
@@ -25,7 +22,10 @@ runtimeOnly 'com.h2database:h2:2.3.232'
 
 원인과 해결 방법은 이미 블로그와 공식 저장소에서도 확인할 수 있지만 어떤 문제로 인해 발생하는지 알아보고자 한다. 
 
-## 원인
+https://jaehee1007.tistory.com/239  
+https://github.com/h2database/h2database/issues/4291  
+
+## 상세설명
 
 최신 버전인 H2 2.4.240은 CHECK 제약식을 생성한 세션이 닫힌 뒤 다른 **세션**에서 INSERT하면, 제약식이 이전 **세션**을 참조하면서 동일한 예외를 발생시킬 수 있다고 한다.  
 
@@ -112,6 +112,4 @@ void insertAllowedDiscriminatorFromDifferentSession() throws Exception {
 
 ## 출처 및 참고자료
 
-https://jaehee1007.tistory.com/239  
-https://github.com/h2database/h2database/issues/4291  
 https://www.baeldung.com/spring-boot-h2-database#h2-database-url-options  
