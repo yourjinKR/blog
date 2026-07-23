@@ -3,6 +3,8 @@ title: 중첩 객체로 인한 swagger-ui example 객체 충돌 발생
 tags:
   - Spring
   - Swagger
+  - 프로그라피
+  - 트러블슈팅
 ---
 ## 배경
 
@@ -19,7 +21,7 @@ public static class Request {
 }
 ```
 
-그러나 전혀 swagger-ui의 Example Value에서는 전혀 다른 값이 보이는 것이다
+그러나 전혀 swagger-ui의 Example Value에서는 전혀 다른 값이 보이는 것이다.
 
 ![[Pasted image 20260604035241.png|275]]
 
