@@ -105,22 +105,6 @@ PreparedStatement prepareStatement(String sql) throws SQLException;
 
 `Statement`와 이를 구현한 `PrepareStatment`가 있는데 차이점은 다음과 같다.  
 
-```mermaid
-classDiagram
-direction BT
-class PreparedStatement {
-<<Interface>>
-
-}
-class Statement {
-<<Interface>>
-
-}
-
-PreparedStatement  --|>  Statement 
-
-```
-
 | 구분                  | 생성 방법                              | SQL 전달           | 파라미터 바인딩                         |
 | ------------------- | ---------------------------------- | ---------------- | -------------------------------- |
 | `Statement`         | `connection.createStatement()`     | 실행할 때 SQL 문자열 전달 | 지원하지 않음                          |
