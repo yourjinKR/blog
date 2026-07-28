@@ -1,7 +1,6 @@
 ---
 title: CORS
 ---
-
 # CORS (Cross-Origin Resource Sharing)
 
 [[SOP]]에 의해 제한된 교차 출처 간 리소스 공유를 허용하기 위한 방식이다.  
@@ -9,10 +8,29 @@ title: CORS
 
 ## 동작 원리
 
-- 서버는 응답 처리 코드에서 CORS 관련 헤더를 설정 가능
-- CORS 요청 전 Preflight 요청이 발생 가능
+CORS 요청 전 [[#Preflight Request]]를 통해 허가된 출처인지 확인한다.  
+
+브라우저가 다른 출처의 서버로 요청할 때는 요청 헤더에 자신의 출처를 나타내는 `Origin` 값을 포함한다.
+
+```
+Origin: https://app.example.com
+```
+
+서버가 해당 출처를 허용한다면 응답에 다음과 같은 헤더를 포함한다.
+
+```
+Access-Control-Allow-Origin: https://app.example.com
+```
+
+브라우저는 요청의 `Origin`과 응답의 `Access-Control-Allow-Origin`을 비교한다.
+
+출처가 허용되어 있으면 응답 데이터를 JavaScript에 전달하고, 허용되어 있지 않거나 CORS 응답 헤더가 없다면 서버가 정상적으로 응답했더라도 JavaScript가 해당 응답을 읽지 못하게 차단합니다.
+
+중요한 점은 **CORS 오류가 발생했다고 해서 요청 자체가 항상 서버에 전달되지 않은 것은 아니라는 것**입니다. 단순 요청의 경우 실제 요청이 이미 서버에 전달되어 데이터 변경까지 발생했지만, 브라우저가 응답만 차단했을 수도 있습니다.
 
 ### 단순 요청
+
+일부 요청은 [[#Preflight Request]]가 발생하지 않으며 조건은 다음과 같다.
 
 - `Content-Type`이 다음과 같은 `GET`, `HEAD`, `POST` 요청
     - `application/x-www-form-urlencoded`
@@ -35,6 +53,7 @@ title: CORS
 
 ### Credendential Request
 
+- 클라이언트는 `wittCredentials`를 `true`로 설정하여 요청한다
 - 서버는 `Access-Control-Allow-Origin`에 허용된 리소스를 명시하여 응답한다
 
 ![[Pasted image 20260712215512.png|501]]
