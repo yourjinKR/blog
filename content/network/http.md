@@ -20,7 +20,7 @@ title: HTTP
 1. start line: [[http-method|method]] + path + http version
 2. [[http-header|header]]: http 전송에 필요한 모든 부가정보를 갖는다
 3. empty line
-4. message [[http-body|body]]: 응답 본문
+4. message body: 응답 본문
 
 ### Response Message
 

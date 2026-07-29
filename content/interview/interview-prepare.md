@@ -1,5 +1,5 @@
 ---
-title: 인터뷰 준비
+title: 면접 준비
 ---
 # OOP
 
@@ -44,9 +44,14 @@ title: 인터뷰 준비
 # HTTP & WEB
 
 - [[http-process|브라우저의 동작 방식에 대해 설명해주세요]]
-- [[management-status-in-web|쿠키-세션-JWT에 대해 설명해주세요]]
+- [[management-status-in-web|쿠키/세션/JWT에 대해 설명해주세요]]
 - [[what-is-restful-api|REST API에 대해 설명해주세요]]
 - [[what-is-cors|CORS에 대해 설명해주세요]]
+
+# 미분류
+
+- [[difference-interpreter-and-compiler|인터프리터와 컴파일러의 차이]]
+
 
 # 출처 및 참고자료
 

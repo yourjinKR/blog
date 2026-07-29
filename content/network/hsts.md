@@ -3,7 +3,7 @@ title: HSTS
 ---
 # HSTS (HTTP-Strict-Transport-Security)
 
-HSTS는 사이트가 [[HTTPS]]를 통해서만 접근되어야 하며 향후 [[HTTP]]를 사용하여 사이트에 접근하려는 모든 시도는 자동으로 HTTPS로 변환되어야 함을 브라우저에 알리는 [[http-header|헤더]]값이다.
+HSTS는 사이트가 [[HTTPS]]를 통해서만 접근되어야 하며 향후 [[http|HTTP]]를 사용하여 사이트에 접근하려는 모든 시도는 자동으로 HTTPS로 변환되어야 함을 브라우저에 알리는 [[http-header|헤더]]값이다.
 
 ```
 Strict-Transport-Security: max-age=<expire-time>
