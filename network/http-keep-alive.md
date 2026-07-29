@@ -7,7 +7,7 @@ aliases:
 ---
 # HTTP 지속적 연결 상태
 
-하나의 [[TCP]] 연결을 사용하여 복수의 [[network/http]] 요청/응답을 주고받는다는 개념으로, 매 요청/응답 쌍마다 새로운 요청을 여는 것과는 반대되는 개념
+하나의 [[TCP]] 연결을 사용하여 복수의 [[http|HTTP]] 요청/응답을 주고받는다는 개념으로, 매 요청/응답 쌍마다 새로운 요청을 여는 것과는 반대되는 개념
 
 ![[Pasted image 20260710011510.png]]  
 저자: helix84 - own work, based on [1], 퍼블릭 도메인, https://commons.wikimedia.org/w/index.php?curid=1328207
