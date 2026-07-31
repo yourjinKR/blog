@@ -14,11 +14,39 @@ date: 2026-07-29
 
 ## 코드로 확인하기
 
+### Test.java
+
 `.java` 파일을 컴파일한다.  
+
+```java
+// Test.java
+public class Test {  
+    public static void main(String[] args) {  
+        System.out.println("테스트");  
+    }  
+}
+```
 
 ```java
 javac Test.java
 ```
+
+인텔리제이에서는 바이트 코드를 다시 디컴파일한 코드를 볼 수 있다.  
+
+![[Pasted image 20260731222139.png]]
+
+인텔리제이에서는 상단 패널의 `view` → `Show Bytecode`를 통해 모습을 확인할 수 있다.   
+
+![[Pasted image 20260731222502.png|366]]
+
+바이트 코드에서 아래와 같은 라인을 확인할 수 있다.  
+해당 코드는 [[object-class|Object 클래스]]의 생성자를 호출해서 객체 인스턴스를 초기화하는 명령어이다.  
+
+```
+INVOKESPECIAL java/lang/Object.<init> ()V
+```
+
+### Test.class
 
 `.class` 파일을 실행한다.  
 

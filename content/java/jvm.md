@@ -3,10 +3,22 @@ title: JVM
 aliases:
   - JVM
   - Java Virtual Machine
+date: 2026-07-30
 ---
-## Java
+## JVM (Java Virtual Machine)
 
-컴파일된 자바 바이트 코드를 실행하는 가상 머신이다.  
+컴파일된 자바 바이트 코드를 실행하는 [[virtual-machine|가상 머신]]이다.  
+
+## 구성요소
+
+JVM의 구성 요소는 다음과 같다.  
+
+- 클래스 로더
+- 런타임 데이터 영역
+- 실행 엔진
+- 네이티브 영역
+
+![[Pasted image 20260731221312.png|614]]
 
 ### JVM의 장단점을 설명해주세요
 
