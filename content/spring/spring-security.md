@@ -3,6 +3,8 @@ title: Spring Security
 aliases:
   - Spring Security
   - 스프링 시큐리티
+tags:
+  - Spring-Security
 ---
 
 # 동작 방식
@@ -12,7 +14,7 @@ aliases:
 - 시큐리티 로직을 마친 후 다시 WAS의 다음 필터로 복귀
 
 - 스프링 시큐리티 로직은 여러개의 필터들이 나열된 필터 체인 형태로 구성
-	- 필터 체인은 여러개가 될 수 있음
+		- 필터 체인은 여러개가 될 수 있음
 
 
 ![[spring-security-overview.svg]]
