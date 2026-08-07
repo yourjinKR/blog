@@ -19,7 +19,7 @@ title: 면접 준비
 - Thread
 - 고유 락 (Intrinsic Lock)
 - JVM
-- 가비지 컬렉션
+- [[garbage-collector|가비지 컬렉터]]
 - Error & Exception
 - Stream API
 - Record

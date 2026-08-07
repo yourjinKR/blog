@@ -1,5 +1,8 @@
 ---
-title: GC 구성 및 동작 과정에 대해 설명해주세요
+title: GC의 동작 과정에 대해 설명해주세요
+tags:
+  - 면접
+  - 스터디
 ---
 GC의 세부 구조는 Collector마다 다르지만, 일반적으로 Heap을 Young 영역과 Old 영역으로 나누어 관리합니다. Young과 Old를 나눈 이후는 애플리케이션 특성상 대부분의 객체들은 금방 사라지기에 일부 영역만 지속적으로 탐색하며 해제하는 방식을 택했습니다.  
 
@@ -12,4 +15,3 @@ GC는 GC Root에서 참조 관계를 탐색해 살아 있는 객체를 구분하
 > JVM의 GC Root는 Stack과 Method Area 내 Runtime Constant Pool이다.
 
 > Reference Count와 Mark and Sweep 방식의 차이를 알자
-
