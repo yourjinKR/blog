@@ -1,3 +1,10 @@
+---
+title: Checked Exception과 Unchecked(Runtime) Exception의 차이는 무엇인가요
+tags:
+  - 면접
+  - 스터디
+---
+
 가장 큰 차이는 **컴파일러가 예외 처리를 강제하는지 여부**입니다.
 
 Checked Exception은 `RuntimeException`을 상속하지 않는 예외들로, 컴파일러가 `try-catch`로 잡거나 `throws`로 선언했는지 **컴파일 타임에 검사**합니다. 주로 복구 가능한 외부 상황(예: I/O 오류)에 사용됩니다.
