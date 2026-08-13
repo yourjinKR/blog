@@ -3,6 +3,7 @@ title: JVM 메모리 구조에서 Heap 영역과 Stack 영역의 차이를 설�
 tags:
   - 면접
   - 스터디
+  - Java
 ---
 Heap 영역과 Stack 영역의 가장 큰 차이는 공유 범위와 데이터의 생명주기입니다.
 

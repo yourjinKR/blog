@@ -3,6 +3,7 @@ title: ArrayList와 LinkedList의 내부 구조 차이와, 조회 및 삽입/삭
 tags:
   - 면접
   - 스터디
+  - Java
 ---
 ArrayList는 내부적으로 크기를 조절할 수 있는 배열을 사용하고, LinkedList는 각 노드가 이전 노드와 다음 노드를 참조하는 이중 연결 리스트 구조를 사용합니다.
 
