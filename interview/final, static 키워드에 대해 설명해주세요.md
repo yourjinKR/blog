@@ -3,6 +3,7 @@ title: final, static 키워드에 대해 설명해주세요
 tags:
   - 면접
   - 스터디
+  - Java
 ---
 
 final은 적용 대상에 따라 변경이나 확장을 제한하는 키워드입니다.

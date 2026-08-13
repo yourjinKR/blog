@@ -3,6 +3,7 @@ title: HashMap의 동작 원리를 설명해주세요
 tags:
   - 면접
   - 스터디
+  - Java
 ---
 HashMap은 **해시 함수**를 사용하여 Key-Value 쌍을 저장하고 조회하는 자료구조입니다.
 

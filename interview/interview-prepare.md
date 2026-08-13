@@ -17,6 +17,7 @@ title: 면접 준비
 - Object 클래스 wait, notify, notifyAll
 - 캐스팅
 - Thread
+- [[자바의 동시성 이슈를 설명해주세요]]
 - 고유 락 (Intrinsic Lock)
 - JVM
 - [[garbage-collector|가비지 컬렉터]]
