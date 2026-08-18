@@ -29,13 +29,26 @@ https://www.matchuri.com/group/delete/1
 
 ## 해결 방법
 
+### CSRF 토큰 발급
+
 서버는 로그인한 유저에게 고유의 난수 CSRF 토큰을 발급합니다. 이후 서비스 개발자들이 만든 Form 태그는 해당 CSRF 토큰을 hidden 파라미터로 담도록 설계합니다.
 
 해커가 만든 Form 태그는 CSRF 토큰을 담지 못하기 때문에 Form 요청시 인가가 거부됩니다.
 
+### SameSite 쿠키 속성
+
+쿠키에 `SameSite=Lax` 또는 `SameSite=Strict` 옵션을 주어 다른 사이트에서 온 요청에는 쿠키가 자동으로 전송되지 않도록 제한한다.  
+
+> 기본값은 `Lax`이다.
+
+### Referer 및 Origin 헤더 검증
+
+서버 요청 헤더의 `Referer`나 `Origin` 값을 확인해 허용된 도메인에서 온 요청인지 검사
+
 ## 출처 및 참고자료
 
-https://www.youtube.com/watch?v=8H9J8lSPKuw
+https://www.youtube.com/watch?v=8H9J8lSPKuw  
+https://www.codeit.kr/tutorials/94/%EC%BF%A0%ED%82%A4%EC%9D%98%20SameSite%20%EC%98%B5%EC%85%98%EC%9D%B4%EB%9E%80%3F
 
 
 
