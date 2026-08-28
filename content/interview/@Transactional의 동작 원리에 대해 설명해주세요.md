@@ -4,7 +4,7 @@ tags:
   - 스터디
   - Spring
 ---
-`@Transactional`은 Spring AOP와 프록시를 기반으로 [[트랜잭션]]을 처리합니다.
+`@Transactional`은 Spring AOP와 프록시를 기반으로 [[Transaction|트랜잭션]]을 처리합니다.
 
 Spring은 `@Transactional`이 적용된 빈을 등록할 때 해당 빈의 프록시 객체를 생성합니다. 외부에서 메서드를 호출하면 실제 객체가 아닌 프록시가 먼저 호출을 가로챕니다.
 
