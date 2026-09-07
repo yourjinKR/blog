@@ -2,7 +2,6 @@
 tags:
   - DB
 aliases:
-  - Lock
   - 락
 ---
 > [!INFO]
