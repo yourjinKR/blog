@@ -72,5 +72,20 @@ System.out.println(original.address.name);
 
 ## 출처 및 참고자료
 
-https://www.baeldung.com/cs/deep-vs-shallow-copy  
-https://www.youtube.com/watch?v=ytzbyHL5f4Q  
+```cardlink
+url: https://www.baeldung.com/cs/deep-vs-shallow-copy
+title: "Differences Between a Deep Copy and a Shallow Copy | Baeldung on Computer Science"
+description: "A quick and practical comparison between deep and shallow copying."
+host: www.baeldung.com
+favicon: https://www.baeldung.com/wp-content/themes/baeldung/favicon/cs/favicon.ico
+image: https://www.baeldung.com/wp-content/uploads/sites/4/2021/09/Featured-CS-9.png
+```
+
+```cardlink
+url: https://www.youtube.com/watch?v=ytzbyHL5f4Q
+title: "[Java] 초보 개발자가 많이 하는 실수 36탄 - 자바에서 얕은 복사와 깊은 복사의 비교"
+description: "인천일보아카데미 튜터가 직접 알려주는 '초보 개발자가 많이 하는 실수'!36탄은 '자바에서 얕은 복사와 깊은 복사의 비교' 입니다.기초부터 차근차근 배울 수 있는 인천일보아카데미와 함께 하세요!👀👍❤"
+host: www.youtube.com
+favicon: https://www.youtube.com/s/desktop/f82dea74/img/favicon_32x32.png
+image: https://i.ytimg.com/vi/ytzbyHL5f4Q/maxresdefault.jpg
+```
