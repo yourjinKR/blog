@@ -1,0 +1,135 @@
+/*
+ * Styles for the CardLink transformer.
+ * Kept next to the transformer integration so it can be copied between Quartz sites.
+ */
+article a.auto-card-link {
+  display: block;
+  max-width: 100%;
+  margin: 1.25rem 0;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 0.5rem;
+
+  &:hover {
+    color: inherit;
+  }
+
+  // CrawlLinks may add this icon after the card contents.
+  > .external-icon {
+    display: none;
+  }
+}
+
+.auto-card-link-card {
+  display: flex;
+  min-width: 0;
+  height: 9rem;
+  overflow: hidden;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+
+  .auto-card-link:hover & {
+    border-color: var(--gray);
+    box-shadow: 0 5px 16px rgb(0 0 0 / 10%);
+    transform: translateY(-1px);
+  }
+}
+
+.auto-card-link-media {
+  flex: 0 0 34%;
+  min-width: 10rem;
+  overflow: hidden;
+  background: var(--lightgray);
+  border-right: 1px solid var(--lightgray);
+
+  > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+}
+
+.auto-card-link-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 1rem 1.1rem;
+}
+
+.auto-card-link-title {
+  overflow: hidden;
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auto-card-link-description {
+  display: -webkit-box;
+  margin-top: 0.35rem;
+  overflow: hidden;
+  color: var(--darkgray);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.auto-card-link-host {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  overflow: hidden;
+  color: var(--gray);
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.auto-card-link-favicon {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.4rem 0 0;
+  border-radius: 0.15rem;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .auto-card-link-card {
+    height: 7.5rem;
+  }
+
+  .auto-card-link-media {
+    flex-basis: 36%;
+    min-width: 7rem;
+  }
+
+  .auto-card-link-body {
+    padding: 0.8rem;
+  }
+
+  .auto-card-link-description {
+    -webkit-line-clamp: 2;
+  }
+}
