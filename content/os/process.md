@@ -22,7 +22,7 @@ aliases:
 
 프로세스는 각각 독립된 영역이기에 다른 프로세스의 자원에 접근하려면 [[IPC]]를 사용해야 한다.  
 
-![[Pasted image 20260903155413.png]]
+![[IMG-20260903155413143.png]]
 
 ### Data & BSS
 
@@ -39,7 +39,7 @@ aliases:
 - 대기(waiting) : 보류(block)라고 부르기도 한다. 프로세스가 입출력 완료, 시그널 수신 등 어떤 사건을 기다리고 있는 상태를 말한다.
 - 종료(terminated) : 프로세스의 실행이 종료되었다.
 
-![[IMG-20260903123204596.png]]
+![[IMG-20260906225219909.png]]
 https://www.geeksforgeeks.org/operating-systems/states-of-a-process-in-operating-systems/
 
 

@@ -48,7 +48,6 @@ A → B가 필요
 B → A가 필요
 ```
 
-
 ## 출처 및 참고자료
 
 https://www.tutorialspoint.com/article/mutex-vs-semaphore#:~:text=A%20Mutex%20is%20different%20than,be%20used%20as%20a%20semaphore.
