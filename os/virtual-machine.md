@@ -1,5 +1,9 @@
 ---
 title: 가상 머신
+tags:
+  - OS
+aliases:
+  - 가상 머신
 ---
 ## 가상 머신 (Virtual Machine)
 
