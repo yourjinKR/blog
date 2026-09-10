@@ -9,4 +9,12 @@ aliases:
 
 ## 출처 및 참고자료
 
-https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8
+
+```cardlink
+url: https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8
+title: "컴퓨터 프로그램 - 위키백과, 우리 모두의 백과사전"
+host: ko.wikipedia.org
+favicon: https://ko.wikipedia.org/static/favicon/wikipedia.ico
+image: https://upload.wikimedia.org/wikipedia/commons/a/a4/JavaScript_code.png?utm_source=ko.wikipedia.org&utm_campaign=index&utm_content=thumbnail_unscaled
+```
+
