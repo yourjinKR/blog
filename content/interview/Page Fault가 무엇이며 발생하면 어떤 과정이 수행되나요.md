@@ -25,8 +25,12 @@ tags:
 > [!QUESTION]- Copy-on-Write 쓰기도 접근 권한 오류인데 왜 종료되지 않나요?
 > 운영체제가 공유 페이지를 일시적으로 읽기 전용으로 설정한 경우, 쓰기 예외를 복사 시점으로 활용할 수 있기 때문입니다. 커널은 쓰기가 허용된 논리적 영역인지 확인한 뒤 별도 페이지를 복사·매핑하고 쓰기를 재개합니다.
 
+> [!QUESTION]- Thrashing에 대해 설명해주세요.
+> 실행 중인 작업들의 Working Set이 물리 메모리에 들어가지 않아 Page 교체와 Page Fault가 반복되고, 실제 연산보다 디스크 I/O에 대부분의 시간을 쓰는 상태입니다. Page Fault가 늘면서 CPU 이용률과 처리량이 떨어질 수 있습니다. 동시 실행 프로세스 수를 줄이거나 메모리를 늘리고, Working Set이 유지되도록 교체 정책과 메모리 할당을 조정해 완화합니다.
+
 ## 출처 및 참고자료
 
 - [Beyond Physical Memory: Mechanisms - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys.pdf)
 - [getrusage(2) - Linux manual](https://man7.org/linux/man-pages/man2/getrusage.2.html)
 - [fork(2) - Linux manual](https://man7.org/linux/man-pages/man2/fork.2.html)
+- [Beyond Physical Memory: Policies - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf)

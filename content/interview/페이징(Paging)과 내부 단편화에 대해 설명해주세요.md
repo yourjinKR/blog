@@ -19,8 +19,12 @@ tags:
 > [!QUESTION]- 페이징을 쓰면 모든 메모리 단편화가 사라지나요?
 > 아닙니다. 페이지 내부의 낭비는 남고, 힙 할당자의 가변 크기 할당에서도 단편화가 생길 수 있습니다. 큰 페이지처럼 연속된 물리 프레임이 필요한 요청은 물리 메모리 단편화의 영향을 받을 수 있습니다.
 
+> [!QUESTION]- Page 크기를 정할 때 고려해야 할 사항은 무엇인가요?
+> 작은 Page는 내부 단편화와 한 번의 Page Fault에서 읽는 불필요한 데이터를 줄이지만, Page Table 항목 수와 관리할 Page 수가 늘고 같은 TLB 항목으로 다룰 수 있는 메모리 범위가 작아집니다. 큰 Page는 Page Table과 TLB Miss 부담, 연속 접근의 I/O 횟수를 줄일 수 있지만 내부 단편화와 I/O 증폭, 긴 Fault 처리 시간, 큰 연속 물리 공간 확보 비용이 커질 수 있습니다. 따라서 Working Set과 접근 지역성, 메모리 낭비, TLB Reach, 저장장치 특성을 함께 고려합니다.
+
 ## 출처 및 참고자료
 
 - [Paging: Introduction - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf)
 - [Paging: Faster Translations (TLBs) - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf)
 - [Concepts overview - Linux Kernel documentation](https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html)
+- [Paging: Smaller Tables - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf)

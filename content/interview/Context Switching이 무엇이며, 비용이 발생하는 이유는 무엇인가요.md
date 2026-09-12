@@ -22,6 +22,9 @@ tags:
 > [!QUESTION]- 자발적 문맥 교환과 비자발적 문맥 교환은 어떻게 다른가요?
 > 자발적 문맥 교환은 I/O나 잠금 대기 등으로 작업이 CPU를 내놓을 때 발생합니다. 비자발적 문맥 교환은 타임 슬라이스 소진이나 더 높은 우선순위 작업의 실행 등으로 선점될 때 발생합니다.
 
+> [!QUESTION]- Context Switching을 줄이려면 어떻게 해야 하나요?
+> 작업 수보다 지나치게 많은 스레드·프로세스를 만들지 않도록 풀 크기를 조정하고, 작은 작업을 적절히 묶으며, 긴 락 대기와 불필요한 블로킹을 줄여야 합니다. I/O가 많은 환경에서는 Non-blocking I/O나 Virtual Thread처럼 대기 중 OS 스레드 점유를 줄이는 모델을 검토할 수 있습니다. 최적값은 작업 특성에 따라 달라지므로 실제 문맥 교환 횟수, CPU 사용률, 처리량과 응답 시간을 측정해 조정해야 합니다.
+
 ## 출처 및 참고자료
 
 - [Mechanism: Limited Direct Execution - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf)

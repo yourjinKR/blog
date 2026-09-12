@@ -23,7 +23,15 @@ tags:
 > [!QUESTION]- 타임아웃과 재시도만 넣으면 해결되나요?
 > 타임아웃 뒤에 이미 획득한 자원을 해제하고 작업을 취소·복구할 수 있어야 합니다. 즉시 같은 순서로 재시도하면 충돌이나 라이브락이 반복될 수 있으므로, 획득 순서 통일과 제한된 재시도·백오프를 함께 고려해야 합니다.
 
+> [!QUESTION]- InnoDB에서 Deadlock이 발생하면 어떻게 해소하나요?
+> 기본 설정에서는 InnoDB가 트랜잭션의 대기 관계를 검사해 Deadlock을 자동으로 탐지하고, 관련 트랜잭션 중 하나를 롤백하여 순환 대기를 끊고 락을 해제합니다. 롤백된 쪽에는 Deadlock 오류가 반환되므로 애플리케이션은 트랜잭션 전체를 처음부터 안전하게 재시도해야 합니다. Lock Wait Timeout은 단순히 오래 기다린 상황을 처리하는 별도의 메커니즘입니다.
+
+> [!QUESTION]- InnoDB는 Deadlock이 발생했을 때 어떤 트랜잭션을 취소하나요?
+> InnoDB는 롤백 비용을 줄이기 위해 작은 트랜잭션을 희생자로 선택하려고 합니다. 트랜잭션의 크기는 삽입·수정·삭제한 행의 수를 기준으로 판단하므로, 단순히 가장 늦게 시작한 트랜잭션이나 가장 오래 기다린 트랜잭션을 항상 취소하는 것은 아닙니다.
+
 ## 출처 및 참고자료
 
 - [Common Concurrency Problems - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf)
 - [Deadlocks - University of Illinois Chicago 강의 노트](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/7_Deadlocks.html)
+- [Deadlock Detection - MySQL 8.4 Reference Manual](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlock-detection.html)
+- [How to Minimize and Handle Deadlocks - MySQL 8.4 Reference Manual](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks-handling.html)
