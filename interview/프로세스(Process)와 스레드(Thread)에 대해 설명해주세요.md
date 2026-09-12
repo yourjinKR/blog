@@ -19,9 +19,16 @@ tags:
 > [!QUESTION]- 프로세스끼리는 메모리를 전혀 공유할 수 없나요?
 > 공유 메모리 같은 IPC를 사용하면 같은 물리 메모리를 각자의 주소 공간에 매핑할 수 있습니다. 다만 공유 데이터에 동시에 접근할 때는 프로세스 사이에도 동기화가 필요합니다.
 
+> [!QUESTION]- 프로세스는 스택을 가지고 있지 않은 걸까요?
+> 가지고 있습니다. 프로세스의 가상 주소 공간 안에 스택 영역이 있으며, 단일 스레드 프로세스라면 실행 스레드의 스택 하나가 대표적으로 보입니다. 멀티스레드 프로세스에서는 각 스레드가 자신의 사용자 스택과 실행 문맥을 가지므로, 메모리 구조에서 말하는 프로세스의 스택은 실제로는 프로세스에 속한 스레드들의 스택 영역입니다.
+
+> [!QUESTION]- 프로세스 간 데이터 교환은 어떻게 하나요?
+> 파이프·메시지 큐·소켓처럼 커널을 통해 데이터를 전달하거나, 공유 메모리를 각 프로세스의 주소 공간에 매핑하는 [[IPC]]를 사용합니다. 전달 방식은 격리가 명확하지만 복사·직렬화 비용이 들 수 있고, 공유 메모리는 대용량 교환에 유리하지만 Race Condition을 막기 위한 별도 동기화가 필요합니다.
+
 %%%%
 ## 출처 및 참고자료
 
 - [The Abstraction: The Process - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)
 - [Concurrency: An Introduction - OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf)
 - [pthreads(7) - Linux manual](https://man7.org/linux/man-pages/man7/pthreads.7.html)
+- [pipe(7) - Linux manual](https://man7.org/linux/man-pages/man7/pipe.7.html)

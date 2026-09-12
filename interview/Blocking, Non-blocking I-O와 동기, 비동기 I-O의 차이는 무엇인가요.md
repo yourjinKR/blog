@@ -36,6 +36,9 @@ Java/Spring에서는 다음과 같이 사용됩니다.
 > [!QUESTION]- Non-blocking I/O는 성공하면 요청한 데이터를 전부 처리하나요?
 > 아닙니다. 소켓의 읽기·쓰기는 일부 바이트만 처리하고 반환할 수 있으므로 반환값만큼 진행한 뒤 나머지를 처리해야 합니다. 처리할 준비가 안 됐다면 무조건 반복 호출하기보다 준비 알림을 활용해 CPU 낭비를 줄일 수 있습니다.
 
+> [!QUESTION]- Synchronous이면서 Non-blocking인 I/O의 예시는 무엇인가요?
+> `O_NONBLOCK`으로 설정한 소켓에서 `read()`를 호출하는 경우가 대표적입니다. 준비된 데이터가 있으면 호출 안에서 직접 읽어 결과를 반환하고, 없으면 기다리지 않고 `EAGAIN` 또는 `EWOULDBLOCK`을 반환하므로 Non-blocking입니다. 완료 결과를 별도 콜백으로 받는 비동기 I/O 요청이 아니라 애플리케이션이 준비 알림 등을 바탕으로 다시 호출하는 동기 I/O입니다.
+
 ## 출처 및 참고자료
 
 - [read(2) - Linux manual](https://man7.org/linux/man-pages/man2/read.2.html)
