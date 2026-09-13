@@ -1,5 +1,9 @@
 ---
 title: 청크 인코딩
+tags:
+  - Network
+aliases:
+  - 청크 인코딩
 ---
 # 청크 인코딩
 
@@ -65,6 +69,7 @@ World
 Hello
 6
 World
+0 <- 종료
 ```
 
 
