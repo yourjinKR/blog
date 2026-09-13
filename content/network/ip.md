@@ -1,7 +1,7 @@
 ---
-title: IP
+tags:
+  - Network
 aliases:
-  - ip
   - internet protocol
   - 인터넷 프로토콜
 ---
@@ -12,15 +12,13 @@ aliases:
 - 인터넷의 기본적인 통신 [[protocol|프로토콜]]
 - 조각들의 순서가 뒤바뀌거나 일부가 누락되더라도 크게 상관하지 않고 보내는 데 집중
 
-순서가 보장되지 않는 이러한 문제를 극복하기에 위해 [[tcp|TCP]]가 등장
+순서가 보장되지 않는 이러한 문제를 극복하기에 위해 [[TCP|TCP]]가 등장
 
 ## IP 주소
 
 인터넷에 연결하는 장치나 도메인에 할당된 고유 식별자이다.  
 
 ![DNS 요청|697](https://images.ctfassets.net/slt3lc6tev37/54NvR4ArYd9isJUmbz5wbW/5abc7d8ece3a915683f8ed71d47ea28e/ddos-dns.svg)  
-https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/  
-
 - IP 주소 체계에는 IPv4와 IPv6 두 가지가 있습니다.
 - IPv6는 IPv4 주소 부족 문제를 해결하기 위해 개발되었습니다.
 
@@ -37,10 +35,23 @@ https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/
 - 하나의 큰 네트워크를 여러 개의 작은 네트워크로 나누는 과정
 - 이를 통해 IP 주소를 보다 효율적으로 활용하고, 네트워크 성능과 보안을 향상
 
+## 출처 및 참고자료
 
+```cardlink
+url: https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/
+title: "What is My IP Address?"
+description: "An IP Address is a unique numerical identifier used to keep track of who is who on the Internet."
+host: www.cloudflare.com
+favicon: https://www.cloudflare.com/favicon.ico
+image: https://www.cloudflare.com/preview.png
+```
 
-
-## 출처
-
-https://www.cloudflare.com/ko-kr/learning/network-layer/internet-protocol/  
-https://wikidocs.net/275073  
+```cardlink
+url: https://wikidocs.net/275073
+title: "04-03 IP 주소와 서브넷팅"
+description: "안정적인 통신 환경을 구축하려면 **IP 주소**와 **서브넷 마스크**의 원리를 이해해야 합니다. IP 주소는 네트워크에서 기기를 식별하는 주소이고, 서브넷팅은 하나의 IP 네…"
+host: wikidocs.net
+favicon: https://static.wikidocs.net/static/img/favicon.ico?v=2
+image: https://static.wikidocs.net/images/book/book_1772365770_1772365832.jpg
+```
+  

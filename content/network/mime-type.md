@@ -1,5 +1,9 @@
 ---
 title: MIME type
+tags:
+  - Network
+aliases:
+  - MIME
 ---
 ## MIME type (Multipurpose Internet Mail Extensions)
 
