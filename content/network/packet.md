@@ -1,8 +1,8 @@
 ---
-title: 패킷
+tags:
+  - Network
 aliases:
   - 패킷
-  - packet
 ---
 > 패킷이란 네트워크에서 데이터를 주고받을 때 사용되는 데이터 조각을 말합니다.  
 > 패킷은 헤더, 페이로드, 트레일러로 구성되어 있습니다. 수신자가 요청한 데이터뿐만 아니라 데이터가 잘 도착하기 위해 필요한 IP 주소, 패킷의 개수, 인터넷 프로토콜 등 다양한 정보도 같이 있습니다. 이런 정보가 있어야 패킷으로 나뉜 데이터를 수신자가 다시 합칠 수 있습니다.  
@@ -15,22 +15,11 @@ aliases:
 
 헤더, 페이로드, 트레일러로 구성되어 있다.  
 
-![[Pasted image 20260708201439.png]]  
-https://docs.tosspayments.com/resources/glossary/packet  
+- 헤더: 패킷에 대한 메타정보 (패킷 길이와 번호, 네트워크 프로토콜, 수신자 및 발신자의 IP 주소)
+- 페이로드: 수신자가 요청한 데이터
+- 트레일러: 패킷의 경계를 표현하는 역할
 
-### 헤더
-
-패킷에 대한 메타정보 (패킷 길이와 번호, 네트워크 프로토콜, 수신자 및 발신자의 IP 주소)
-
-### 페이로드
-
-수신자가 요청한 데이터
-
-### 트레일러
-
-패킷의 경계를 표현하는 역할, 
-
-
+![[IMG-20260708201439535.png]]  
 ## 사용 목적
 
 데이터를 통째로 송수신하지 않고 번거롭게 나누었다가 다시 합치는 이유는 다음과 같다.
@@ -47,3 +36,13 @@ https://docs.tosspayments.com/resources/glossary/packet
 > 
 > https://docs.tosspayments.com/resources/glossary/packet
 
+## 출처 및 참고자료
+
+```cardlink
+url: https://docs.tosspayments.com/resources/glossary/packet
+title: "패킷(Packet) | 토스페이먼츠 개발자센터"
+description: "패킷(Packet)이란 네트워크에서 데이터를 주고받을 때 사용되는 데이터 조각을 뜻해요."
+host: docs.tosspayments.com
+favicon: https://static.toss.im/tds/favicon/favicon-16x16.png
+image: https://docs.tosspayments.com/api/open-graph/image?pathname=/resources/glossary/packet
+```
