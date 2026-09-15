@@ -1,5 +1,8 @@
 ---
-title: DNS
+tags:
+  - Network
+aliases:
+  - Domain Name System
 ---
 
 # DNS (Domain Name Service)
