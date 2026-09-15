@@ -61,7 +61,7 @@ Message Passing 방식에서는 프로세스들이 서로의 메모리를 직접
     
 - Message Queue
     
-- Socket
+- [[Socket]]
     
 
 일반적인 구조는 다음과 같다.
@@ -439,54 +439,7 @@ Signal의 핵심 목적은 일반적인 데이터 전송보다는 **상태나 �
 
 # Socket
 
-Socket은 두 프로세스 사이에 **양방향 통신 채널을 제공하는 IPC 메커니즘**이다.
-
-Socket의 중요한 특징은 동일한 컴퓨터뿐만 아니라 **네트워크를 통한 서로 다른 컴퓨터의 프로세스 간 통신까지 지원할 수 있다는 것**이다.
-
-```mermaid
-flowchart LR
-    A["Client Process"]
-    SA["Socket"]
-    K["Kernel / Network"]
-    SB["Socket"]
-    B["Server Process"]
-
-    A <--> SA
-    SA <--> K
-    K <--> SB
-    SB <--> B
-```
-
-같은 컴퓨터 안에서만 통신한다면 Unix Domain Socket을 사용할 수 있다.
-
-```mermaid
-flowchart LR
-    A["Process A"]
-    UA["Unix Socket"]
-    K["Kernel"]
-    UB["Unix Socket"]
-    B["Process B"]
-
-    A <--> UA
-    UA <--> K
-    K <--> UB
-    UB <--> B
-```
-
-Linux에서는 Unix Domain Socket을 `AF_UNIX` 또는 `AF_LOCAL` Socket이라고 부른다.
-
-Unix Domain Socket은 동일한 컴퓨터 내 프로세스 간 통신을 위해 만들어졌으며 다음과 같은 형태를 지원한다.
-
-- `SOCK_STREAM`
-    
-- `SOCK_DGRAM`
-    
-- `SOCK_SEQPACKET`
-    
-
-Network Socket을 사용한다면 TCP/IP 등을 통해 다른 컴퓨터의 프로세스와도 통신할 수 있다.
-
-따라서 Socket은 IPC뿐 아니라 분산 시스템의 프로세스 간 통신에서도 핵심적으로 사용된다.
+![[Socket]]
 
 ---
 
