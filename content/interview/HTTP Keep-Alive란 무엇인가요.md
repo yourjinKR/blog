@@ -20,7 +20,7 @@ tags:
 >
 > HTTP/1.1에서는 하나의 연결에서 여러 요청을 순차적으로 처리하는 것이 일반적이므로
 > 앞선 요청의 응답이 늦어지면 뒤의 요청도 영향을 받을 수 있습니다.
-> 이러한 문제를 개선하기 위해 [[HTTP 2|HTTP/2]]에서는 하나의 연결에 여러 Stream을 두는
+> 이러한 문제를 개선하기 위해 [[HTTP 2|HTTP 2.0]]에서는 하나의 연결에 여러 Stream을 두는
 > [[Multiplexing]]을 지원합니다.
 
 > [!QUESTION]- HTTP Keep-Alive와 TCP Keepalive는 같은 기능인가요?
