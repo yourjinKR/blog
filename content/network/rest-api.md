@@ -12,7 +12,7 @@ title: REST API
 ## REST API 디자인 가이드
 
 **첫 번째,** [[uri|URI]]는 정보의 자원을 표현해야 한다.  
-**두 번째,** 자원에 대한 행위는 [[http-method|HTTP 메서드]]로 표현한다.
+**두 번째,** 자원에 대한 행위는 [[HTTP Method|HTTP 메서드]]로 표현한다.
 
 ### REST API 중심 규칙
 
