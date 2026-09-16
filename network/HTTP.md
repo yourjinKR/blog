@@ -1,5 +1,7 @@
 ---
-title: HTTP
+tags:
+  - Network
+  - HTTP
 ---
 # HTTP (HyperText Transfer Protocol)
 
@@ -13,11 +15,11 @@ title: HTTP
 
 ## HTTP Message
 
-![[Pasted image 20260710020154.png]]
+![[IMG-20260903105028304.png]]
 
 ### Request Messsage
 
-1. start line: [[http-method|method]] + path + http version
+1. start line: [[HTTP Method|method]] + path + http version
 2. [[http-header|header]]: http 전송에 필요한 모든 부가정보를 갖는다
 3. empty line
 4. message body: 응답 본문
@@ -43,7 +45,7 @@ title: HTTP
 - 서버는 클라이언트의 상태를 보존하지 않는다.  
 - 서버를 클라이언트로부터 무상태로 관리한다면 서버에 대한 유연한 확장이 가능하다. 
 - 그러나 모든 기능들을 무상태로 관리하는데에는 한계가 존재한다.  
-- 이러한 문제를 해결하기 위해 [[cookie|쿠키]], [[session|세션]], JWT등이 주로 활용된다.  
+- 이러한 문제를 해결하기 위해 [[cookie|쿠키]], [[session|세션]], [[JWT]]등이 주로 활용된다.  
 
 #### 비연결성
 
@@ -51,7 +53,7 @@ title: HTTP
 - 서버가 다수의 클라이언트와 연결을 계속 유지시, 이에 따른 리소스가 지속적으로 발생한다.
 - 연결을 유지하기 위한 리소스를 줄여 더 많은 연결을 할 수 있다.
 - TCP의 [[TCP 3-way handshake]] 과정에서 지속적인 오버헤드 발생한다.
-- 이에 대한 해결책으로 오버헤드를 줄이기 위해 [[http-keep-alive|HTTP Keep Alive]] 속성을 사용한다.
+- 이에 대한 해결책으로 오버헤드를 줄이기 위해 [[HTTP Keep-Alive|HTTP Keep Alive]] 속성을 사용한다.
 
 #### 클라이언트 서버 구조
 
