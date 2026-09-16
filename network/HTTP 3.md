@@ -3,7 +3,7 @@ tags:
   - Network
   - HTTP
 aliases:
-  - HTTP/3
+  - HTTP 3.0
 ---
 HTTP/3는 월드 와이드 웹에서 정보를 교환하기 위해 사용하는 HTTP 프로토콜의 최신 메이저 버전이다.  
 HTTP/3는 기존의 [[TCP]] 대신 [[QUIC]]를 전송 프로토콜로 사용하여 속도, 보안, 안정성을 크게 높였다.  

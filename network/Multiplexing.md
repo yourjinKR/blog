@@ -6,7 +6,7 @@ aliases:
   - HTTP Multiplexing
   - 멀티플렉싱
 ---
-[[HTTP 2|HTTP/2]]에서 하나의 [[TCP 3-way handshake|TCP 연결]] 안에서 요청마다 별도의 Stream을 만들어 여러 요청/응답을 동시에 처리하는 방식이다.  
+[[HTTP 2|HTTP 2.0]]에서 하나의 [[TCP 3-way handshake|TCP 연결]] 안에서 요청마다 별도의 Stream을 만들어 여러 요청/응답을 동시에 처리하는 방식이다.  
 
 - 송신자는 HTTP 메시지를 [[HTTP 2#Frame|Frame]] 단위로 **인터리빙**  
 - 수신자는 같은 `Stream Identifier`를 가진 프레임들을 모아, 원래의 HTTP 메시지로 재조립 (Demultiplexing)
