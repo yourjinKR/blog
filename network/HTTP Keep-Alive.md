@@ -6,13 +6,13 @@ aliases:
   - HTTP connection reuse
   - Persistence connection
 ---
-단일 [[TCP 3-way handshake|TCP 연결]]을 사용하여 복수의 [[HTTP|HTTP]] 요청/응답을 주고받는다는 개념이다.  
+단일 [[TCP 3-Way Handshake|TCP 연결]]을 사용하여 복수의 [[HTTP|HTTP]] 요청/응답을 주고받는다는 개념이다.  
 
 매번 요청/응답마다 연결을 맺고 끊음을 반복한다면 오버헤드가 발생한다.  
 기존 연결을 재사용한다면 지연시간과 서버-클라이언트의 연결 관리 비용을 줄일 수 있다.  
 
 > [!NOTE]
-> 대표적인 오버헤드로는 [[TCP 3-way handshake]]와 [[HTTPS]]일 경우에는 TLS Handshake까지 수행
+> 대표적인 오버헤드로는 [[TCP 3-Way Handshake]]와 [[HTTPS]]일 경우에는 TLS Handshake까지 수행
 
 **HTTP 1.1부터 지속 연결이 기본 동작**이 되면서 일반적으로 별도의 `keep-alive` 선언이 없이도 연결을 재사용한다.  
 
@@ -83,4 +83,12 @@ description: "HTTP와 TCP에서의 HOL Blocking 에 대해 알아보자"
 host: velog.io
 favicon: https://static.velog.io/favicons/favicon-32x32.png
 image: https://velog.velcdn.com/images/dnr6054/post/e4131340-6b03-42ad-94f3-7bc8068d49b0/http%3A2%20in%20action%20thumbnail.png
+```
+
+```cardlink
+url: https://mark-kim.blog/HTTP_0_9_to_1_1/
+title: "HTTP 진화과정 이해하기 첫번째 - HTTP 0.9부터 HTTP 1.1까지"
+description: "HTTP 0.9 버전부터 HTTP 1.1까지 각 버전의 차이점과 등장 배경 및 버전 별 특징을 정리해본다."
+host: mark-kim.blog
+image: https://mark-kim.blog/static/872807acc03335bdc0c4b6d83381ea7f/thumbnail.png
 ```
