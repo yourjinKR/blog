@@ -4,7 +4,7 @@ tags:
   - 스터디
   - Network
 ---
-[[HTTP Keep-Alive]]는 HTTP 요청마다 TCP 연결을 새로 생성하지 않고 기존 TCP 연결을 여러 요청에서 재사용하는 방식입니다. 이를 통해 [[TCP 3-way handshake]]나 HTTPS의 TLS Handshake와 같은 연결 생성 비용을 줄여 응답 지연과 네트워크 오버헤드를 줄일 수 있습니다. HTTP/1.1부터 지속 연결이 기본이며, 일정 시간 요청이 없으면 서버의 Keep-Alive Timeout 등에 의해 연결이 종료됩니다.  
+[[HTTP Keep-Alive]]는 HTTP 요청마다 TCP 연결을 새로 생성하지 않고 기존 TCP 연결을 여러 요청에서 재사용하는 방식입니다. 이를 통해 [[TCP 3-Way Handshake]]나 HTTPS의 TLS Handshake와 같은 연결 생성 비용을 줄여 응답 지연과 네트워크 오버헤드를 줄일 수 있습니다. HTTP/1.1부터 지속 연결이 기본이며, 일정 시간 요청이 없으면 서버의 Keep-Alive Timeout 등에 의해 연결이 종료됩니다.  
 
 > [!QUESTION]- HTTP Keep-Alive를 사용하면 어떤 장점이 있나요?
 > 요청마다 새로운 TCP 연결을 생성하지 않고 기존 연결을 재사용할 수 있기 때문에

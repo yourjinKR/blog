@@ -22,7 +22,7 @@ aliases:
 
 ## 동작 방식
 
-TCP는 [[TCP 3-way handshake|통신 전 연결]]을 수립하고 통신이 끝나면 [[TCP 4-way handshake|연결을 종료]]한다.  
+TCP는 [[TCP 3-Way Handshake|통신 전 연결]]을 수립하고 통신이 끝나면 [[TCP 4-way handshake|연결을 종료]]한다.  
 통신 과정에서 아래와 같이 데이터를 패킷 형태로 쪼개어 송수신한다.  
 
 1. 바이트 스트림에서 받은 데이터를 일정 단위로 분할

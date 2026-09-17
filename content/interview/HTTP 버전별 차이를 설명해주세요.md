@@ -5,7 +5,7 @@ tags:
   - Network
   - HTTP
 ---
-HTTP 1.0은 요청마다 [[TCP 3-way handshake|TCP 연결]]을 새로 맺고 끊는 구조라 연결 비용이 컸습니다.  
+HTTP 1.0은 요청마다 [[TCP 3-Way Handshake|TCP 연결]]을 새로 맺고 끊는 구조라 연결 비용이 컸습니다.  
 HTTP 1.1은 [[HTTP Keep-Alive]]로 TCP 연결을 재사용하고, [[HTTP Pipelining]]으로 응답을 기다리지 않고 요청을 연달아 보낼 수 있게 했습니다.  
 
 [[HTTP 2|HTTP 2.0]]은 바이너리 기반 [[HTTP 2#Frame|Frame]]으로 메세지 구조를 바꾸고 [[Multiplexing]]과 헤더 압축으로 하나의 연결에서 여러 요청과 응답을 더 효율적으로 처리했습니다.  

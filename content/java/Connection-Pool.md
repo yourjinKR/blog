@@ -7,7 +7,7 @@ aliases:
 [[JDBC]] API를 사용하여 데이터베이스와 연결하기 위해 [[JDBC#Connection|Connection]] 객체를 생성하는 작업은 비용이 많이 드는 작업 중 하나이다.
 
 - 애플리케이션에서 DB 드라이버를 통해 커넥션을 조회
-- DB 드라이버는 DB와 TCP/IP 커넥션을 연결한다. ([[TCP 3-way handshake]] 발생)
+- DB 드라이버는 DB와 TCP/IP 커넥션을 연결한다. ([[TCP 3-Way Handshake]] 발생)
 - DB 드라이버는 커넥션이 연결되면 아이디와 패스워드, 기타 부가 정보를 DB에 전달
 - DB는 아이디, 패스워드를 통해 내부 인증을 거친 후 내부에 DB를 생성
 - DB는 커넥션 생성이 완료되었다는 응답을 전송

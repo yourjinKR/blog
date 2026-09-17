@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>www.naver.com 접속 시 일어나는 과정</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --navy: #143b5b;
+      --navy2: #0f2f49;
+      --blue: #1769d2;
+      --blue-soft: #eef7ff;
+      --line: #b8d7f6;
+      --green: #03c75a;
+      --green-soft: #e9fbef;
+      --text: #101820;
+      --muted: #5d6b78;
+      --card: #ffffff;
+      --bg: #f7fbff;
+      --shadow: 0 10px 28px rgba(25, 61, 90, .08);
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+      color: var(--text);
+      font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page {
+      width: min(1820px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .hero {
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--navy2), var(--navy));
+      color: #fff;
+      padding: 26px 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 52px);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 .brand { color: var(--green); }
+
+    .hero p {
+      margin: 10px 0 0;
+      font-size: clamp(15px, 1.4vw, 22px);
+      opacity: .95;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(180deg, #f3f9ff, #eaf5ff);
+      padding: 15px 18px;
+      border-bottom: 1px solid #d9eafd;
+    }
+
+    .num {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 900;
+      box-shadow: inset 0 -4px 0 rgba(0,0,0,.08);
+    }
+
+    .card-head h2 {
+      margin: 0;
+      font-size: clamp(18px, 1.35vw, 25px);
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+    }
+
+    .card-body {
+      padding: 17px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .card-body p { margin: 0; font-size: 16px; }
+
+    .note {
+      margin-top: auto;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      color: #24435e;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .green-note {
+      background: var(--green-soft);
+      border: 1px solid #aee9c4;
+      color: #0b6330;
+    }
+
+    .visual {
+      background: linear-gradient(180deg, #f8fbfd, #eef3f7);
+      border: 1px solid #d7e0e7;
+      border-radius: 14px;
+      padding: 18px;
+      min-height: 142px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .browser {
+      width: min(100%, 320px);
+      background: #fff;
+      border: 1px solid #cfd9e2;
+      border-radius: 14px;
+      box-shadow: 0 12px 25px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    .browser-top {
+      height: 34px;
+      background: #e9eef3;
+      padding: 10px 12px;
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.r { background:#ff5f57; } .dot.y { background:#febc2e; } .dot.g { background:#28c840; }
+
+    .address {
+      margin: 13px;
+      border: 1px solid #ccd7e0;
+      border-radius: 10px;
+      padding: 10px 13px;
+      font-weight: 700;
+      color: #303b44;
+      background: #fff;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .device, .server, .db, .lock {
+      display: grid;
+      place-items: center;
+      font-size: 44px;
+      min-width: 86px;
+      min-height: 82px;
+      border-radius: 15px;
+      background: #fff;
+      border: 1px solid #cfdce8;
+      box-shadow: 0 7px 18px rgba(0,0,0,.05);
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 800;
+      color: #3f4d59;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .arrow {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 28px;
+      white-space: nowrap;
+    }
+
+    .protocol {
+      width: 100%;
+      display: grid;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .packet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      color: #253d52;
+    }
+
+    .packet .line {
+      flex: 1;
+      height: 2px;
+      background: var(--blue);
+      position: relative;
+    }
+
+    .packet .line::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -4px;
+      border-left: 8px solid var(--blue);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+
+    .packet.reverse { flex-direction: row-reverse; }
+    .packet.reverse .line::after { display: none; }
+    .packet.reverse .line::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: -4px;
+      border-right: 8px solid var(--blue);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+
+    pre {
+      margin: 0;
+      background: #eff6fb;
+      border: 1px solid #d6e5f2;
+      border-radius: 12px;
+      padding: 13px 14px;
+      overflow: auto;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #1f2b35;
+    }
+
+    .backend {
+      border: 2px solid #95e5af;
+      background: #fbfffc;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .backend-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .naver {
+      color: var(--green);
+      font-size: 28px;
+      font-weight: 1000;
+      letter-spacing: -0.05em;
+    }
+
+    .backend-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+
+    .backend-node {
+      padding: 14px 8px;
+      border: 1px solid #cfe0d4;
+      background: #f2fbf5;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .browser-render {
+      background: #fff;
+      border: 1px solid #ccd7df;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 330px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.05);
+    }
+
+    .render-content {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .search-box {
+      height: 36px;
+      border: 3px solid var(--green);
+      border-radius: 20px;
+      margin: 14px 20px;
+      position: relative;
+    }
+
+    .search-box::after {
+      content: "⌕";
+      position: absolute;
+      right: 13px;
+      top: 2px;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .menu {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      font-weight: 800;
+      color: #3a444c;
+      margin-bottom: 10px;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .res-list {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #eff6fb;
+      border: 1px solid #dae8f3;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .icons {
+      font-size: 34px;
+      white-space: nowrap;
+    }
+
+    .summary {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 2px solid #67d78d;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-title {
+      background: var(--navy);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .summary-body {
+      background: linear-gradient(90deg, #e9fff0, #caffd8);
+      padding: 18px 24px;
+      font-weight: 900;
+      font-size: clamp(17px, 1.5vw, 24px);
+      letter-spacing: -0.025em;
+    }
+
+    .footer {
+      margin-top: 14px;
+      text-align: right;
+      color: #8b98a3;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1280px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 16px, 100%); margin-top: 8px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      .summary { grid-template-columns: 1fr; }
+      .summary-title { padding: 12px; }
+      .hero { padding: 22px 14px; }
+      .backend-row { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .card, .hero, .summary { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>www.<span class="brand">naver.com</span>에 접속할 때 일어나는 과정</h1>
+      <p>(브라우저에 URL을 입력하고, 화면이 표시되기까지의 전체 흐름)</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-head"><div class="num">1</div><h2>URL 입력</h2></div>
+        <div class="card-body">
+          <p>사용자가 브라우저 주소창에 <b>www.naver.com</b>을 입력하고 엔터를 누릅니다.</p>
+          <div class="visual">
+            <div class="browser">
+              <div class="browser-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+              <div class="address">⌕ &nbsp; www.naver.com</div>
+            </div>
+          </div>
+          <div class="note">브라우저는 먼저 URL과 캐시, HSTS 등의 정보를 확인합니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">2</div><h2>DNS 조회 (도메인 → IP)</h2></div>
+        <div class="card-body">
+          <p>브라우저는 <b>www.naver.com</b>의 IP 주소를 알아내기 위해 DNS에 질의합니다.</p>
+          <div class="visual">
+            <div>
+              <div class="flow">
+                <div><div class="device">💻</div><div class="label">내 PC</div></div>
+                <div class="arrow">⇄</div>
+                <div><div class="server">🗄️</div><div class="label">DNS 서버</div></div>
+              </div>
+              <div style="text-align:center;margin-top:10px;font-weight:800;">www.naver.com → IP 주소</div>
+            </div>
+          </div>
+          <div class="note">캐시가 없다면 로컬 DNS → 루트 → .com → 권한 DNS 순으로 재귀적/반복적 조회가 진행될 수 있습니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">3</div><h2>TCP 연결 (3-way handshake)</h2></div>
+        <div class="card-body">
+          <p>확인한 IP 주소의 서버와 통신하기 위해 TCP 연결을 수립합니다.</p>
+          <div class="visual" style="align-items:stretch;">
+            <div class="protocol">
+              <div class="packet"><span>클라이언트</span><span class="line"></span><span>SYN</span><span>서버</span></div>
+              <div class="packet reverse"><span>클라이언트</span><span class="line"></span><span>SYN + ACK</span><span>서버</span></div>
+              <div class="packet"><span>클라이언트</span><span class="line"></span><span>ACK</span><span>서버</span></div>
+            </div>
+          </div>
+          <div class="note">TCP는 이후 데이터를 신뢰성 있게 전달하기 위한 연결 지향 통신 기반을 만듭니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">4</div><h2>TLS 핸드셰이크 (HTTPS)</h2></div>
+        <div class="card-body">
+          <p>HTTPS를 사용하므로 TCP 연결 후 TLS 핸드셰이크를 수행해 암호화 통신을 설정합니다.</p>
+          <div class="visual">
+            <div>
+              <div class="flow">
+                <div><div class="device">💻</div><div class="label">브라우저</div></div>
+                <div class="arrow">⇄</div>
+                <div><div class="lock">🔒</div><div class="label">TLS</div></div>
+                <div class="arrow">⇄</div>
+                <div><div class="server">🗄️</div><div class="label">서버</div></div>
+              </div>
+              <div style="margin-top:12px;text-align:center;font-size:13px;font-weight:800;">
+                ClientHello → ServerHello → 인증서 검증 → 키 합의 → 암호화 시작
+              </div>
+            </div>
+          </div>
+          <div class="note">브라우저는 서버 인증서를 CA 신뢰 체인으로 검증하고 세션 키를 합의합니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">5</div><h2>HTTP 요청 전송</h2></div>
+        <div class="card-body">
+          <p>TLS 연결이 완료되면 브라우저는 HTTP 요청을 서버로 보냅니다.</p>
+          <pre>GET / HTTP/1.1
+Host: www.naver.com
+User-Agent: ...
+Accept: ...
+Cookie: ...
+...</pre>
+          <div class="flow">
+            <div><div class="device">💻</div><div class="label">브라우저</div></div>
+            <div class="arrow">→</div>
+            <div><div class="server">🗄️</div><div class="label">네이버 서버</div></div>
+          </div>
+          <div class="note">HTTPS에서는 HTTP 메시지가 TLS로 암호화되어 네트워크에 전달됩니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">6</div><h2>서버 요청 처리 (백엔드)</h2></div>
+        <div class="card-body">
+          <p>프론트 서버 또는 로드 밸런서가 요청을 적절한 애플리케이션 서버로 전달하고 백엔드가 요청을 처리합니다.</p>
+          <div class="backend">
+            <div class="backend-title"><span>네이버 데이터센터 (예시 구조)</span><span class="naver">NAVER</span></div>
+            <div class="backend-row">
+              <div class="backend-node">⚖️<br>로드 밸런서<br><small>L7, NGINX 등</small></div>
+              <div class="backend-node">🖥️<br>웹/애플리케이션 서버<br><small>WAS 등</small></div>
+              <div class="backend-node">🛢️<br>DB / Cache<br><small>Redis, RDB 등</small></div>
+            </div>
+          </div>
+          <div class="note green-note">실제 내부 아키텍처는 훨씬 복잡할 수 있으며, 여기서는 백엔드 처리 흐름을 단순화했습니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">7</div><h2>HTTP 응답 전송</h2></div>
+        <div class="card-body">
+          <p>서버는 처리 결과를 HTTP 응답으로 반환합니다.</p>
+          <pre>HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;...</pre>
+          <div class="flow">
+            <div><div class="server">🗄️</div><div class="label">서버</div></div>
+            <div class="arrow">→</div>
+            <div><div class="device">💻</div><div class="label">브라우저</div></div>
+          </div>
+          <div class="note">HTML뿐 아니라 JSON, 이미지, CSS, JavaScript 등 다양한 콘텐츠가 응답될 수 있습니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">8</div><h2>데이터 수신 및 복호화</h2></div>
+        <div class="card-body">
+          <p>브라우저는 응답 데이터를 수신하고 TLS 계층에서 복호화하여 원본 HTTP 데이터를 얻습니다.</p>
+          <div class="visual">
+            <div class="flow">
+              <div><div class="server">🗄️</div><div class="label">서버</div></div>
+              <div class="arrow">→</div>
+              <div><div class="lock">🔒</div><div class="label">암호화된 데이터</div></div>
+              <div class="arrow">→</div>
+              <div><div class="device">💻</div><div class="label">브라우저</div></div>
+            </div>
+          </div>
+          <div class="note">애플리케이션 계층에서는 복호화된 HTTP 메시지를 기반으로 처리합니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">9</div><h2>브라우저 렌더링 과정</h2></div>
+        <div class="card-body">
+          <p>브라우저는 받은 HTML을 파싱하고, 필요한 CSS·JavaScript·이미지·폰트 등을 추가 요청합니다.</p>
+          <div class="resources">
+            <div class="res-list">
+              /static/main.css<br>
+              /static/main.js<br>
+              /static/image/logo.png<br>
+              /static/font/NaverSans.woff2
+            </div>
+            <div class="icons">CSS<br>JS<br>🖼️</div>
+          </div>
+          <div class="note">HTML → DOM, CSS → CSSOM → Render Tree → Layout → Paint 순으로 화면이 그려집니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">10</div><h2>웹 페이지 화면 표시</h2></div>
+        <div class="card-body">
+          <p>필요한 리소스를 해석하고 화면을 구성하면 사용자가 네이버 페이지를 볼 수 있습니다.</p>
+          <div class="visual">
+            <div class="browser-render">
+              <div class="browser-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+              <div class="render-content">
+                <div class="naver" style="font-size:36px;">NAVER</div>
+                <div class="search-box"></div>
+                <div class="menu"><span>뉴스</span><span>쇼핑</span><span>블로그</span><span>카페</span><span>지식iN</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="note green-note">사용자가 보는 화면은 네트워크 통신 + 백엔드 처리 + 브라우저 렌더링의 결과입니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">11</div><h2>이후 동작들 (지속적인 통신)</h2></div>
+        <div class="card-body">
+          <p>페이지가 표시된 후에도 검색, 클릭, API 호출 등에 따라 추가 HTTP 요청과 응답이 계속 발생합니다.</p>
+          <div class="visual">
+            <div>
+              <div class="flow">
+                <div><div class="device">💻</div><div class="label">브라우저</div></div>
+                <div class="arrow">⇄</div>
+                <div><div class="server">🗄️</div><div class="label">서버</div></div>
+              </div>
+              <div style="text-align:center;margin-top:12px;font-weight:800;color:#1769d2;">검색 · 클릭 · API 요청 · 데이터 갱신</div>
+            </div>
+          </div>
+          <div class="note">연결 재사용(Keep-Alive)이나 HTTP/2·HTTP/3의 멀티플렉싱으로 효율을 높일 수 있습니다.</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head"><div class="num">12</div><h2>연결 종료 (또는 유지)</h2></div>
+        <div class="card-body">
+          <p>연결을 더 이상 사용하지 않으면 TCP 연결을 종료할 수 있습니다. 반대로 Keep-Alive로 일정 시간 유지할 수도 있습니다.</p>
+          <div class="visual" style="align-items:stretch;">
+            <div class="protocol">
+              <div class="packet"><span>클라이언트</span><span class="line"></span><span>FIN</span><span>서버</span></div>
+              <div class="packet reverse"><span>클라이언트</span><span class="line"></span><span>ACK</span><span>서버</span></div>
+              <div class="packet reverse"><span>클라이언트</span><span class="line"></span><span>FIN</span><span>서버</span></div>
+              <div class="packet"><span>클라이언트</span><span class="line"></span><span>ACK</span><span>서버</span></div>
+            </div>
+          </div>
+          <div class="note">HTTP/3는 TCP가 아니라 QUIC(UDP 기반)을 사용하므로 연결 과정이 다릅니다.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="summary">
+      <div class="summary-title">한 줄 요약</div>
+      <div class="summary-body">
+        브라우저에 www.naver.com을 입력하면, DNS로 IP를 찾고 → TCP/TLS로 연결한 뒤 → HTTP 요청을 보내고 → 서버가 처리한 응답을 받아 → 브라우저가 렌더링하여 화면에 표시합니다.
+      </div>
+    </section>
+
+    <div class="footer">BACKEND DEVELOPER INTERVIEW STUDY · www.naver.com 접속 과정</div>
+  </main>
+</body>
+</html>
