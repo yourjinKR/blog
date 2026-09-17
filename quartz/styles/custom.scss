@@ -1,3 +1,12 @@
 @use "./base.scss";
+@use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+@media all and ($mobile) {
+  // The mobile page has 1rem horizontal padding, so moving the explorer by only
+  // 100vw leaves its rightmost 1rem visible when it is collapsed.
+  .explorer.collapsed > .explorer-content {
+    transform: translateX(calc(-100vw - 1rem));
+  }
+}
