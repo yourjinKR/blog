@@ -11,7 +11,7 @@ aliases:
 GET은 리소스 조회, POST는 요청 데이터 처리 및 주로 리소스 생성, PUT과 PATCH는 리소스 수정, DELETE는 리소스 삭제에 사용됩니다.  
 
 또한 HTTP Method마다 멱등성의 차이가 있습니다.  
-GET, PUT, DELETE는 멱등합니다. POST와 PATCH는 멱등하지 않습니다.  
+GET, PUT, DELETE는 HTTP 의미상 멱등합니다. POST와 PATCH는 멱등성이 보장되지 않으며, 구현과 요청 내용에 따라 멱등하게 동작하도록 설계할 수 있습니다.  
 
 > [!QUESTION]- `POST`와 `PUT`의 차이는 무엇인가요?  
 > `POST`는 주로 서버에게 데이터 처리를 요청하거나 새로운 리소스를 생성할 때 사용하며, 일반적으로 서버가 생성된 리소스의 URI를 결정합니다.

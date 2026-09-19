@@ -20,8 +20,8 @@ NAT는 IP 패킷의 TCP/UDP 포트 숫자와 소스 및 목적지의 IP 주소 �
 ## NAT Table
 
 내부 네트워크의 사설 IP 주소와 외부 인터넷의 공인 IP 주소 간의 변환 **매핑 정보**를 NAT Table에 저장한다.  
-
 저장하는 매핑 정보는 다음과 같다.
+
 - IP Adress
 - Port Number
 

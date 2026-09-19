@@ -9,12 +9,18 @@ tags:
 > [!QUESTION]- 여러 장치가 하나의 공인 IP를 쓰는데 응답을 어떻게 구분하나요?
 > 일반적으로 [[NAPT]] 또는 PAT를 사용합니다. 공유기가 사설 IP와 포트 번호를 공인 IP의 서로 다른 포트 번호로 변환하고, 이 매핑 정보를 NAT 테이블에 저장합니다. 이후 응답이 돌아오면 목적지 포트를 기준으로 NAT 테이블을 조회해서 어떤 내부 장치로 전달할지 판단합니다.
 
+> [!QUESTION]- 포트로 연결을 구분한다면 하나의 공인 IP로 연결을 무한히 만들 수 있나요?
+> 아닙니다. 사용할 수 있는 변환 포트와 NAT 장비의 상태 테이블·처리 자원에는 한도가 있습니다. 실제 한도는 목적지와 매핑 방식에도 영향을 받으므로 모든 환경을 하나의 고정 숫자로 설명하지는 않습니다. 짧은 연결을 과도하게 생성하면 포트나 매핑 자원이 부족해질 수 있어 연결 재사용도 중요합니다. [RFC 3022의 NAPT 설명](https://www.rfc-editor.org/rfc/rfc3022.html#section-3.2)
+
 > [!QUESTION]- NAT를 쓰면 private IP가 암호화되는건가요?
 >  IP address가 변환될 뿐 payload가 암호화되는 것은 아닙니다.  
 >  필요하면 TLS, IPsec 같은 별도 보안 프로토콜이 필요합니다.  
 
 > [!QUESTION]- 외부에서 먼저 사설망 내부 서버에 접속하려면 어떻게 하나요?
 > 동적 NAT 매핑이 없는 외부의 임의 연결은 내부의 어느 호스트로 전달해야 하는지 알 수 없기 때문에 기본적으로 전달할 수 없고, [[Port Forwarding|포트 포워딩]] 같은 명시적인 매핑이 필요합니다.  
+
+> [!QUESTION]- 이미 연결한 SSE나 WebSocket도 NAT 때문에 끊길 수 있나요?
+> 가능합니다. NAT 장비가 오랫동안 트래픽이 없는 연결의 매핑을 만료시키면 이후 통신이 실패할 수 있습니다. TCP Keepalive나 애플리케이션 heartbeat, 재연결 정책을 함께 검토해야 합니다. 다만 연결 종료 원인은 프록시·서버의 timeout일 수도 있으므로 NAT로 단정하지 않습니다. [[Network와 SSE]], [[Network와 WebSocket]]과 연결해서 설명할 수 있습니다. [RFC 5382의 유휴 연결 처리](https://datatracker.ietf.org/doc/html/rfc5382#section-5)
 
 > [!QUESTION]- EC2에서는 왜 포트 포워딩을 직접 설정하지 않나요?
 > EC2에 Public IPv4가 할당되어 있어도 실제 인스턴스는 Private IPv4를 사용합니다. AWS Internet Gateway가 Public IPv4와 EC2의 Private IPv4 사이에서 1:1 NAT를 수행하기 때문에 사용자가 공유기처럼 별도의 포트 포워딩을 설정하지 않아도 됩니다. 다만 인터넷에서 접근하려면 Internet Gateway로 향하는 Route와 Public IP가 필요하고, Security Group에서도 해당 포트의 트래픽을 허용해야 합니다. 
@@ -31,4 +37,3 @@ host: chaaany.tistory.com
 favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
 image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FdLv6Iq%2FbtsI2CHZdmy%2FAAAAAAAAAAAAAAAAAAAAADgZuFFhZlV1i-4FrI1e2KSjBWBp1pJ7Xb_W2WC2ZUwi%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1790780399%26allow_ip%3D%26allow_referer%3D%26signature%3D0E38LqMneQ1%252BPUiUeGb%252FQbkAA5o%253D
 ```
-
