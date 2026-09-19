@@ -1,5 +1,7 @@
 ---
 title: 세션
+aliases:
+  - 세션
 ---
 # 세션 (Session)
 
@@ -21,7 +23,7 @@ Cookie: JSESSIONID=pi0fo9v2kdi5nuha3bcgiu8fq2
 4. 웹 서버는 세션 ID를 확인하고, 해당 세션에 관련된 정보를 확인한 후, HTML 페이지를 돌려준다.
 
 > [!INFO]
-> 클라이언트에 서버 상태를 저장하는 방식이 [[cookie|쿠키]]라면 서버가 저장하는 것이 [[session|세션]]이다.  
+> 클라이언트에 서버 상태를 저장하는 방식이 [[cookie|쿠키]]라면 서버가 저장하는 것이 [[Session|세션]]이다.  
 
 ## 구현 방식
 

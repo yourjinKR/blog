@@ -40,7 +40,7 @@ https://velog.io/@kyungwoon/Spring-Security-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%A
 
 # DelegatingFilterProxy
 
-- 스프링 Bean을 찾아 요청을 넘겨주는 [[servlet|서블릿]] 필터
+- 스프링 Bean을 찾아 요청을 넘겨주는 [[Servlet|서블릿]] 필터
 - DelegatingFilterProxy는 요청을 가로채서 FilterChainProxy 빈에 값을 전달
 - 이는 spring security의 특별한 기능이 아닌 단순 전달 역할을 수행
 
