@@ -1,5 +1,8 @@
 ---
 title: SSE 구현 방식에 대해
+tags:
+  - 맛추리
+  - SSE
 ---
 # SSE란?
 
