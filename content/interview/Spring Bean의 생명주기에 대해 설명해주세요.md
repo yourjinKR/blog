@@ -4,7 +4,7 @@ tags:
   - 스터디
   - Spring
 ---
-Spring Bean의 생명주기는 Spring Container에 의해 다음과 같은 흐름으로 관리됩니다.  
+[[Spring Bean]]의 생명주기는 Spring Container에 의해 다음과 같은 흐름으로 관리됩니다.  
 
 - **스프링 컨테이너 생성**
 - **스프링 빈 생성** (객체화)
