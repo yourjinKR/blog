@@ -3,7 +3,7 @@ aliases:
   - Inversion of Control
   - 제어의 역전
 ---
-제어의 역전(IoC, Inversion of Control)은 프로그램의 제어 흐름 주도권을 개발자가 아니라 외부 프레임워크나 컨테이너가 가지는 소프트웨어 설계 원칙이다.  
+제어의 역전(IoC, Inversion of Control)은 프로그램의 제어 흐름 주도권을 개발자가 아니라 외부 프레임워크나 컨테이너가 가지는 소프트웨어 설계 원칙이다.  ^intro
 
 ## 출처 및 참고자료
 

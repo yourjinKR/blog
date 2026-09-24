@@ -5,17 +5,12 @@ tags:
 ---
 ## Spring의 의존성 주입
 
-의존성 주입은 객체가 생성자 인자, 팩토리 메서드 인자, 또는 객체 인스턴스가 생성되거나 팩토리 메서드에서 반환된 후 설정되는 속성을 통해서만 의존성을 정의하는 프로세스입니다. 컨테이너는 빈을 생성할 때 이러한 의존성을 주입합니다. 이 프로세스는 근본적으로 빈 자체가 클래스의 직접 생성이나 서비스 로케이터 패턴을 사용하여 의존성의 인스턴스화 또는 위치를 직접 제어하는 ​​방식의 정반대입니다(그래서 '제어의 역전'이라는 이름이 붙었습니다).
+Spring에서는 [[DI]]를 통해 [[IoC]]를 구현합니다.  
 
-DI(Dependency Injection) 원칙을 사용하면 코드가 더 깔끔해지고, 객체에 필요한 의존성이 제공될 때 결합도 감소 효과가 더욱 커집니다. 객체는 의존성을 직접 찾아볼 필요가 없으며, 의존성의 위치나 클래스를 알 필요도 없습니다. 결과적으로, 특히 의존성이 인터페이스나 추상 기본 클래스에 기반한 경우, 단위 테스트에서 스텁이나 모의 구현을 사용할 수 있어 클래스 테스트가 훨씬 쉬워집니다.
+DI 원칙을 준수한다면 간결한 코드 작성이 가능하며 객체 간 결합도를 낮춰 유연성과 유지보수성을 높입니다.  
+특히, 의존성이 인터페이스나 추상 클래스인 경우에는 비지니스 로직 변경 및 테스트 수행에 용이합니다.  
 
-> [!INFO]
-> 위 글은 [Spring의 공식 문서](https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html)를 참고했습니다.  
-
-%%%%
-## @Autowired
-
-필요한 의존 객체의 “타입"에 해당하는 빈을 찾아 주입하는 어노테이션
+![[DI#^intro]]
 
 ## 주요 주입 방식
 
@@ -107,7 +102,7 @@ public class MovieRecommender {
 
 ## DI시 빈이 여러개 일때
 
-동일한 타입의 Bean이 여러개 존재 할 때, 하나의 빈에 `@Primary`
+동일한 타입의 Bean이 여러개 존재 할 때, 하나의 빈에 `@Primary`를 설정하여 우선순위를 조절한다.  
 
 ### @Primary
 
@@ -201,12 +196,36 @@ public class SecurityConfig {
 - `@Bean` 으로 bean을 생성하게 되면, method name이 bean name으로 생성된다.
 - 같은 Type의 bean이 1개만 있다면, bean name과 관련없이 bean을 주입해준다.
 - 같은 Type의 bean이 여러 개 있으면, `@Qualifier`가 없어도 bean name과 field name을 매칭해서 bean을 주입해준다.
-- (!) `@Primary`가 있으면, bean name을 무시하고 Type 기반으로 Primary인 Bean을 주입한다.
+- `@Primary`가 있으면, bean name을 무시하고 Type 기반으로 Primary인 Bean을 주입한다.
 - `@Qualifier`가 있으면, 무조건 bean name 기준으로 주입해준다. (없으면 오류가 발생한다)
 - `@Qualifier` 어노테이션이 `@Primary` 어노테이션보다 우선하여 적용된다.
 
 ## 출처 및 참고자료
 
-https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html  
-https://mangkyu.tistory.com/125  
-https://mangkyu.tistory.com/150  
+```cardlink
+url: https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html
+title: "Dependency Injection :: Spring Framework"
+host: docs.spring.io
+favicon: ../../../_/img/favicon.ico
+```
+
+```cardlink
+url: https://mangkyu.tistory.com/125
+title: "[Spring] 다양한 의존성 주입 방법과 생성자 주입을 사용해야 하는 이유 - (2/2)"
+description: "Spring 프레임워크의 핵심 기술 중 하나가 바로 DI(Dependency Injection, 의존성 주입)이다. Spring 프레임워크와 같은 DI 프레임워크를 이용하면 다양한 의존성 주입을 이용하는 방법이 있는데, 각각의 방법에 대해 알아보도록 하자. 1. 다양한 의존성 주입 방법 [ 1. 생성자 주입(Constructor Injection) ] 생성자 주입(Constructor Injection)은 생성자를 통해 의존 관계를 주입하는 방법이다. @Service public class UserService { private UserRepository userRepository; private MemberService memberService; @Autowired public UserService(U.."
+host: mangkyu.tistory.com
+favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
+image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fb8OVUw%2FbtrzMJxLJXO%2FAAAAAAAAAAAAAAAAAAAAAJdhJ6gCAfZZcbm_1qSaaEzPItndyRizCG0BIAu-XEBD%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1790780399%26allow_ip%3D%26allow_referer%3D%26signature%3DAAZAUmyDGYMmIqfa9WI3wD5pdAk%253D
+```
+
+
+```cardlink
+url: https://mangkyu.tistory.com/150
+title: "[Spring] 의존성 주입(Dependency Injection, DI)이란? 및 Spring이 의존성 주입을 지원하는 이유"
+description: "1. 의존성 주입(Dependency Injection)의 개념과 필요성 [ 의존성 주입(Dependency Injection) 이란? ] Spring 프레임워크는 3가지 핵심 프로그래밍 모델을 지원하고 있는데, 그 중 하나가 의존성 주입(Dependency Injection, DI) 이다. DI란 외부에서 두 객체 간의 관계를 결정해주는 디자인 패턴으로, 인터페이스를 사이에 둬서 클래스 레벨에서는 의존관계가 고정되지 않도록 하고 런타임 시에 관계를 동적으로 주입하여 유연성을 확보하고 결합도를 낮출 수 있게 해준다. 의존성이란 한 객체가 다른 객체를 사용할 때 의존성이 있다고 한다. 예를 들어 다음과 같이 Store 객체가 Pencil 객체를 사용하고 있는 경우에 우리는 Store객체가 Pencil 객체.."
+host: mangkyu.tistory.com
+favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
+image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FdefFpy%2Fbtq4kVvBKcc%2FAAAAAAAAAAAAAAAAAAAAAJKpqLELb0zKINpNm0qws-Vs6CAvjHlXCoR-1w6A05ml%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1790780399%26allow_ip%3D%26allow_referer%3D%26signature%3Dp992XUahHVUmKxjWTpRuW7%252FSPOw%253D
+```
+
+
