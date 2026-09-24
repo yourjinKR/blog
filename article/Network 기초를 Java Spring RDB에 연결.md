@@ -114,7 +114,7 @@ MySQL Connector/J의 `sslMode=REQUIRED`는 암호화 연결을 요구하지만 �
 
 ## 6. DNS 변경과 Java 애플리케이션의 실제 재연결 시점
 
-관련 노트: [[DNS]], [[www.naver.com에 접속할 때 생기는 과정을 설명해주세요]], [[Replication을 운영할 때 주의해야 할 점은 무엇인가요]]
+관련 노트: [[DNS]], [[웹사이트에 접속할 때 생기는 과정을 설명해주세요]], [[Replication을 운영할 때 주의해야 할 점은 무엇인가요]]
 
 DNS 레코드 TTL, JVM의 `InetAddress` 캐시 정책, HTTP·DB 연결 풀의 수명을 따로 봅니다. `networkaddress.cache.ttl`·`networkaddress.cache.negative.ttl`은 Java 보안 속성이며 일반적인 `-D` 시스템 속성과 혼동하지 않습니다. 클라이언트가 별도 DNS 리졸버를 사용한다면 해당 정책도 확인합니다. [Java InetAddress](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html)
 
