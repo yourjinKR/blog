@@ -6,42 +6,46 @@ aliases:
   - 스프링 빈
   - 빈
 ---
-Spring IoC Container에 의해 인스턴스화 되고 설정되고 조립되어 관리되는 객체를 말한다.
+Bean이란 Spring IoC Container에 등록되어 생성, 의존관계 설정, 생명주기 관리 등을 받는 객체를 말한다.  
 
-## Bean 
+## Bean LifeCycle
 
-- **스프링 컨테이너 생성**
-- **스프링 빈 생성** (객체화)
-- **의존관계 주입** (DI - Setter나 Field 주입 시점)
-- **초기화 콜백** (빈이 완전히 생성된 후 할 일, `@PostConstruct`)
-- **사용** (애플리케이션 로직 수행)
-- **소멸 전 콜백** (죽기 전에 할 일, `@PreDestroy`)
-- **스프링 종료**
+- **Bean 인스턴스 생성**
+	- 생성자 주입은 이 과정에서 수행될 수 있다.
+- **의존관계 주입**
+	- Setter / Field 주입 등
+- **초기화 전 BeanPostProcessor**
+- **초기화 콜백**
+	- `@PostConstruct`
+	- `InitializingBean#afterPropertiesSet()`
+	- `initMethod`
+- **초기화 후 BeanPostProcessor**
+- **Bean 사용**
+- **소멸 콜백**
+	- `@PreDestroy`
+	- `DisposableBean#destroy()`
+	- `destroyMethod`
+- **Bean 소멸**
+
+### Bean 등록 및 생성 과정
+
+- 설정 정보 탐색
+- BeanDefinition 생성
+- BeanDefinitionRegistry 등록
+- BeanFactory가 BeanDefinition을 기반으로 Bean 생성
 
 ## Bean Scope
 
 컨테이너에서 Bean의 생명주기 및 범위를 정하는 방식이다.  
-Spring에서 지원하는 스코프는 다음과 같다.
-
-- Singletone (IoC Container의 기본 전략)
-- Prototype
-- Web
-    - Request
-    - Session
-    - Application
-    - Websocket
-
-> 상태를 저장하는 빈에는 프로토타입 스코프를, 상태를 저장하지 않는 빈에는 싱글턴 스코프를 사용하는 것이 좋다.
-
 xml로 등록할때는 `scope` 속성에 값을 지정한다.  
 
 ```xml
-%% Singleton %%
 <bean id="accountService" class="com.something.DefaultAccountService" scope="singleton"/>
 
-%% Prototype %%
 <bean id="accountService" class="com.something.DefaultAccountService" scope="prototype"/>
 ```
+
+> 상태를 저장하는 빈에는 프로토타입 스코프를, 상태를 저장하지 않는 빈에는 싱글턴 스코프를 사용하는 것이 좋다.
 
 ### Singleton
 
@@ -52,7 +56,24 @@ xml로 등록할때는 `scope` 속성에 값을 지정한다.
 > [!NOTE]
 > 별다른 설정이 없다면 Bean을 Singleton으로 생성한다. 그 이유는 Spring은 대규모 트래픽을 처리할 수 있도록 설계한 프레임워크이다. 만약 매 요청마다 Bean을 생성한다면 수만개의 빈이 새로 생기고 소멸되기에 부하로 인한 성능저하가 발생할 것이다. 이를 해결하고자 싱글톤으로 생성하고 해당 빈은 여러 스레드가 공유하여 처리하는 방식을 택했다.  
 
+> [!CAUTION]
+> 정확히는 **Container별, BeanDefinition별 하나의 인스턴스**입니다.  
+> GoF [[Singleton]]처럼 JVM 전체에 하나라는 뜻은 아닙니다.
+
 %%%%
+#### Singleton Registry
+
+기존 [[Singleton|싱글톤]]의 단점을 보완하고자 스프링 컨테이너가 싱글톤 레지스트리의 역할을 하여 빈을 싱글톤으로 관리한다.  
+
+- `static` 메소드나 `private` 생성자 등을 사용하지 않아 객체지향적 개발을 할 수 있다.
+- 테스트를 하기 편리하다.
+
+`SingletonBeanRegistry`를 구현한 `DefaultSingletonBeanRegistry` 클래스에서 확인 가능하다.  
+
+![[IMG-20260926192249211.png]]
+
+> `DefaultSingletonBeanRegistry` → `FactoryBeanRegistrySupport` → `AbstractBeanFactory` → `PostProcessorRegistrationDelegate#registerBeanPostProcessors` →  `AbstractApplicationContext#registerBeanPostProcessors` → `SpringApplication#refresh`
+
 ### Prototype
 
 - 특정 빈에 대한 요청이 있을 때마다 새로운 인스턴스를 생성하여 반환

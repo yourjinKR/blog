@@ -3,15 +3,23 @@ tags:
   - Spring
 ---
 Spring은 [[Spring DI|DI]]를 적극적으로 사용하여 [[IoC]]를 구현합니다.  
-
 객체가 스스로 의존 객체를 생성하고 구성하지 않고, 그 제어권을 외부에 맡기는 것이 IoC이다.  
-Spring에서는 그 외부 역할을 Spring Container가 수행한다.  
+Spring에서는 그 외부 역할을 [[#Spring Container]]가 수행한다.  
+
+## Spring Container
+
+Spring Container는 **애플리케이션을 구성하는 [[Spring Bean|Bean]]을 생성하고, 설정하고, 서로 연결하고, 관리하는 역할**을 담당한다.  
 Spring의 Container와 관련된 대표적인 인터페이스로는 [[#BeanFactory]]와 [[#ApplicationContext]]가 있다.  
 
 %%%%
 ## BeanFactory
 
 빈을 생성하고 의존관계를 설정하는 기능을 담당하는 가장 기본적인 IoC 컨테이너이다.  
+
+```java
+Object getBean(String name) throws BeansException;
+boolean containsBean(String name);
+```
 
 대표 하위 인터페이스로는 다음과 같으며 [[#ApplicationContext]]에서 이를 구현한다.  
 
