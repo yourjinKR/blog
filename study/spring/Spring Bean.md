@@ -30,10 +30,24 @@ Bean이란 Spring IoC Container에 등록되어 생성, 의존관계 설정, 생
 ### Bean 등록 및 생성 과정
 
 - 설정 정보 탐색
-- BeanDefinition 생성
+- [[BeanDefinition]] 생성
 - BeanDefinitionRegistry 등록
 - BeanFactory가 BeanDefinition을 기반으로 Bean 생성
 
+### BeanPostProcessor
+
+객체를 빈 저장소에 등록하기 전에 조작할 때 사용하는 후처리 기능을 지원하는 인터페이스이다.  
+객체 조작 및 완전히 다른 객체로 바꿔치기할 수 도 있다. (프록시 객체)  
+
+![[IMG-20260928191149113.png]]
+
+> 위 사진은 `BeanPostProcessor`의 default 메서드이다.   
+> 리턴 타입이 `Object`로 매개변수로 받은 객체와 타입이 일치하지 않아도 동작한다.  
+
+> [!QUESTION]- `@PostConstruct`는 생성자의 대체재인가?
+> 생성자는 객체 자체를 올바른 상태로 만드는 역할을 담당한다. `@PostConstruct`는 Spring이 Bean 생성과 의존관계 설정을 완료한 후 추가 초기화 작업을 수행하는 생명주기 콜백 역할을 담당한다.  
+
+%%%%
 ## Bean Scope
 
 컨테이너에서 Bean의 생명주기 및 범위를 정하는 방식이다.  
@@ -72,7 +86,16 @@ xml로 등록할때는 `scope` 속성에 값을 지정한다.
 
 ![[IMG-20260926192249211.png]]
 
-> `DefaultSingletonBeanRegistry` → `FactoryBeanRegistrySupport` → `AbstractBeanFactory` → `PostProcessorRegistrationDelegate#registerBeanPostProcessors` →  `AbstractApplicationContext#registerBeanPostProcessors` → `SpringApplication#refresh`
+
+> - `SpringApplication#refresh(context)`
+> - `applicationContext.refresh()`
+> - `AbstractApplicationContext#refresh()`
+> - `AbstractApplicationContext#registerBeanPostProcessors(beanFactory)`
+> - `PostProcessorRegistrationDelegate#registerBeanPostProcessors(...)`
+> - `beanFactory.getBean(...)`
+> - `AbstractBeanFactory#getBean(...)`
+> - `AbstractBeanFactory#doGetBean(...)`
+> - `DefaultSingletonBeanRegistry#getSingleton(...)`
 
 ### Prototype
 
@@ -80,6 +103,7 @@ xml로 등록할때는 `scope` 속성에 값을 지정한다.
 	- `getBean()` 호출 시
 	- 의존성 주입 시
 - 다른 스코프와 달리 **라이프사이클을 관리하지 않음**
+	- 빈 생성 이후 소멸 처리를 담당하지 않는다. (컨테이너가 종료되어도 `@PreDestroy`를 자동 호출하지 않음)
 	- 클라이언트 코드는 프로토타입 스코프 객체를 정리하고 프로토타입 빈이 보유한 비용이 많이 드는 리소스를 해제할 필요가 있음
 
 스프링 컨테이너는 프로토타입 빈을 생성하고 의존성을 주입한 까지만 관리하며, 그 이후의 관리(소멸 등)는 빈을 받아간 클라이언트가 책임져야 한다.
@@ -99,3 +123,29 @@ xml로 등록할때는 `scope` 속성에 값을 지정한다.
 | **session**     | HTTP 세션이 생성되고 종료될 때까지 유지 | 사용자별로 상태를 유지해야 할 때 사용 |
 | **application** | 서블릿 컨텍스트와 동일한 생명주기       | 웹 애플리케이션 전체에서 공유      |
 
+## 출처 및 참고자료
+
+```cardlink
+url: https://docs.spring.io/spring-framework/reference/core/beans/definition.html
+title: "Bean Overview :: Spring Framework"
+host: docs.spring.io
+favicon: ../../_/img/favicon.ico
+```
+
+```cardlink
+url: https://www.youtube.com/watch?v=-_FNmARpB6U
+title: "'스프링 핵심 원리 - 고급편 : 빈 후처리기' | 인프런 | 강의 미리보기"
+description: "🔔  우아한형제들 개발 팀장 김영한 님의 스프링 강의가 궁금하시다면? 🔔🌱 더 알아보기 : https://bit.ly/3CFKnop자바 스프링 완전 정복 시리즈의 여섯 번째 강의!스프링 핵심 원리, 알면 더 자신있게 사용할 수 있어요. 💪진짜 실무자에게 제대로 배우세요!#디..."
+host: www.youtube.com
+favicon: https://www.youtube.com/s/desktop/af0a3c1e/img/favicon_32x32.png
+image: https://i.ytimg.com/vi/-_FNmARpB6U/hqdefault.jpg
+```
+
+```cardlink
+url: https://mininkorea.tistory.com/71
+title: "스프링 BeanDefinition 완벽 정리: 빈 설정 메타정보 탐구"
+description: "스프링 BeanDefinition 완벽 정리: 빈 설정 메타정보 탐구1. BeanDefinition이란?BeanDefinition은 스프링 컨테이너가 빈(bean)의 메타정보를 담아두는 추상화 모델이다. 스프링은 다양한 형태의 빈 설정 정보(Java Config, XML, 어노테이션)를 모두 BeanDefinition이라는 하나의 모델로 추상화하여 사용한다.즉, 개발자가 Java 코드로 설정하든, XML로 설정하든 스프링 내부에서는 결국 BeanDefinition 객체로 변환되어 관리된다.  2. BeanDefinition 주요 정보BeanDefinition이 담고 있는 주요 속성은 다음과 같다:BeanClassName: 생성할 빈의 클래스명예) hello.core.service.MemberService.."
+host: mininkorea.tistory.com
+favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
+image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbpSmZc%2FbtsLkKYAhOg%2FAAAAAAAAAAAAAAAAAAAAAIq8lr1-mhBBLEPhURDW-1WT4MloaRZUsszj9fAFy9e2%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1790780399%26allow_ip%3D%26allow_referer%3D%26signature%3DGlujXJOfKiPj1BRQ3EbTT%252BrjxgE%253D
+```
