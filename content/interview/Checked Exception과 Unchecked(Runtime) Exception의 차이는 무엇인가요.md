@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: Checked Exception과 Unchecked(Runtime) Exception의 차이는 무엇인가요
 tags:
   - 면접

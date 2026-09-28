@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: JPA 엔티티 삭제 방식과 고려 사항
 ---
 > 내부 코드는 `SimpleJpaRepository`에서 확인할 수 있습니다.  

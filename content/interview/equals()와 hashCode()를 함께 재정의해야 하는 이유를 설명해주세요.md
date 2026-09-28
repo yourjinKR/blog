@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: equals()와 hashCode()를 함께 재정의해야 하는 이유를 설명해주세요
 tags:
   - 면접

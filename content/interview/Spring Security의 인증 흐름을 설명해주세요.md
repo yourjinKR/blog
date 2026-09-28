@@ -1,3 +1,7 @@
+---
+date: 2026-08-17
+---
+
 
 우선 AuthenticationFilter가 로그인 요청이 들어오면 인증되지 않은 토큰을 생성합니다. 그리고 해당 토큰을 AuthenticationManager에게 전달하여 인증을 요청합니다. AuthenticationManager는 토큰 정보를 읽고 Providers 중 적절한 Provider를 찾고 해당 Provider로 인해 UserDetailService에서 UserDetails 객체를 가져옵니다. 해당 과정에서 실질적인 사용자 정보를 가져오기에 DB 작업이 발생할 수 있습니다. DB에서 가져온 사용자 정보와 요청받은 정보가 동일하다면 Authentication 객체를 반환합니다. 그리고 해당 객체는 SecurityContextHolder에 저장됩니다. 
 

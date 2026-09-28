@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: DIP
 aliases:
   - DIP

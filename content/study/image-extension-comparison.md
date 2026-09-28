@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: 이미지 파일 비교
 ---
 ### jpeg (Joint Photographic Experts Group)

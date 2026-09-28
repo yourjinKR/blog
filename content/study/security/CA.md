@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 aliases:
   - 인증서
   - Certificate Authority

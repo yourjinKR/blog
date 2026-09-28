@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: 청크 인코딩
 tags:
   - Network

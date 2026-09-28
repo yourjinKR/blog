@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: Cloneable 인터페이스
 ---
 ## Clonable
