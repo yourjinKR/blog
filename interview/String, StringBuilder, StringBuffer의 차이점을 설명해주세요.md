@@ -1,4 +1,5 @@
 ---
+date: 2026-08-13
 title: String, StringBuilder, StringBuffer의 차이점을 설명해주세요
 tags:
   - 면접

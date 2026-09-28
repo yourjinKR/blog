@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: ArrayList와 LinkedList의 내부 구조 차이와, 조회 및 삽입/삭제 시의 시간복잡도 차이를 설명해주세요
 tags:
   - 면접

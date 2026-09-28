@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: 자바의 기본형(Primitive)과 참조형(Reference)의 메모리 저장 방식 차이에 대해 설명해주세요
 tags:
   - 면접

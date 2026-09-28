@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: 런타임
 aliases:
   - 런타임

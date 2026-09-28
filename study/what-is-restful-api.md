@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: REST API에 대해 설명해주세요
 tags:
   - HTTP

@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: HashMap의 동작 원리를 설명해주세요
 tags:
   - 면접

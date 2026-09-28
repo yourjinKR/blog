@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 aliases:
   - Dependency Injection
   - 의존성 주입

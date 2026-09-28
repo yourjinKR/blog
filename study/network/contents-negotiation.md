@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: 컨텐츠 협상
 ---
 # Content negotiation

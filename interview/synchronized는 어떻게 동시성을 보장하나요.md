@@ -1,4 +1,5 @@
 ---
+date: 2026-08-07
 title: synchronized는 어떻게 동시성을 보장하나요
 tags:
   - 면접

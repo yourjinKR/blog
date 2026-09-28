@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 tags:
   - Network
   - SSE
@@ -56,6 +57,8 @@ Connection: keep-alive
 
 SSE에서는 서버가 응답을 완료하지 않고 응답 스트림을 계속 열어둔다.
 SSE 연결이 만들어진 이후 서버에서 클라이언트에게 전달할 이벤트가 발생하면 새로운 HTTP 요청을 생성하지 않는다.  
+
+> `Transfer-Encoding`을 `chunked`로 설정, 서버는 데이터를 [[chunked-encoding|청크 인코딩]] 방식으로 전달한다.  
 
 ### SSE 이벤트는 정해진 텍스트 형식을 사용
 

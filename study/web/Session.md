@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: 세션
 aliases:
   - 세션

@@ -1,4 +1,5 @@
 ---
+date: 2026-09-24
 title: CORS
 ---
 # CORS (Cross-Origin Resource Sharing)
