@@ -21,7 +21,7 @@ tags:
 > 동적 NAT 매핑이 없는 외부의 임의 연결은 내부의 어느 호스트로 전달해야 하는지 알 수 없기 때문에 기본적으로 전달할 수 없고, [[Port Forwarding|포트 포워딩]] 같은 명시적인 매핑이 필요합니다.  
 
 > [!QUESTION]- 이미 연결한 SSE나 WebSocket도 NAT 때문에 끊길 수 있나요?
-> 가능합니다. NAT 장비가 오랫동안 트래픽이 없는 연결의 매핑을 만료시키면 이후 통신이 실패할 수 있습니다. TCP Keepalive나 애플리케이션 heartbeat, 재연결 정책을 함께 검토해야 합니다. 다만 연결 종료 원인은 프록시·서버의 timeout일 수도 있으므로 NAT로 단정하지 않습니다. [[Network와 SSE]], [[Network와 WebSocket]]과 연결해서 설명할 수 있습니다. [RFC 5382의 유휴 연결 처리](https://datatracker.ietf.org/doc/html/rfc5382#section-5)
+> 가능합니다. NAT 장비가 오랫동안 트래픽이 없는 연결의 매핑을 만료시키면 이후 통신이 실패할 수 있습니다. TCP Keepalive나 애플리케이션 heartbeat, 재연결 정책을 함께 검토해야 합니다. 다만 연결 종료 원인은 프록시·서버의 timeout일 수도 있으므로 NAT로 단정하지 않습니다.
 
 > [!QUESTION]- EC2에서는 왜 포트 포워딩을 직접 설정하지 않나요?
 > EC2에 Public IPv4가 할당되어 있어도 실제 인스턴스는 Private IPv4를 사용합니다. AWS Internet Gateway가 Public IPv4와 EC2의 Private IPv4 사이에서 1:1 NAT를 수행하기 때문에 사용자가 공유기처럼 별도의 포트 포워딩을 설정하지 않아도 됩니다. 다만 인터넷에서 접근하려면 Internet Gateway로 향하는 Route와 Public IP가 필요하고, Security Group에서도 해당 포트의 트래픽을 허용해야 합니다. 

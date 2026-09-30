@@ -47,12 +47,6 @@ TLS 버전 차이와 보안 특성은 [RFC 8446 §1.2·§2·§8](https://www.rfc
 > [!QUESTION]- HTTP/3도 TCP 연결 후 TLS Handshake를 하나요?
 > 아닙니다. [[HTTP 3]]은 UDP 위의 [[QUIC]]을 사용하며 TLS 1.3 Handshake를 QUIC 연결 수립에 통합합니다. 앞의 TCP → TLS 순서는 HTTP/1.1·HTTP/2 기준입니다. [RFC 9114](https://www.rfc-editor.org/rfc/rfc9114.html#section-2)
 
-## 함께 복습하기
-
-- [[대칭키와 비대칭키에 대해 설명해주세요]]
-- [[HTTP 버전별 차이를 설명해주세요]]
-- [[Network 기초를 Java Spring RDB에 연결]]
-
 ## 출처 및 참고자료
 
 ```cardlink
