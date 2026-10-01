@@ -8,7 +8,7 @@ tags:
 
 ![[IMG-20260916194305694.png|454]]
 
-- QUIC은 HTTP/2의 TCP 수준에서 Stream 간 HOL Blocking 문제를 해결 (독립 스트림을 사용)
+- QUIC은 HTTP/2의 TCP 수준에서 Stream 간 HOL Blocking 문제를 해결 (**독립 스트림**을 사용)
 - TCP 연결과 TLS 연결을 UDP 위에서 통합하여 신규 QUIC 연결시 1-RTT 수준으로 데이터 전송
 - 이전에 연결했던 서버라면 세션 정보를 캐싱하여 0-RTT 전송 (Replay Attack 위험 존재, 무조건적 사용 금지)
 - Connection Migration을 사용하여 IP 주소나 UDP Port가 변경되어도 연결을 유지 가능
