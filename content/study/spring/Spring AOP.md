@@ -5,11 +5,11 @@ tags:
 ---
 [[AOP]]는 여러 기능에 걸쳐 필요한 부가 기능을 분리하는 방법이다. Spring AOP는 이를 **Spring Bean의 메서드 실행**에 적용한다. 로깅이나 실행 시간 측정을 서비스 메서드마다 작성하지 않고, 적용할 메서드와 실행할 코드를 따로 정의할 수 있다.
 
-## 동작 방식: 프록시를 통한 호출
-
-![[IMG-20260929220126962.png]]
+## 동작 방식
 
 Spring AOP는 대상 Bean을 감싸는 **프록시 객체**를 만든다. 다른 객체가 해당 Bean의 메서드를 호출하면 프록시가 먼저 요청을 받는다. 프록시는 Pointcut에 맞는 Advice를 실행하고, 실제 대상 메서드로 호출을 전달한다.
+
+![[IMG-20260929220126962.png]]
 
 ```text
 호출자 → 프록시 → Advice → 대상 Bean의 메서드
@@ -17,9 +17,25 @@ Spring AOP는 대상 Bean을 감싸는 **프록시 객체**를 만든다. 다른
 
 메서드가 끝난 뒤에도 Advice 종류에 따라 반환값이나 예외를 처리할 수 있다. Spring의 선언적 트랜잭션이 대표적인 활용 사례다. `@Transactional`을 처리하는 기본 방식도 프록시를 이용해 메서드 호출 전후에 트랜잭션 동작을 적용한다.
 
-Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다. Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-target-class=false`로 설정하면 JDK 동적 프록시를 사용할 수 있다.
+Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다.  
 
-![[CGLIB#AspectJ와 CGLib]]
+|           | JDK Dynamic Proxy         | CGLIB 기반 Proxy  |
+| --------- | ------------------------- | --------------- |
+| 기반        | Java Reflection Proxy API | 클래스 기반 Proxy    |
+| 방식        | Interface 구현              | Target Class 상속 |
+| Interface | 필요                        | 필수 아님           |
+| Proxy 타입  | Interface 타입              | Target 하위 타입    |
+Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-target-class=false`로 설정하면 JDK 동적 프록시를 사용할 수 있다.
+
+```cardlink
+url: https://kkangmg.tistory.com/95#Spring%20AOP%20%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%A0%20%EB%95%8C%20Proxy%20%EB%A5%BC%20%EC%93%B4%20%EC%A0%81%EC%9D%B4%20%EC%97%86%EB%8B%A4%3F-1-9
+title: "JDK 프록시 , CGLIB 개념과 Spring AOP 가 CGLIB 를 채택한 이유"
+description: "AOP 적용 시점위빙이란AOP 적용 시점을 알기 위해서는 위빙(Weaving)이라는 단어를 알아야 한다.우리가 분리한 핵심 로직과 부가 기능 로직이 결합되는 시점을 의미한다.따라서 그 시점에 따라 다음과 같이 구분된다.AOP 적용 시점컴파일 타임 위빙(Compile-Time Weaving)컴파일 타임 위빙(Compile-Time Weaving)런타임 위빙(Runtime Weaving)자바에서 사용하는 대표적인 AOP 기법Spring AOP는 2가지 기법을 채택하였다.JDK Dynamic 프록시JDK Dynamic 프록시는 Reflection API 의 Proxy를 사용해서 구현한다.프록시 팩토리에 의해 런타임 시 다이나믹하게 만들어지는 오브젝트Target의 인터페이스를 상속하는 구조로 사용된다따라서 cl.."
+host: kkangmg.tistory.com
+favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
+image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fczvx3k%2FbtsJM3zpsNi%2FAAAAAAAAAAAAAAAAAAAAAF17SiXstIpiNOAmcB5kD0c6roQAxHYBjqQA03zUSVQp%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DvgIGlQeuajSKOxfnXs50XIGgCYo%253D
+```
+
 
 %%%%
 ## 주요 용어와 Advice 종류
@@ -128,7 +144,8 @@ public class OrderService {
 또한 Spring AOP는 Spring Bean의 메서드 실행을 대상으로 한다. 직접 `new`로 만든 일반 객체나 생성자 실행을 Pointcut으로 가로채는 용도에는 맞지 않는다. 클래스 기반 프록시에서는 `final` 클래스와 `final`·`private` 메서드에도 제약이 있다. 메서드 호출 외의 지점까지 다뤄야 한다면 Spring AOP와 AspectJ 위빙의 차이를 확인해야 한다.
 
 %%%%
-	## 출처 및 참고자료
+
+## 출처 및 참고자료
 
 ```cardlink
 url: https://catsbi.oopy.io/fb62f86a-44d2-48e7-bb9d-8b937577c86c
@@ -155,3 +172,4 @@ host: velog.io
 favicon: https://static.velog.io/favicons/favicon-32x32.png
 image: https://velog.velcdn.com/images/suhongkim98/post/f93225b8-4fd2-4f9c-91cc-92e76f25f818/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-01-27%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%201.33.38.png
 ```
+
