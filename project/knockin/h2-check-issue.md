@@ -12,7 +12,7 @@ date: 2026-07-23
 
 최신 버전인 H2 2.4.240은 CHECK 제약식을 생성한 세션이 닫힌 뒤 다른 **세션**에서 INSERT하면, 제약식이 이전 **세션**을 참조하면서 동일한 예외를 발생시킬 수 있다고 한다.  
 
-![[Pasted image 20260723211729.png|430]]
+![[IMG-20260903105028399.png|430]]
 
 결론적으로 아래와 같은 버전으로 고정하여 문제를 해결할 수 있다.
 
@@ -108,7 +108,7 @@ void insertAllowedDiscriminatorFromDifferentSession() throws Exception {
 
 정상적으로 동작하는걸 확인할 수 있다.
 
-![[Pasted image 20260723213954.png]]
+![[IMG-20260903105028403.png]]
 
 ## 출처 및 참고자료
 
