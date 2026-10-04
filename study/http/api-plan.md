@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: API 설계
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 ## API 설계
 

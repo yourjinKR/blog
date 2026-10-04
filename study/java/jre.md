@@ -5,6 +5,8 @@ aliases:
   - Java Runtime Enviroment
   - 자바 실행 환경
 date: 2026-07-29
+tags:
+  - Java
 ---
 ## JRE (Java Runtime Enviroment)
 

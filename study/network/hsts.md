@@ -1,6 +1,11 @@
 ---
 date: 2026-09-24
 title: HSTS
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
 ---
 # HSTS (HTTP-Strict-Transport-Security)
 

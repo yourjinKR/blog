@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Spring
+  - Web
 ---
 
 Spring MVC는 디스패처 서블릿의 요청 처리 과정에 MVC 패턴을 적용한 것입니다.  

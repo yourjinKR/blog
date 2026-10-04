@@ -2,6 +2,8 @@
 date: 2026-09-30
 aliases:
   - 메세지 큐
+tags:
+  - Data-Structure
 ---
 메세지 큐는 큐 형태에 데이터를 일시적으로 저장하는 임시 저장소를 의미한다.  ^intro
 

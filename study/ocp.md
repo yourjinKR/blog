@@ -4,6 +4,9 @@ title: OCP
 aliases:
   - OCP
   - 개방 폐쇄 원칙
+tags:
+  - 설계원칙
+  - OOP
 ---
 ## Open-Closed Principle (개방-폐쇄 원칙)
 

@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Network
+  - Web
 aliases:
   - HTTP Method(GET, POST, PUT, PATCH, DELETE)의 차이를 설명해주세요
 ---

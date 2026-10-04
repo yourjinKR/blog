@@ -2,6 +2,9 @@
 date: 2026-09-24
 aliases:
   - Secure Sockets Layer
+tags:
+  - Network
+  - Security
 ---
 SSL은 [[Encryption|암호화]] 기반 인터넷 보안 프로토콜입니다. 인터넷 통신의 개인정보 보호, 인증, 데이터 무결성을 보장하기 위해 Netscape가 1995년 처음으로 개발했습니다. SSL은 현재 사용 중인 [[TLS]] 암호화의 전신입니다.  
 

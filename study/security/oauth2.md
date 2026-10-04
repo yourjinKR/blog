@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: OAuth2
+tags:
+  - Network
+  - Security
+  - Authentication
 ---
 
 ## 개념

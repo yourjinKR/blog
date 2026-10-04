@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: 리다이렉션
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 
 

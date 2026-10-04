@@ -2,6 +2,7 @@
 date: 2026-09-24
 tags:
   - OS
+  - Algorithm
 aliases:
   - CPU Scheduling
   - CPU 스케줄링

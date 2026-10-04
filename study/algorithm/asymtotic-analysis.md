@@ -1,6 +1,8 @@
 ---
 date: 2026-09-24
 title: 점근적 분석
+tags:
+  - Algorithm
 ---
 ## 점근적 분석
 

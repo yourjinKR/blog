@@ -4,6 +4,9 @@ title: SRP
 aliases:
   - SRP
   - 단일 책임 원칙
+tags:
+  - 설계원칙
+  - OOP
 ---
 ## Single Responsibility Principle (단일 책임 원칙)
 

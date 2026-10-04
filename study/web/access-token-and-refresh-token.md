@@ -1,6 +1,12 @@
 ---
 date: 2026-09-24
 title: 엑세스 토큰과 리프레시 토큰
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
+  - Authentication
 ---
 > 해당 글에서 서술하는 **엑세스 토큰**은 사용자 정보를 갖고 있는 JWT를 말한다.  
 

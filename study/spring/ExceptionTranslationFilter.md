@@ -3,6 +3,9 @@ date: 2026-09-24
 title: ExceptionTranslationFilter
 tags:
   - Spring-Security
+  - Web
+  - Security
+  - Authentication
 ---
 # ExceptionTranslationFilter
 

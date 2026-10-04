@@ -5,6 +5,7 @@ tags:
   - 맛추리
   - 트러블슈팅
   - Nginx
+  - Web
 ---
 운영서버에서 로그인 시도시 502 Bad Gateway가 발생한다.  
 

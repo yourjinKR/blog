@@ -4,6 +4,12 @@ title: 쿠키
 aliases:
   - 쿠키
   - cookie
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
+  - Authentication
 ---
 # 쿠키 (Cookie)
 

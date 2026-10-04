@@ -4,6 +4,9 @@ title: ISP
 aliases:
   - ISP
   - 인터페이스 분리 원칙
+tags:
+  - 설계원칙
+  - OOP
 ---
 ## Interface Segregation Principle (인터페이스 분리 원칙)
 

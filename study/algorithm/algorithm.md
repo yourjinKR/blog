@@ -1,6 +1,8 @@
 ---
 date: 2026-09-24
 title: 알고리즘
+tags:
+  - Algorithm
 ---
 ## 알고리즘
 

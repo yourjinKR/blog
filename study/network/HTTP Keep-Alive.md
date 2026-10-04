@@ -6,6 +6,10 @@ aliases:
   - HTTP persistent connection
   - HTTP connection reuse
   - Persistence connection
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 단일 [[TCP 3-Way Handshake|TCP 연결]]을 사용하여 복수의 [[HTTP|HTTP]] 요청/응답을 주고받는다는 개념이다.  
 

@@ -3,6 +3,8 @@ date: 2026-09-24
 aliases:
   - Dependency Injection
   - 의존성 주입
+tags:
+  - Spring
 ---
 의존성 주입이란 어떤 객체가 정상적인 기능을 하기 위해 필요한 의존성을 외부에서 제공해주는 것을 의미한다.  ^intro
 

@@ -5,6 +5,7 @@ tags:
   - Spring
   - SSE
   - 트러블슈팅
+  - Web
 ---
 ## 문제 상황
 

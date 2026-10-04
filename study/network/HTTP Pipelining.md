@@ -2,6 +2,7 @@
 date: 2026-09-24
 tags:
   - Network
+  - Web
 aliases:
   - Pipelining
 ---

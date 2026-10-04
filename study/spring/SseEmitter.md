@@ -4,6 +4,7 @@ tags:
   - Network
   - Spring
   - SSE
+  - Web
 aliases:
   - Spring 환경에서 SSE 구현하기
 ---

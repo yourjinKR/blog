@@ -1,6 +1,13 @@
 ---
 date: 2026-07-29
 title: 면접 준비
+tags:
+  - 면접
+  - OOP
+  - 설계원칙
+  - Web
+  - Security
+  - Authentication
 ---
 # OOP
 

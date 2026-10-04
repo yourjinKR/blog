@@ -1,6 +1,11 @@
 ---
 date: 2026-09-24
 title: CSRF
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
 ---
 # CSRF (Cross-Site Request Forgery)
 

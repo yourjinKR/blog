@@ -2,6 +2,9 @@
 date: 2026-09-24
 aliases:
   - 암호화
+tags:
+  - Network
+  - Security
 ---
 암호화란 수학적인 과정으로 어떤 정보를 읽을 수 없는 데이터로 변환하는 행위를 말한다.  ^intro
 

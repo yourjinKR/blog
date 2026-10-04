@@ -1,6 +1,11 @@
 ---
 date: 2026-09-24
 title: CORS
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
 ---
 # CORS (Cross-Origin Resource Sharing)
 

@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: HTTP 상태
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 # 상태 코드
 

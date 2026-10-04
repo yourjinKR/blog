@@ -3,6 +3,9 @@ date: 2026-08-17
 tags:
   - 면접
   - 스터디
+  - Web
+  - Security
+  - Authentication
 ---
 Access Token은 사용자가 API에 접근할 때 인증 및 인가를 수행하기 위해 사용하는 토큰이고, Refresh Token은 만료된 Access Token을 다시 발급받기 위해 사용하는 토큰입니다.
 

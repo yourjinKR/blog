@@ -5,6 +5,7 @@ tags:
   - 스터디
   - Network
   - HTTP
+  - Web
 ---
 HTTP 1.0은 요청마다 [[TCP 3-Way Handshake|TCP 연결]]을 새로 맺고 끊는 구조라 연결 비용이 컸습니다.  
 HTTP 1.1은 [[HTTP Keep-Alive]]로 TCP 연결을 재사용하고, [[HTTP Pipelining]]으로 응답을 기다리지 않고 요청을 연달아 보낼 수 있게 했습니다.  

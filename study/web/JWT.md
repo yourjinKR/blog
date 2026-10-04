@@ -1,5 +1,11 @@
 ---
 date: 2026-09-24
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
+  - Authentication
 ---
 
 > **JWT는 온라인 네트워크에서 정보를 안전하게 통신할 때 사용하는 인터넷 표준 토큰**

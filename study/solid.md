@@ -1,6 +1,9 @@
 ---
 date: 2026-09-24
 title: SOLID
+tags:
+  - 설계원칙
+  - OOP
 ---
 # SOLID 원칙
 

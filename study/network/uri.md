@@ -1,6 +1,9 @@
 ---
 date: 2026-09-24
 title: URI
+tags:
+  - Network
+  - Web
 ---
 # URI (Uniform Resource Identifier)
 

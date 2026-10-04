@@ -1,6 +1,9 @@
 ---
 date: 2026-09-24
 title: URL
+tags:
+  - Network
+  - Web
 ---
 # URL (Uniform Resource Locator)
 

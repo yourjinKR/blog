@@ -1,6 +1,9 @@
 ---
 date: 2026-09-24
 title: 자바 배열
+tags:
+  - Java
+  - Data-Structure
 ---
 ## 배열 특징
 
