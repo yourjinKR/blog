@@ -1,9 +1,11 @@
 ---
-title: JVM
+date: 2026-07-30
+tags:
+  - Java
 aliases:
   - JVM
   - Java Virtual Machine
-date: 2026-07-30
+  - 자바 가상 머신
 ---
 ## JVM (Java Virtual Machine)
 
@@ -14,11 +16,11 @@ date: 2026-07-30
 JVM의 구성 요소는 다음과 같다.  
 
 - 클래스 로더
-- 런타임 데이터 영역
+- [[runtime-data-area|런타임 데이터 영역]]
 - 실행 엔진
 - 네이티브 영역
 
-![[Pasted image 20260731221312.png|614]]
+![[IMG-20260903105028414.png|614]]
 
 ### JVM의 장단점을 설명해주세요
 
