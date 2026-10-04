@@ -27,16 +27,6 @@ Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기�
 | Proxy 타입  | Interface 타입              | Target 하위 타입    |
 Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-target-class=false`로 설정하면 JDK 동적 프록시를 사용할 수 있다.
 
-```cardlink
-url: https://kkangmg.tistory.com/95#Spring%20AOP%20%EB%A5%BC%20%EC%82%AC%EC%9A%A9%ED%95%A0%20%EB%95%8C%20Proxy%20%EB%A5%BC%20%EC%93%B4%20%EC%A0%81%EC%9D%B4%20%EC%97%86%EB%8B%A4%3F-1-9
-title: "JDK 프록시 , CGLIB 개념과 Spring AOP 가 CGLIB 를 채택한 이유"
-description: "AOP 적용 시점위빙이란AOP 적용 시점을 알기 위해서는 위빙(Weaving)이라는 단어를 알아야 한다.우리가 분리한 핵심 로직과 부가 기능 로직이 결합되는 시점을 의미한다.따라서 그 시점에 따라 다음과 같이 구분된다.AOP 적용 시점컴파일 타임 위빙(Compile-Time Weaving)컴파일 타임 위빙(Compile-Time Weaving)런타임 위빙(Runtime Weaving)자바에서 사용하는 대표적인 AOP 기법Spring AOP는 2가지 기법을 채택하였다.JDK Dynamic 프록시JDK Dynamic 프록시는 Reflection API 의 Proxy를 사용해서 구현한다.프록시 팩토리에 의해 런타임 시 다이나믹하게 만들어지는 오브젝트Target의 인터페이스를 상속하는 구조로 사용된다따라서 cl.."
-host: kkangmg.tistory.com
-favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
-image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fczvx3k%2FbtsJM3zpsNi%2FAAAAAAAAAAAAAAAAAAAAAF17SiXstIpiNOAmcB5kD0c6roQAxHYBjqQA03zUSVQp%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1793458799%26allow_ip%3D%26allow_referer%3D%26signature%3DvgIGlQeuajSKOxfnXs50XIGgCYo%253D
-```
-
-
 %%%%
 ## 주요 용어와 Advice 종류
 
@@ -173,3 +163,11 @@ favicon: https://static.velog.io/favicons/favicon-32x32.png
 image: https://velog.velcdn.com/images/suhongkim98/post/f93225b8-4fd2-4f9c-91cc-92e76f25f818/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-01-27%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%201.33.38.png
 ```
 
+```cardlink
+url: https://chatgpt.com/share/6ac28f99-1d88-83ee-8689-77bf5d421483
+title: "Check out this chat"
+description: "Here's a chat someone thought you'd want to see."
+host: chatgpt.com
+favicon: https://chatgpt.com/favicon.ico
+image: https://ogimg.chatgpt.com/conversation/6ac28f99-1d88-83ee-8689-77bf5d421483/response_multicolor_v1.png
+```

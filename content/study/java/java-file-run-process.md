@@ -8,7 +8,7 @@ date: 2026-07-29
 
 - Java 언어로 소드코드를 작성한다. (`Test.java`)
 - 자바 컴파일러가 해당 Java파일을 컴파일 하여 바이트 코드로 만든다. (`Test.class`)
-- 컴파일된 class 파일은 [[jvm|JVM]]의 클래스 로더에게 전달됩니다.  
+- 컴파일된 class 파일은 [[JVM|JVM]]의 클래스 로더에게 전달됩니다.  
 - 클래스 로더는 동적 로딩을 통해 필요한 클래스를 JVM의 메모리에 올린다.
 - 실행 엔진은 JVM 메모리에 올라온 코드를 interpreter와 [[jit-compiler|JIT Compiler]]로 해석한다.
 

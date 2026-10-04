@@ -1,14 +1,13 @@
 ---
+tags:
+  - Java
 title: JIT 컴파일러
 date: 2026-07-29
 aliases:
   - JIT 컴파일러
   - JIT Compiler
 ---
-## JIT Compiler
-
-> JIT (Just-In-Time) 컴파일러는 런타임 시 바이트 코드를 원시 시스템 코드로 컴파일하여  
-> Java 애플리케이션의 성능을 향상시키는 런타임 환경의 컴포넌트입니다.
+JIT Compiler는 런타임 시 바이트 코드를 원시 시스템 코드로 컴파일하여 Java 애플리케이션의 성능을 향상시키는 런타임 환경의 컴포넌트입니다.  ^intro
 
 - [[jvm-execution-engine|실행 엔진]]의 구성 요소
 - 프로그램 실행 중 자주 호출되는 메서드나 반복적으로 실행되는 루프를 기계어로 컴파일
