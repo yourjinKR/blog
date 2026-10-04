@@ -1,6 +1,8 @@
 ---
 date: 2026-09-24
 title: 안정 정렬
+tags:
+  - Algorithm
 ---
 ## 안정 정렬
 

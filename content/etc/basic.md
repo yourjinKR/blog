@@ -2,6 +2,9 @@
 date: 2026-09-24
 title: 기본 사용법
 order: "3"
+tags:
+  - Quartz
+  - Obsidian
 ---
 Obsidian에서 지원하는 마크다운을 지원합니다.
 

@@ -4,6 +4,9 @@ title: LSP
 aliases:
   - LSP
   - 리스코프 치환 원칙
+tags:
+  - 설계원칙
+  - OOP
 ---
 ## Liskov Substitution Principle (리스코프 치환 원칙)
 

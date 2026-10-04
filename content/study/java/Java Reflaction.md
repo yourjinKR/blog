@@ -2,6 +2,8 @@
 date: 2026-09-24
 aliases:
   - 리플렉션
+tags:
+  - Java
 ---
 Reflaction은 런타임에 클래스, 인터페이스의 필드, 메서드, 생성자를 검사하고 수정할 수 있는 기능이다.  ^intro
 

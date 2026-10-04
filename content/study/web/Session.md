@@ -3,6 +3,12 @@ date: 2026-09-24
 title: 세션
 aliases:
   - 세션
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
+  - Authentication
 ---
 # 세션 (Session)
 

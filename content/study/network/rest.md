@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: REST
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 # REST (Representational State Transfer)
 

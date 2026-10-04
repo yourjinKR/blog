@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: 브라우저 동작 방식
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 
 브라우저가 URL에 적힌 값을 파싱해서 HTTP Request Message를 만들고, OS에 전송 요청을 합니다. 이 때, Domain으로 요청을 보낼 수 없기 때문에 [[DNS#DNS Lookup|DNS Lookup]]을 수행합니다.

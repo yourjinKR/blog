@@ -2,6 +2,7 @@
 date: 2026-09-22
 tags:
   - SSE
+  - Web
 ---
 
 1. [[SSE|SSE 사전지식 이해하기]]

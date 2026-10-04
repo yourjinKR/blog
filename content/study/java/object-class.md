@@ -1,6 +1,8 @@
 ---
 title: Object 클래스
 date: 2026-07-31
+tags:
+  - Java
 ---
 ## Object Class
 

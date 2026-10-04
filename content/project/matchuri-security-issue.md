@@ -3,6 +3,9 @@ date: 2026-07-12
 title: 맛추리 보안 이슈 파악
 tags:
   - 맛추리
+  - Web
+  - Security
+  - Authentication
 ---
 # 요약
 

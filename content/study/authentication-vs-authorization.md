@@ -1,6 +1,9 @@
 ---
 date: 2026-09-24
 title: 인증과 인가
+tags:
+  - Security
+  - Authentication
 ---
 # 인증
 

@@ -2,6 +2,8 @@
 date: 2026-09-24
 tags:
   - Network
+  - Web
+  - Security
 aliases:
   - Transport Layer Security
 ---

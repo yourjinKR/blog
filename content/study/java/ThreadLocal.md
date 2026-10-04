@@ -4,6 +4,8 @@ title: ThreadLocal
 aliases:
   - ThreadLocal
   - 스레드 로컬
+tags:
+  - Java
 ---
 # ThreadLocal
 

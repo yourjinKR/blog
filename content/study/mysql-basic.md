@@ -1,6 +1,9 @@
 ---
 date: 2026-07-23
 title: MySQL
+tags:
+  - DB
+  - MySQL
 ---
 # 기본 명령어
 

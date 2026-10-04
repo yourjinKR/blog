@@ -3,6 +3,9 @@ date: 2026-09-24
 title: 자바의 스레드
 aliases:
   - 자바의 스레드
+tags:
+  - Java
+  - OS
 ---
 # 프로세스와 스레드
 

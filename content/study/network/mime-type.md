@@ -3,6 +3,7 @@ date: 2026-09-24
 title: MIME type
 tags:
   - Network
+  - Web
 aliases:
   - MIME
 ---

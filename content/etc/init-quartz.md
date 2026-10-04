@@ -2,6 +2,9 @@
 date: 2026-09-24
 title: Quartz 시작하기
 order: "2"
+tags:
+  - devops
+  - Quartz
 ---
 # 배포
 

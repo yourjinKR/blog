@@ -6,6 +6,9 @@ aliases:
   - 스프링 시큐리티
 tags:
   - Spring-Security
+  - Web
+  - Security
+  - Authentication
 ---
 # 동작 방식
 

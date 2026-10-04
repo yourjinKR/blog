@@ -1,6 +1,11 @@
 ---
 date: 2026-09-24
 title: SOP
+tags:
+  - Network
+  - HTTP
+  - Web
+  - Security
 ---
 # SOP (Same Origin Policy)
 

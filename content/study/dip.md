@@ -4,6 +4,9 @@ title: DIP
 aliases:
   - DIP
   - 의존성 역전 원칙
+tags:
+  - 설계원칙
+  - OOP
 ---
 ## Dependency Inversion Principle (의존역전 원칙)
 

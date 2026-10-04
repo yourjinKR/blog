@@ -1,6 +1,8 @@
 ---
 date: 2026-09-24
 title: 프로시저
+tags:
+  - DB
 ---
 ## 프로시저 (procedure)
 

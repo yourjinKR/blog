@@ -3,6 +3,11 @@ date: 2026-09-24
 aliases:
   - 인증서
   - Certificate Authority
+tags:
+  - CA
+  - Network
+  - Security
+  - Authentication
 ---
 신뢰할 수 있는 인증기관(CA)이 서버의 신원을 검증하고 인증서를 발급한다.
 

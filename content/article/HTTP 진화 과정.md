@@ -3,6 +3,7 @@ date: 2026-09-16
 tags:
   - Network
   - HTTP
+  - Web
 ---
 # HTTP 1.1
 

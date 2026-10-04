@@ -5,6 +5,7 @@ tags:
   - 면접
   - 스터디
   - Java
+  - Data-Structure
 ---
 HashMap은 **해시 함수**를 사용하여 Key-Value 쌍을 저장하고 조회하는 자료구조입니다.
 

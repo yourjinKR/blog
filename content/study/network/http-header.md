@@ -4,6 +4,10 @@ title: HTTP Header
 aliases:
   - HTTP Header
   - HTTP 헤더
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 # HTTP Header
 

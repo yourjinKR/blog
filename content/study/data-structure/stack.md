@@ -4,6 +4,8 @@ title: 스택
 aliases:
   - stack
   - 스택
+tags:
+  - Data-Structure
 ---
 
 # Stack

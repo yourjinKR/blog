@@ -2,6 +2,7 @@
 date: 2026-10-01
 tags:
   - Network
+  - Web
 aliases:
   - Content Delivery Network
   - 콘텐츠 전송 네트워크

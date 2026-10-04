@@ -2,6 +2,10 @@
 date: 2026-09-24
 title: 튜토리얼
 order: "1"
+tags:
+  - devops
+  - Quartz
+  - Obsidian
 ---
 배포부터 다양한 커뮤니티 플러그인을 활용하는 법을 포스팅하겠습니다.  
 

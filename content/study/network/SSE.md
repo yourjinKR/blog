@@ -3,6 +3,7 @@ date: 2026-09-24
 tags:
   - Network
   - SSE
+  - Web
 aliases:
   - Server Sent Event
 ---

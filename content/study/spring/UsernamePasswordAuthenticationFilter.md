@@ -2,6 +2,9 @@
 date: 2026-09-24
 tags:
   - Spring-Security
+  - Web
+  - Security
+  - Authentication
 ---
 # UsernamePasswordAuthenticationFilter
 

@@ -1,6 +1,10 @@
 ---
 date: 2026-09-24
 title: REST API
+tags:
+  - Network
+  - HTTP
+  - Web
 ---
 # REST API (Representational State Transfer API)
 

@@ -1,6 +1,8 @@
 ---
 title: JVM 실행 엔진
 date: 2026-07-29
+tags:
+  - Java
 ---
 ## Execution Engine
 

@@ -4,6 +4,9 @@ title: XXS
 aliases:
   - XXS
   - Cross-site scripting (XSS)
+tags:
+  - Web
+  - Security
 ---
 # XXS
 

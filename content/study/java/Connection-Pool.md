@@ -4,6 +4,9 @@ title: 커넥션 풀
 aliases:
   - 커넥션 풀
   - Connection Pool
+tags:
+  - Java
+  - DB
 ---
 [[JDBC]] API를 사용하여 데이터베이스와 연결하기 위해 [[JDBC#Connection|Connection]] 객체를 생성하는 작업은 비용이 많이 드는 작업 중 하나이다.
 
