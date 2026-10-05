@@ -15,12 +15,12 @@ Bean이란 Spring IoC Container에 등록되어 생성, 의존관계 설정, 생
 	- 생성자 주입은 이 과정에서 수행될 수 있다.
 - **의존관계 주입**
 	- Setter / Field 주입 등
-- **초기화 전 BeanPostProcessor**
+- **초기화 전 [[BeanPostProcessor]]**
 - **초기화 콜백**
 	- `@PostConstruct`
 	- `InitializingBean#afterPropertiesSet()`
 	- `initMethod`
-- **초기화 후 BeanPostProcessor**
+- **초기화 후 [[BeanPostProcessor]]**
 - **Bean 사용**
 - **소멸 콜백**
 	- `@PreDestroy`
@@ -34,16 +34,6 @@ Bean이란 Spring IoC Container에 등록되어 생성, 의존관계 설정, 생
 - [[BeanDefinition]] 생성
 - BeanDefinitionRegistry 등록
 - BeanFactory가 BeanDefinition을 기반으로 Bean 생성
-
-### BeanPostProcessor
-
-객체를 빈 저장소에 등록하기 전에 조작할 때 사용하는 후처리 기능을 지원하는 인터페이스이다.  
-객체 조작 및 완전히 다른 객체로 바꿔치기할 수 도 있다. (프록시 객체)  
-
-![[IMG-20260928191149113.png]]
-
-> 위 사진은 `BeanPostProcessor`의 default 메서드이다.   
-> 리턴 타입이 `Object`로 매개변수로 받은 객체와 타입이 일치하지 않아도 동작한다.  
 
 > [!QUESTION]- `@PostConstruct`는 생성자의 대체재인가?
 > 생성자는 객체 자체를 올바른 상태로 만드는 역할을 담당한다. `@PostConstruct`는 Spring이 Bean 생성과 의존관계 설정을 완료한 후 추가 초기화 작업을 수행하는 생명주기 콜백 역할을 담당한다.  
