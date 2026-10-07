@@ -79,6 +79,14 @@ HTTP/2.0에선 클라이언트의 요청에 대해 미래에 필요할 것 같�
 ## 출처 및 참고자료  
 
 ```cardlink
+url: https://www.devkuma.com/docs/http/2_0/
+title: "HTTP 2.0"
+description: "HTTP 2.0 HTTP 2.0 이라고도 불리는 HTTP/2는 Hypertext Transfer Protocol Version 2의 약자로서, 2015년 IETF에 의해 공식적으로 발표된 HTTP/1.1(기존 표준)의 차기 버전이다.(IETF: Internet Engineering Task Force): 국제 인터넷 표준화 기구를 의미하며, 인터넷의 운영, 관리, 개발에 대해 협의하고 프로토콜과 구조적인 사안들을 분석하는 인터넷 표준화 작업기구이다.HTTP/2은 서버와 클라이언트 사이의 TCP 커넥션 위에서 동작한다. 이때 TCP 커넥션을 초기화하는 것은 클라이언트이다. HTTP/2 요청과 응답은 길이가 정의된(최대 16383바이트) 한 개 이상의 프레임에 담긴다. 프레임들에 담긴 요청과 응답은 스트림을 통해 보내지는데, 한 개의 스트림이 한 쌍의 요청과 응답을 처리한다. 하나의 커넥션 위에 여러개의 스트림이 동시에 만들어질 수 있으므로 여러 개의 요청과 응답을 동시에 처리하는 것이 가능하다. 또한 스트림에 대한 흐름 제어와 우선순위 부여 기능도 제공한다. 서버는 클라이언트에게 필요하다고 생각하는 리소스라면 그에 대한 요청을 명시적으로 받지 않더라도 능동적으로 클라이언트에게 보내줄 수 있다."
+host: www.devkuma.com
+favicon: https://www.devkuma.com/favicons/favicon-16x16.png
+```
+
+```cardlink
 url: https://hpbn.co/http2/
 title: "HTTP: HTTP/2 - High Performance Browser Networking (O'Reilly)"
 description: "What every web developer must know about mobile networks, protocols, and APIs provided by browser to deliver the best user experience."
