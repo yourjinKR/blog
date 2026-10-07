@@ -129,8 +129,7 @@ public class DataSourceProxyConfig {
 - `Query`: 실제 실행된 **Prepared SQL**
 - `Params`: SQL의 `?`에 바인딩된 **실제 파라미터 값**
 
-![[IMG-20260904131113822.png]]
-
+![[IMG-20261007221503550.png]]
 
 ### ApiQueryCountFilter
 
