@@ -6,6 +6,7 @@ aliases:
   - HTTP persistent connection
   - HTTP connection reuse
   - Persistence connection
+  - 지속 연결
 tags:
   - Network
   - HTTP
