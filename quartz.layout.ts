@@ -33,7 +33,25 @@ const sortByOrder = (a: FileTrieNode, b: FileTrieNode) => {
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [
+    Component.Comments({
+      provider: "giscus",
+      options: {
+        repo: "yourjinKR/blog",
+        repoId: "R_kgDOSiHDYw",
+        category: "Q&A",
+        categoryId: "DIC_kwDOSiHDY84DIHUK",
+        mapping: "pathname",
+        strict: false,
+        reactionsEnabled: true,
+        inputPosition: "bottom",
+        themeUrl: "https://giscus.app/themes",
+        lightTheme: "light",
+        darkTheme: "dark",
+        lang: "ko",
+      },
+    }),
+  ],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/jackyzha0/quartz",
