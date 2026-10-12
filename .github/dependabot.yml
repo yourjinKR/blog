@@ -5,10 +5,14 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      production-dependencies:
+      minor-and-patch:
         applies-to: "version-updates"
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -18,3 +22,6 @@ updates:
         applies-to: "version-updates"
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
