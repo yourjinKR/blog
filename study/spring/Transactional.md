@@ -59,10 +59,14 @@ aliases:
 공식문서에서는 다음과 같이 언급한다.  
 
 > [!quote]
-> 이는 실제 트랜잭션 하위 시스템에 대한 힌트일 뿐이며, 쓰기 접근 시도 실패를 _반드시_ 유발하는 것은 아닙니다. 읽기 전용 힌트를 해석할 수 없는 트랜잭션 관리자는 읽기 전용 트랜잭션 요청을 받았을 때 예외를 발생시키지 _않고_ 힌트를 묵묵히 무시합니다.  
+> 
+> 이는 실제 트랜잭션 하위 시스템에 대한 힌트일 뿐이며, 쓰기 접근 시도 실패를 반드시 유발하는 것은 아닙니다. 읽기 전용 힌트를 해석할 수 없는 트랜잭션 관리자는 읽기 전용 트랜잭션 요청을 받았을 때 예외를 발생시키지 않고 힌트를 묵묵히 무시합니다.  
 > 
 > > [!quote]- 원본
-> > This just serves as a hint for the actual transaction subsystem; it will _not necessarily_ cause failure of write access attempts. A transaction manager which cannot interpret the read-only hint will _not_ throw an exception when asked for a read-only transaction but rather silently ignore the hint.  
+> >
+> > This just serves as a hint for the actual transaction subsystem; it will not necessarily cause failure of
+> > write access attempts. A transaction manager which cannot interpret the read-only hint will not
+> > throw an exception when asked for a read-only transaction but rather silently ignore the hint.  
 > > 
 > > https://docs.spring.io/spring-framework/docs/6.2.14/javadoc-api/org/springframework/transaction/annotation/Transactional.html?utm_source=chatgpt.com
 
