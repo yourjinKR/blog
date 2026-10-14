@@ -38,7 +38,7 @@ publisher.publishEvent(new AlarmCreateEvent(Long receiverId, Alarm alarm));
 
 ### fallbackExecution 옵션
 
-벤트 발행 시 활성 트랜잭션이 없어도 `@TransactionalEventListener`를 실행할 것인지 결정하는 옵션
+이벤트 발행 시 활성 트랜잭션이 없어도 `@TransactionalEventListener`를 실행할 것인지 결정하는 옵션
 
 | 상황      | `false` (기본)    | `true`          |
 | ------- | --------------- | --------------- |
