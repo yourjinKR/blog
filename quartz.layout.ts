@@ -1,5 +1,6 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import AiNotice from "./quartz/components/AiNotice"
 import { FileTrieNode } from "./quartz/util/fileTrie"
 
 const sortByOrder = (a: FileTrieNode, b: FileTrieNode) => {
@@ -70,6 +71,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ArticleTitle(),
     Component.ContentMeta(),
     Component.TagList(),
+
+    Component.ConditionalRender({
+      component: AiNotice(),
+      condition: (page) => page.fileData.frontmatter?.ai == true,
+    })
   ],
   left: [
     Component.PageTitle(),
