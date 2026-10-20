@@ -52,7 +52,7 @@ public boolean requestUnlink(String providerId) {
 }  
 ```
 
-해당 구조는 코드 단에서 URL를 직접 구성하여 HTTP를 호출했다.  
+`RestTemplate`는 코드 단에서 URL를 직접 구성하여 HTTP를 호출한다.
 
 - Header 생성
 - Content-Type 설정
@@ -63,10 +63,10 @@ public boolean requestUnlink(String providerId) {
 
 ### 카카오 API의 에러가 우리 서비스로 전파 
 
-`try-catch`를 통해 카카오 unlink 요청이 실패시 서비스의 탈퇴 로직도 실패처리가 된다는 것이다.  
+`try-catch`를 통해 카카오 `unlink` 요청이 실패시 서비스의 탈퇴 로직도 실패처리가 된다는 것이다.  
 즉, 카카오 서버에 의해 우리 서비스의 탈퇴 로직에 영향을 끼친다.  
 
-unlink 요청과 회원 탈퇴 로직을 분리하면 그만인걸까?
+`unlink` 요청과 회원 탈퇴 로직을 분리하면 그만인걸까?
 그렇게 된다면 일시적인 네트워크 오류로 인한 잠깐의 장애로 인해 특정 유저들은 unlink되지 않고 탈퇴되며 이를 추적하기에도 불편함이 있을 것이다.   
 
 ## 무엇이 바뀌었을까?
