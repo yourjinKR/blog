@@ -96,6 +96,27 @@ ON block (
 
 ![[IMG-20261011185450608.png]]
 
+기존에는 차단 여부를 `OR`로 나누어 확인하고 있었다.  
+
+```sql
+not exists (
+select 1
+    from block b1_0
+    where b1_0.is_deleted = false
+      and (
+          (
+              b1_0.blocker_id = 5
+              and b1_0.blocked_id = rb1_0.member_id
+          )
+          or
+          (
+              b1_0.blocker_id = rb1_0.member_id
+              and b1_0.blocked_id = 5
+          )
+      )
+)
+```
+
 ![[IMG-20261011185541616.png]]
 
 ### 결론
@@ -190,4 +211,6 @@ Spring, JPA 환경에서 [[Transactional#읽기 전용 트랜잭션|읽기 전�
 
 ### 정말 빨라졌는가?
 
-TODO 내일 측정!!!!!
+TODO 내일 측정!!!!
+
+

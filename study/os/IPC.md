@@ -6,10 +6,8 @@ tags:
 aliases:
   - IPC
   - 프로세스 간 통신
+ai: true
 ---
-> [!CAUTION]
-> 해당 내용은 AI를 활용하여 작성했습니다.  
-
 # IPC (Inter-Process Communication)
 
 IPC(Inter-Process Communication)는 **서로 독립적으로 실행되는 프로세스가 데이터를 주고받거나 실행 순서를 동기화하기 위해 운영체제가 제공하는 통신 메커니즘**을 의미한다.

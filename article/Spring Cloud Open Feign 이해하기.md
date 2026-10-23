@@ -142,6 +142,31 @@ default String unlinkFallback(String authorization, Map<String, ?> form, Excepti
 
 ![[IMG-20261021035255607.png]]
 
+직접 테스트를 진행해봤다.  
+[[IntelliJ에서 @ImportHttpServices Bean을 인식하지 못하는 문제|Intellij가 Bean을 인식 못하는 버그]]가 있었기에 IDE 자체를 버전업하는 이슈가 있었다.  
+
+```cardlink
+url: https://github.com/yourjinKR/11th-1team-BE/pull/1
+title: "Refactor: 카카오 Unlink API 선언형 클라이언트 전환 및 서킷브레이커 적용 by yourjinKR · Pull Request #1 · yourjinKR/11th-1team-BE"
+description: "PR 타입(하나 이상의 PR 타입을 선택해주세요) Feat : 새로운 백엔드 기능 추가 Bug : 서버/로직 버그 발견 및 수정 Refactor : 백엔드 코드 구조 개선 Chore : 의존성/설정/인프라 유지보수 API : API 엔드포인트 및 스펙 변경 DB : DB 스키마/쿼리/마이그레이션 변경 Performance : 성능 개선 ..."
+host: github.com
+favicon: https://github.githubassets.com/favicons/favicon.svg
+image: https://opengraph.githubassets.com/45d7aedfad74d6875c89168e98cb5cf80d393c097e09ebc464130a8565327780/yourjinKR/11th-1team-BE/pull/1
+```
+
+
+base-url를 인식 못함
+
+![[IMG-20261021152151364.png]]
+
+![[IMG-20261021152234045.png]]
+
+결국 해당 방식 또한 restclient 의존성을 추가해야 특정 http 클라이언트를 그룹화하여 관리할 수 있다.  
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-restclient'
+```
+
 
 ## 결론
 

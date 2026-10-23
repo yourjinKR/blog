@@ -5,6 +5,8 @@ tags:
 aliases:
   - "@Transactional"
   - Spring Transaction
+  - Transactional Annotation
+  - 트랜잭션 어노테이션
   - 스프링 트랜잭션
 ---
 클래스나 메서드에 붙여 [[Transaction|트랜잭션]]을 선언적으로 관리할 구현할 수 있는 [[Java Annotation|어노테이션]]이다.  
@@ -59,11 +61,9 @@ aliases:
 공식문서에서는 다음과 같이 언급한다.  
 
 > [!quote]
-> 
 > 이는 실제 트랜잭션 하위 시스템에 대한 힌트일 뿐이며, 쓰기 접근 시도 실패를 반드시 유발하는 것은 아닙니다. 읽기 전용 힌트를 해석할 수 없는 트랜잭션 관리자는 읽기 전용 트랜잭션 요청을 받았을 때 예외를 발생시키지 않고 힌트를 묵묵히 무시합니다.  
 > 
 > > [!quote]- 원본
-> >
 > > This just serves as a hint for the actual transaction subsystem; it will not necessarily cause failure of
 > > write access attempts. A transaction manager which cannot interpret the read-only hint will not
 > > throw an exception when asked for a read-only transaction but rather silently ignore the hint.  
@@ -79,6 +79,26 @@ aliases:
 - Hibernate에서 `FlushMode.MANUAL` 설정, JPA에서는 더티 체킹을 수행하지 않는다. (CPU/메모리 비용 감소)
 - 락 획득 최소화, 모든 락이 아닌 읽기 락만 획득함
 - 트랜잭션 로그 생성 생략
+
+## 추가로
+
+`SimpleJpaRepository`와 같은 경우 기본적으로 `save`메서드에 트랜잭션 어노테이션이 붙어있다.  
+
+```java
+@Override  
+@Transactional  
+public <S extends T> S save(S entity) {  
+  
+    Assert.notNull(entity, ENTITY_MUST_NOT_BE_NULL);  
+  
+    if (entityInformation.isNew(entity)) {  
+       entityManager.persist(entity);  
+       return entity;  
+    } else {  
+       return entityManager.merge(entity);  
+    }  
+}
+```
 
 
 ## 출처 및 참고자료

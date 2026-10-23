@@ -1,14 +1,13 @@
 ---
 date: 2026-09-24
-title: HSTS
+aliases:
+  - HTTP Strict Transport Security
 tags:
   - Network
   - HTTP
   - Web
   - Security
 ---
-# HSTS (HTTP-Strict-Transport-Security)
-
 HSTS는 사이트가 [[HTTPS]]를 통해서만 접근되어야 하며 향후 [[HTTP|HTTP]]를 사용하여 사이트에 접근하려는 모든 시도는 자동으로 HTTPS로 변환되어야 함을 브라우저에 알리는 [[http-header|헤더]]값이다.
 
 ```
@@ -17,7 +16,9 @@ Strict-Transport-Security: max-age=<expire-time>; includeSubDomains
 Strict-Transport-Security: max-age=<expire-time>; includeSubDomains; preload
 ```
 
-![[Pasted image 20260713192353.png]]
+![[IMG-20261013035042028.png]]
+
+브라우저가 항상 HTTPS로만 접속하도록 강제해 SSL Stripping 방어한다.  
 
 ## 지시어
 
@@ -29,11 +30,11 @@ Strict-Transport-Security: max-age=<expire-time>; includeSubDomains; preload
 
 cloudflare에서는 `Edge Certificates` 탭에서 설정 가능
 
-![[Pasted image 20260713192838.png]]
+![[IMG-20261013035042028-1.png]]
 
-![[Pasted image 20260713192939.png]]
+![[IMG-20261013035042035.png]]
   
-![[Pasted image 20260713192926.png]]
+![[IMG-20261013035042028-2.png]]
 
 - **No-Sniff Header**: HSTS와는 목적이 살짝 다른 보안 헤더인 `X-Content-Type-Options: nosniff`를 응답에 추가합니다. → 키는 것을 권장
 

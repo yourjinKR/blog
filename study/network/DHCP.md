@@ -7,6 +7,11 @@ aliases:
 ---
 DHCP란 네트워크에 접속한 호스트에게 IP 주소와 네트워크 설정 정보를 자동으로 할당하는 프로토콜이다.  ^intro
 
+DHCP는 기본적으로 **Client-Server 구조**로 동작한다.
+
+- **Server**: 일반적으로 공유기 (포트번호 67번)
+- **Client**: 노트북, 스마트폰, 태블릿 등 우리가 사용하는 기기 (포트번호 68번)
+
 DHCP 서버는 클라이언트에게 보통 다음 정보를 제공한다.
 
 - [[IP]] 주소
@@ -15,14 +20,9 @@ DHCP 서버는 클라이언트에게 보통 다음 정보를 제공한다.
 - [[DNS]] 서버 주소
 - IP 임대 시간(Lease Time)
 
-IP 네트워크에서 각각의 장치는 통신을 위해 IP 주소를 가지고 있어야 한다.
-만약 DHCP가 없다면 관리자가 모든 장치에 직접 IP를 설정해야 한다.
+IP 네트워크에서 각각의 장치는 통신을 위해 IP 주소를 가지고 있어야 한다.  
+만약 DHCP가 없다면 관리자가 모든 장치에 직접 IP를 설정해야 한다.  
 또한 IP 충돌과 같은 문제를 자동적으로 해결한다.  
-
-DHCP는 기본적으로 **Client-Server 구조**로 동작한다.
-
-- Client: 노트북, 스마트폰, 태블릿 등 우리가 사용하는 기기
-- 일반적으로 공유기
 
 ## DORA
 
@@ -57,6 +57,15 @@ DHCP가 제공하는 IP 주소는 일반적으로 영구적으로 소유하는 �
 DHCP를 요청하는 클라이언트는 아직 정상적인 IP 설정조차 되어 있지 않을 수 있다. 따라서 처음부터 TCP 연결을 맺는 방식보다는 Broadcast가 가능한 [[UDP]] 기반으로 간단한 메시지를 교환하는 것이 적합하다.
 
 ## 출처 및 참고자료
+
+```cardlink
+url: https://jeongcheogi.edugamja.com/theory/network-os/application-layer-protocol#dhcp
+title: "응용 계층 프로토콜"
+description: "SSH, HTTP, FTP, SMTP 등 응용 계층 프로토콜의 역할과 포트 번호를 정리합니다."
+host: jeongcheogi.edugamja.com
+favicon: https://jeongcheogi.edugamja.com/favicon.ico?favicon.2ns115htqsj_s.ico
+image: https://jeongcheogi.edugamja.com//folder-icons/theory/network-os/application-layer-protocol.webp
+```
 
 ```cardlink
 url: https://minha0220.tistory.com/45
