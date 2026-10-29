@@ -117,23 +117,31 @@ select 1
 )
 ```
 
+OR 연산자 특성상 조건이 추가될 수록 [[B-Tree]] 구조의 인덱스에서 옵티마이저가 후보로 줄일 수 있는 데이터의 크기가 점점 커질 것이다. [[드모르간 법칙]]에 기반하여 순수한 AND 연산자 위주 쿼리문으로 변경했다.  
+
+```sql
+-- 상대방이 나(5)를 차단했는지
+and not exists (
+    select 1
+    from block b1_0
+    where b1_0.is_deleted = false
+      and b1_0.blocked_id = 5
+      and b1_0.blocker_id = rb1_0.member_id
+)
+
+-- 내(5)가 상대방을 차단했는지
+and not exists (
+    select 1
+    from block b4_0
+    where b4_0.is_deleted = false
+      and b4_0.blocker_id = 5
+      and b4_0.blocked_id = rb1_0.member_id
+)
+```
+
+이후 인덱스 스캔이 정상적으로 동작됨을 확인할 수 있었고 성능 측정까지 진행했다.  
+
 ![[IMG-20261011185541616.png]]
-
-### 결론
-
-> [!NOTE] 결론 요약 1
-> 처음에는 Full Scan이 원인이라고 판단해 복합 인덱스를 추가했습니다. 그런데 실행계획상 인덱스 이름은 나타났지만
-> `scanCount`가 1002로 그대로여서 실제 탐색 범위는 줄어들지 않았습니다. 원인을 더 좁혀보니 양방향 차단 관계를 
-> 하나의 `OR` 조건으로 묶으면서 옵티마이저가 복합 인덱스를 효율적으로 사용하지 못하고 있었습니다. 이를 동일한 의미
-> 의 두 `NOT EXISTS`로 분리하자 각각 `scanCount: 1`의 인덱스 탐색으로 변경됐고 응답시간도 크게 감소했습니다.
-
-> [!NOTE] 결론 요약 2
-> 양방향 차단 관계를 하나의 `NOT EXISTS` 내부에서 `OR`로 표현했더니 H2 옵티마이저가 이를 두 번의 복합 인덱스 탐
-> 색으로 분리하지 못하고 넓은 인덱스 범위를 스캔했다. 이를 드모르간 법칙에 따라 두 개의 `NOT EXISTS`로 분리함으로
-> 써 각 조건이 `(blocker_id, blocked_id, is_deleted)` 복합 인덱스의 명확한 검색 조건이 되었고, 
-> `scanCount`가 약 1002에서 각 1건으로 감소했다.
-
-![[IMG-20261007194508940.png]]
 
 ![[IMG-20261007222455924.png]]
 
@@ -150,6 +158,8 @@ image: https://github.githubassets.com/assets/gist-og-image-54fd7dc0713e.png
 
 ## 인덱스는 스크립트로 관리
 
+추가된 인덱스는 Spring에서 기본적으로 제공하는 init 기능을 활용했다.  
+
 ```properties
 # Spring Boot의 SQL 초기화 기능을 항상 실행
 spring.sql.init.mode=always 
@@ -157,6 +167,15 @@ spring.sql.init.mode=always
 spring.sql.init.schema-locations=classpath:db/index.sql
 # SQL 초기화를 JPA/Hibernate의 초기화 이후로
 spring.jpa.defer-datasource-initialization=true
+```
+
+```cardlink
+url: https://github.com/Team-Unearned-Income/11th-1team-BE/pull/358
+title: "chore: DB 인덱스 SQL 관리 및 test 프로필 자동 적용 by yourjinKR · Pull Request #358 · Team-Unearned-Income/11th-1team-BE"
+description: "PR 타입(하나 이상의 PR 타입을 선택해주세요) Feat : 새로운 백엔드 기능 추가 Bug : 서버/로직 버그 발견 및 수정 Refactor : 백엔드 코드 구조 개선 Chore : 의존성/설정/인프라 유지보수 API : API 엔드포인트 및 스펙 변경 DB : DB 스키마/쿼리/마이그레이션 변경 Performance : 성능 개선 ..."
+host: github.com
+favicon: https://github.githubassets.com/favicons/favicon.svg
+image: https://opengraph.githubassets.com/f18d3d5235f916be99d22dd0c73c0a46f6c429a388b363ddec3d919330c9ef36/Team-Unearned-Income/11th-1team-BE/pull/358
 ```
 
 ## 게시글 테이블 풀스캔
@@ -209,8 +228,27 @@ Spring, JPA 환경에서 [[Transactional#읽기 전용 트랜잭션|읽기 전�
 
 그렇기에 별도의 스레드로 분리 및 비동기 처리하되 복구 전략까지도 현재 단계에서는 필요 없다고 판단하였다.  
 
-### 정말 빨라졌는가?
+## 오해: 사실 인덱스는 추가할 필요가 없었다.  
 
-TODO 내일 측정!!!!
+처음에 fk 인덱스를 타지 않는 것을 확인 후 복합 인덱스를 추가했다.  
+그리고 복합 인덱스 내부에서 Index Full Scan이 발생하는 것을 확인 후 쿼리 개선 작업을 수행했다.  
 
+이후 팀원과 실제 MySQL DB 환경에서 직접 다시 테스트 해본 결과 별도의 복합 인덱스 추가 없이 쿼리 개선만으로도 충분한 성능을 보장 받을 수 있음을 확인했다.  
 
+|**단계**|**인덱스 상태**|**쿼리 상태**|**실제 동작 방식 (Access Type)**|**성능 결과 및 이유**|
+|---|---|---|---|---|
+|**1단계 (초기)**|기본 FK 단일 인덱스만 존재|`OR` 통합 쿼리|**Full Scan**|`OR` 때문에 기본 FK 인덱스의 시작점을 못 잡아 전체 스캔 (약 420ms)|
+|**2단계 (인덱스 추가)**|**복합 인덱스 추가**|`OR` 통합 쿼리|**Index Full Scan** (`scanCount: 1002`)|복합 인덱스를 선택하긴 했지만, 여전히 `OR` 때문에 시작점을 못 잡아 인덱스 전체를 처음부터 끝까지 다 읽음 (여전히 느림)|
+|**3단계 (쿼리 개선)**|복합 인덱스 유지|**`NOT EXISTS` 분리 (`AND`)**|**Composite Index Seek** (`scanCount: 1`)|`OR`가 사라져 복합 인덱스의 3개 컬럼 좌표로 정확히 **1건만 점프** (초고속, 약 5ms)|
+|**4단계 (교차 검증)**|**복합 인덱스 제거** (기본 FK만 존재)|**`NOT EXISTS` 분리 (`AND`)**|**FK Index Range Scan**|복합 인덱스가 없어도 `blocker_id` 단일 FK 인덱스를 타고 **내가 차단한 목록으로 즉시 점프** (초고속)|
+
+복합 인덱스를 추가로 인한 삽입 지연을 개선하고자 DB [[Replication]] 도입을 고려 중이었기에 확실한 검증 과정은 필요했다.  
+
+```cardlink
+url: https://github.com/Team-Unearned-Income/11th-1team-BE/pull/361
+title: "Perf: 룸메이트 차단 관계 조회 쿼리 튜닝 최종 분석 반영 및 인덱스 정리 by Developer-Choi-Jae-Young · Pull Request #361 · Team-Unearned-Income/11th-1team-BE"
+description: "PR 타입(하나 이상의 PR 타입을 선택해주세요) Feat : 새로운 백엔드 기능 추가 Bug : 서버/로직 버그 발견 및 수정 Refactor : 백엔드 코드 구조 개선 Chore : 의존성/설정/인프라 유지보수 API : API 엔드포인트 및 스펙 변경 DB : DB 스키마/쿼리/마이그레이션 변경 Performance : 성능 개선 ..."
+host: github.com
+favicon: https://github.githubassets.com/favicons/favicon.svg
+image: https://opengraph.githubassets.com/abd15add90946638b738b0bdb3129e122bdf49c4a4aff6471af987972de98e39/Team-Unearned-Income/11th-1team-BE/pull/361
+```

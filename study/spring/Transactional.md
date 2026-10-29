@@ -18,7 +18,7 @@ aliases:
 	- JPA에서는 `JPATransactionManager`
 3. 커넥션 생성: `DataSource`를 통해 `Connection` 생성
 4. 트랜잭션 시작 ([[JDBC]]의 `autoCommit`을 `false`)
-5. 트랜잭션 동기화 매니저에게 커넥션 저장: 트랜잭션동안 동일한 커넥션을 하나의 스레드에서 일관되게 사용
+5. 트랜잭션 동기화 매니저에게 [[JDBC#Connection|Connection]] 저장: 트랜잭션동안 동일한 커넥션을 하나의 스레드에서 일관되게 사용
 	- `TransactionSynchronizationManager`
 	- DB 접근 작업이 있을때마다 커넥션을 꺼내다 씀
 
