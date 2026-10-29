@@ -6,6 +6,7 @@ aliases:
   - Bean
   - 스프링 빈
   - 빈
+order: "103"
 ---
 Bean이란 Spring IoC Container에 등록되어 생성, 의존관계 설정, 생명주기 관리 등을 받는 객체를 말한다.  
 

@@ -3,6 +3,7 @@ date: 2026-09-24
 title: Spring DI
 tags:
   - Spring
+order: "102"
 ---
 ## Spring의 의존성 주입
 
@@ -101,9 +102,20 @@ public class MovieRecommender {
 }
 ```
 
-## DI시 빈이 여러개 일때
+## 같은 타입의 빈이 여러개 일때
 
-동일한 타입의 Bean이 여러개 존재 할 때, 하나의 빈에 `@Primary`를 설정하여 우선순위를 조절한다.  
+스프링(Spring)에서 같은 타입의 빈(Bean)이 2개 이상 존재할 때 `@Autowired` 등으로 의존성 주입을 시도하면, 어떤 빈을 주입해야 할지 알 수 없어 `NoUniqueBeanDefinitionException` 또는 `NoSuchBeanDefinitionException` 오류가 발생하기도 한다.  
+
+그렇기에 아래와 같은 방식으로 우선순위를 제어할 수 있다.  
+
+### 빈 이름과 필드명을 일치
+
+빈 이름과 파라미터명을 일치시키면 특정 Bean을 주입한다.  
+
+```java
+@Autowired
+private DiscountPolicy rateDiscountPolicy; // 파라미터명을 빈 이름과 일치시킴
+```
 
 ### @Primary
 

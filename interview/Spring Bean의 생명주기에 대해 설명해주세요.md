@@ -19,7 +19,7 @@ tags:
 
 - Spring Bean Scope에 대해 자세히 설명해주세요
 - 컴포넌트 스캔이란?
-- Bean/Component 어노테이션에 대해서 설명해주시고, 둘의 차이점에 대해 설명해주세요.
+- [[Bean과 Component의 차이점을 설명해주세요]]
 
 ## 출처
 
