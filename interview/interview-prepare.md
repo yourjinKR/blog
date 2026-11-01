@@ -53,7 +53,7 @@ tags:
 # HTTP & WEB
 
 - [[http-process|브라우저의 동작 방식에 대해 설명해주세요]]
-- [[management-status-in-web|쿠키/세션/JWT에 대해 설명해주세요]]
+- [[웹의 상태 관리|쿠키/세션/JWT에 대해 설명해주세요]]
 - [[what-is-restful-api|REST API에 대해 설명해주세요]]
 - [[what-is-cors|CORS에 대해 설명해주세요]]
 

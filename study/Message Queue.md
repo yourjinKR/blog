@@ -2,6 +2,7 @@
 date: 2026-09-30
 aliases:
   - 메세지 큐
+  - Messaging Queue
 tags:
   - Data-Structure
 ---

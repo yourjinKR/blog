@@ -245,7 +245,7 @@ http.addFilterAfter(추가할필터, 기존필터.class);
 ## 필터 상속과 요청 전파
 
 Spring Security의 필터들은 아래와 같은 상속구조를 가지고 있다.  
-[[servlet-filter|서블릿 필터]] 인터페이스와 Spring 기반의 `GenericFilterBean` 추상 클래스가 있다.  
+[[Filter|서블릿 필터]] 인터페이스와 Spring 기반의 `GenericFilterBean` 추상 클래스가 있다.  
 
 ![[fileter-inheritance.excalidraw.svg|200]]
 

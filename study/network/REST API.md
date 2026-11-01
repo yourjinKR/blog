@@ -1,6 +1,5 @@
 ---
 date: 2026-09-24
-title: REST API
 tags:
   - Network
   - HTTP
@@ -8,12 +7,10 @@ tags:
 ---
 # REST API (Representational State Transfer API)
 
-[[rest|REST]] 원칙을 준수하는 API이다.  
+웹의 장점을 최대한 활용하기 위해 설계된 소프트웨어 아키텍처 스타일인 [[REST]] 원칙을 따르는 API이다.  
 
-> [!TIP]
-> **REST API**란 웹의 장점(HTTP)을 최대한 활용하여 서버의 자원을 정의하고, 이를 주고받는 가장 대중적인 규칙(아키텍처 스타일)입니다.
+![[IMG-20261013035042053.png]]
 
-![[Pasted image 20260715221911.png]]
 ## REST API 디자인 가이드
 
 **첫 번째,** [[uri|URI]]는 정보의 자원을 표현해야 한다.  

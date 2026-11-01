@@ -5,6 +5,8 @@ tags:
   - Network
   - HTTP
   - Web
+aliases:
+  - RESTful
 ---
 # REST (Representational State Transfer)
 
@@ -49,5 +51,26 @@ REST 서버는 다중 계층으로 구성될 수 있으며 보안, 로드 밸런
 
 # 출처
 
-https://ko.wikipedia.org/wiki/REST  
-https://spoqa.github.io/2012/02/27/rest-introduction.html  
+```cardlink
+url: https://ko.wikipedia.org/wiki/REST
+title: "REST - 위키백과, 우리 모두의 백과사전"
+host: ko.wikipedia.org
+favicon: https://ko.wikipedia.org/static/favicon/wikipedia.ico
+```
+
+```cardlink
+url: https://spoqa.github.io/2012/02/27/rest-introduction.html
+title: "REST 아키텍처를 훌륭하게 적용하기 위한 몇 가지 디자인 팁"
+description: "최근의 서버 프로그램은 여러 웹 브라우저는 물론이며, 아이폰, 안드로이드 애플리케이션과의 통신에 대응해야 합니다. 이번 글에선 여러 문제를 지혜롭게 대처할 수 있는 REST 아키텍처에 대해 알아봅니다."
+host: spoqa.github.io
+image: https://spoqa.github.io/images/og-logo.png
+```
+
+```cardlink
+url: https://nesoy.github.io/blog/REST-API
+title: "REST API"
+description: "REST API Web에 관련된 자료를 보게 되거나 혹은 API를 보게 되었을 때 가장 많이 보이는 단어가 REST란 단어였다. 하지만 REST란 단어만 알고만 있을 뿐 자세한 의미는 알지 못했다."
+host: nesoy.github.io
+favicon: ../static/icon.png
+image: https://nesoy.github.io/static/og-image.png
+```

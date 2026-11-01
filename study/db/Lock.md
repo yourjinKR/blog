@@ -8,18 +8,21 @@ aliases:
 > [!INFO]
 > 해당 글은 MySQL InnoDB 환경을 기반으로 작성했습니다.  
 
-여러 커넥션에서 동시에 동일한 자원을 요청할 경우 순서대로 하나의 커넥션만 변경할 수 있게 해주는 기능을 말합니다.
+DB Lock은 여러 트랜잭션의 **공유 데이터에 대한 엑세스를 제어**하기 위해 사용되는 메커니즘이다.  
 
 - 데이터 무결성 보장
 - 동시성 제어
 
 ## Optimistic lock
 
-충돌이 발생하지 않을 것이라고 가정하여 자원에 락을 걸지 않고 동시성 문제가 발생하면 그때 처리하는 방식이다. 낙관적 락은 수정할 때 수정했다고 명시하여 다른 트랜잭션이 동일한 조건으로 값을 수정할 수 없게 하는 것이다. 
+낙관적 락
+
+충돌이 발생하지 않을 것이라고 가정하여 자원에 락을 걸지 않고 동시성 문제가 발생하면 그때 처리하는 방식이다.  
+낙관적 락은 수정할 때 수정했다고 명시하여 다른 트랜잭션이 동일한 조건으로 값을 수정할 수 없게 하는 것이다. 
 
 ```sql
 UPDATE account
-SET balance = 500, ver = 2
+SET balance = 500, ver = 2 -- <- 변경시 버전을 2로 올림
 WHERE id = 1 and ver = 1;
 
 -- 반환 Row Count가 0이면 실패, 재시도
@@ -76,7 +79,31 @@ SELECT * FROM member WHERE id = 1 FOR UPDATE;
 
 이러한 문제점들을 해결하기 위해 [[MVCC]]가 탄생하게 되었다.
 
+## 낙관적 락 vs 비관적 락
+
+충돌이 드물고 트랜잭션 롤백 및  재시도 비용이 낮다면 낙관적 락을 사용한다.  
+특히 임계 영역이 짧아서 충돌 확률 자체가 낮은 경우에 적합하다.  
+
+반대로 충돌이 빈번하거나 임계 영역이 길어서 재시도 비용이 커지면 비관적 락으로 아예 선점하는게 효울적이다.  
+
 ## 출처 및 참고자료
 
-https://www.youtube.com/watch?v=oJrVl6QKzHw  
+```cardlink
+url: https://www.youtube.com/watch?v=oJrVl6QKzHw
+title: "락의 두 종류: 비관적 락 vs 낙관적 락 ＃개발자개념장착"
+description: "#개발자 #프로그래밍 #개발자면접"
+host: www.youtube.com
+favicon: https://www.youtube.com/s/desktop/5b8fd169/img/favicon_32x32.png
+image: https://i.ytimg.com/vi/oJrVl6QKzHw/maxresdefault.jpg
+```
+
+```cardlink
+url: https://www.youtube.com/watch?v=1DN9RtcqumI
+title: "CS 면접 대비 (DB 편) - 2.1 DB Lock이란 무엇이고, 어떤 종류가 있나요? ⭐️⭐️⭐️"
+description: "📙 JSCODE 박재성 📙✔️ https://linktr.ee/jscode📗 프로그래밍 무료 강의 📗✔️ https://www.youtube.com/@jscode-official/playlists"
+host: www.youtube.com
+favicon: https://www.youtube.com/s/desktop/5b8fd169/img/favicon_32x32.png
+image: https://i.ytimg.com/vi/1DN9RtcqumI/maxresdefault.jpg
+```
+
 https://mangkyu.tistory.com/53

@@ -107,6 +107,10 @@ https://github.com/yourjinKR/spring-query-test/pull/3
 
 https://chatgpt.com/c/6ae22bf4-0a18-83ee-b9be-e3f0677804a8  
 
+결국 Row의 크기가 커질수록 직렬화/역직렬화 작업이 무거워질 뿐만 아니라 GC가 더 많은 객체들의 메모리를 관리하게 된다.  
+
+
+
 %% 4차 작업 진행 %%
 
 ## 5차 테스트 – 종합 테스트 (필요시)

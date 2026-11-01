@@ -3,6 +3,7 @@ tags:
   - Spring
 aliases:
   - "@TransactionalEventListener"
+  - 트랜잭션 이벤트 리스너
 ---
 `ApplicationEventPublisher`르 사용
 
