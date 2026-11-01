@@ -96,7 +96,7 @@ public interface Connection  extends Wrapper, AutoCloseable {
 ```
 
 > [!INFO]
-> Spring에서는 `DataSource`를 통해 [[Connection-Pool|커넥션 풀]]에서 `Connection` 객체를 가져온다.  
+> Spring에서는 `DataSource`를 통해 [[DB Connection Pool|커넥션 풀]]에서 `Connection` 객체를 가져온다.  
 
 %%  %%
 ### Statement

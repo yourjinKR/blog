@@ -52,7 +52,12 @@ TCP 세그먼트는 헤더와 데이터 필드가 나뉘어져 있다.
 - MSS: TCP로 전송할 수 있는 최대 페이로드 크기
 - MTU: MSS + 헤더 크기
 
-![[IMG-20260903105019876.png]]  
+![[IMG-20260903105019876.png]] 
+## TCP State
+
+![[IMG-20261102020422659.png]]
+
+
 %%%%
 ## 출처 및 참고자료
 
@@ -72,4 +77,10 @@ description: "본 강의는 『혼자 공부하는 네트워크』를 바탕으�
 host: www.youtube.com
 favicon: https://www.youtube.com/s/desktop/3a93864d/img/favicon_32x32.png
 image: https://i.ytimg.com/vi/d6pUy1Z56h8/maxresdefault.jpg
+```
+
+```cardlink
+url: http://www.ktword.co.kr/test/view/view.php?no=657
+title: "TCP 상태"
+host: www.ktword.co.kr
 ```
