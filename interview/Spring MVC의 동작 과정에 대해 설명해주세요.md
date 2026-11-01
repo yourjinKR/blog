@@ -6,8 +6,7 @@ tags:
   - Spring
   - Web
 ---
-
-Spring MVC는 디스패처 서블릿의 요청 처리 과정에 MVC 패턴을 적용한 것입니다.  
+[[Spring MVC]]는 디스패처 [[Servlet|서블릿]]의 요청 처리 과정에 [[MVC]] 패턴을 적용한 것입니다.  
 
 ![[Pasted image 20260813173431.png]]
 
