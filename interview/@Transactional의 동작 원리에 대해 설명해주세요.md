@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Spring
+ai: true
 ---
 `@Transactional`은 [[Spring AOP]]와 프록시를 기반으로 [[Transaction|트랜잭션]]을 처리합니다.
 

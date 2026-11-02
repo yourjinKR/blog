@@ -4,6 +4,8 @@ tags:
   - 면접
   - 스터디
   - Spring
+count: 2
+ai: true
 ---
 [[Spring AOP]]는 핵심 비즈니스 로직과 여러 기능에서 공통으로 사용되는 부가 기능을 분리하는 기술입니다.
 
@@ -42,7 +44,13 @@ Spring AOP는 프록시 기반으로 동작합니다. Spring Bean을 대상으�
 > - 결과를 클라이언트에게 반환
 
 > [!QUESTION]- JDK Dynamic Proxy와 CGLIB 방식은 무엇이 다른가요?
->   
+> [[JDK Dynamic Proxy]]는 인터페이스를 기반으로 프록시를 생성하고, [[CGLIB]]은 클래스를 상속하여 프록시를 생성한다는 차이가 있습니다. JDK Dynamic Proxy는 JDK에서 기본 제공하는 `java.lang.reflect.Proxy`를 사용하며, 대상 객체가 구현한 **인터페이스의 메서드 호출을 가로챕니다.** 반면 CGLIB은 런타임에 대상 클래스를 **상속한 서브클래스**를 만들어 메서드를 오버라이딩하는 방식으로 프록시를 생성합니다. 따라서 CGLIB은 인터페이스가 없어도 사용할 수 있지만, 상속과 오버라이딩이 필요하기 때문에 `final class`, `final method`, `private method`에는 제약이 있습니다.
+
+> [!QUESTION]- JDK Proxy와 CGLIB 중 어떤 게 성능이 더 좋나요? ⭐
+> CGIB는 타겟에 대한 정보를 직접적으로 제공 받고, 타겟 클래스에 대한 바이트 코드를 조작하여 프록시를 생성하므로 리플렉션을 사용하는 JDK Dynamic Proxy에 비해 성능이 좋다. 또한 CGLIB는 메소드가 처음 호출되었을 때 동적으로 타겟 클래스의 바이트 코드를 조작하고, 이후 호출 시엔 조작된 바이트 코드를 재사용한다.  
+> 
+> https://ree2ta.tistory.com/41
+> https://steady-coding.tistory.com/608
 
 > [!QUESTION]- self-invocation 문제에 대해 설명해주세요
 >   

@@ -6,6 +6,7 @@ tags:
   - Web
   - Security
   - Authentication
+ai: true
 ---
 일반 로그인과 OAuth2 소셜 로그인의 가장 큰 차이는 사용자의 자격 증명을 누가 검증하느냐입니다.
 

@@ -5,6 +5,7 @@ tags:
   - 스터디
   - DB
   - 인덱스
+ai: true
 ---
 > 클러스터링 인덱스는 pk에 적용되며, PK 값에 의해 레코드의 물리적 저장 위치가 결정됩니다.  
 > 리프 노드에 레코드의 모든 컬럼이 저장됩니다.  
@@ -12,7 +13,7 @@ tags:
 > 비클러스터링 인덱스는 PK 외 컬럼에 적용되며, 리프 노드에 해당 레코드의 PK만 존재합니다.  
 > 따라서 비클러스터링 인덱스로 검색하면 PK를 얻은 뒤, 다시 클러스터링 인덱스를 탐색해야 합니다.  
 
-Clustered Index와 Non-Clustered Index의 구체적인 구현은 DBMS마다 다릅니다. MySQL InnoDB를 기준으로 Clustered Index는 리프 페이지에 행 데이터 자체를 저장하는 인덱스이고, Non-Clustered Index에 해당하는 Secondary Index는 인덱스 컬럼과 해당 행의 기본 키를 저장하는 별도의 인덱스입니다.
+[[DB Index#Clustered Index|Clustered Index]]와 [[DB Index#Non-Clustered Index|Non-Clustered Index]]의 구체적인 구현은 DBMS마다 다릅니다. MySQL InnoDB를 기준으로 Clustered Index는 리프 페이지에 행 데이터 자체를 저장하는 인덱스이고, Non-Clustered Index에 해당하는 Secondary Index는 인덱스 컬럼과 해당 행의 기본 키를 저장하는 별도의 인덱스입니다.
 
 InnoDB는 테이블마다 하나의 Clustered Index를 가집니다. 일반적으로 기본 키를 사용하며, 기본 키가 없으면 모든 컬럼이 `NOT NULL`인 첫 번째 UNIQUE 인덱스를 사용합니다. 그것도 없으면 내부적으로 숨겨진 행 ID를 생성합니다. 기본 키로 조회하면 Clustered Index 탐색만으로 행 데이터에 접근할 수 있습니다.
 

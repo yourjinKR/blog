@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Network
+ai: true
 ---
 [[TCP]]는 Sequence Number와 ACK를 이용해 데이터가 정상적으로 도착했는지 확인합니다.
 

@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Spring
+ai: true
 ---
 [[Spring Bean]]의 생명주기는 Spring Container에 의해 다음과 같은 흐름으로 관리됩니다.  
 

@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - Network
+ai: true
 ---
 TCP는 연결 지향 프로토콜이기 때문에 통신 전에 [[TCP 3-Way Handshake]]로 연결을 수립하고, 통신 종료 시에는 일반적으로 [[TCP 4-way handshake]]를 수행합니다.  
 

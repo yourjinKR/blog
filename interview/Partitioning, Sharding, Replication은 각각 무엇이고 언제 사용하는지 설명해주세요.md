@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - DB
+ai: true
 ---
 Partitioning, Sharding, Replication은 모두 데이터베이스 규모와 부하를 다루는 기술이지만 데이터를 나누거나 복제하는 범위와 목적이 다릅니다.
 

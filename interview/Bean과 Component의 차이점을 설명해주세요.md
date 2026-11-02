@@ -3,6 +3,7 @@ date: 2026-10-29
 tags:
   - 면접
   - Spring
+ai: true
 ---
 `@Component`와 `@Bean`은 모두 객체를 [[Spring Bean]]으로 등록하기 위한 방법입니다.  
 `@Component`는 클래스에 선언하고 Component Scan을 통해 Spring이 자동으로 객체를 생성해 등록하는 방식이고, `@Bean`은 주로 `@Configuration` 클래스의 메서드에 선언하여 개발자가 객체 생성 과정을 직접 정의하는 방식입니다.  

@@ -5,6 +5,7 @@ tags:
   - 스터디
   - Web
   - Security
+ai: true
 ---
 XSS와 CSRF는 모두 사용자의 인증 상태를 악용할 수 있지만, 공격 방식이 다릅니다.
 

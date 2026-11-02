@@ -4,6 +4,7 @@ tags:
   - 면접
   - 스터디
   - OS
+ai: true
 ---
 **Race Condition은 여러 실행 흐름의 접근 순서나 타이밍에 따라 결과가 달라지는 문제이고, Critical Section은 공유 자원에 접근하여 [[synchronization|동기화]]가 필요한 코드 구간입니다.**
 

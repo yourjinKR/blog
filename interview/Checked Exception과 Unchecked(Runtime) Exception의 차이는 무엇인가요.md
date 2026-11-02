@@ -5,6 +5,7 @@ tags:
   - 면접
   - 스터디
   - Java
+ai: true
 ---
 Checked Exception과 Unchecked Exception의 가장 큰 차이는 **컴파일러가 예외 처리를 강제하는지 여부**입니다.
 

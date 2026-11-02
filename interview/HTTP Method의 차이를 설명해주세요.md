@@ -7,6 +7,7 @@ tags:
   - Web
 aliases:
   - HTTP Method(GET, POST, PUT, PATCH, DELETE)의 차이를 설명해주세요
+ai: true
 ---
 [[HTTP Method]]는 클라이언트가 서버의 리소스에 대해 어떤 동작을 원하는지를 나타냅니다.  
 
