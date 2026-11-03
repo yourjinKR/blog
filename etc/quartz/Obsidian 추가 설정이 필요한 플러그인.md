@@ -1,6 +1,5 @@
 ---
 date: 2026-09-24
-title: 추가 설정이 필요한 플러그인
 order: "4"
 tags:
   - excalidraw

@@ -1,6 +1,5 @@
 ---
 date: 2026-09-24
-title: 편의성 플러그인
 order: "5"
 tags:
   - Obsidian
