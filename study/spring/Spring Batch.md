@@ -51,19 +51,14 @@ Spring Batch에서는 아래와 같은 기능들을 제공한다.
 - **ItemWriter**: 쓰는 부분
 - **JobRepository**: 얼만큼 했는지, 특정 일자 배치를 이미 했는지 메타 데이터에 기록하는 부분
 
-### JobLauncher
+## JobLauncher
 
-`JobLauncher`는 Spring Batch 6.0부터 `Deprecated`되었다.  
+`JobLauncher`는 Spring Batch 6.0부터 `Deprecated`되었기에 대신 `JobOperator`를 사용하면 된다.  
 
 ```java
+// 전
 jobLauncher.run(jobRegistry.getJob("firstJob"), jobParameters);
-```
-
-![[IMG-20261102223014902.png|389]]
-
-대신 `JobOperator`를 사용하면 된다.  
-
-```java
+// 후
 jobOperator.start(jobRegistry.getJob("firstJob"), jobParameters);
 ```
 
@@ -72,7 +67,8 @@ jobOperator.start(jobRegistry.getJob("firstJob"), jobParameters);
 > 
 > https://docs.spring.io/spring-batch/reference/whatsnew.html#_batch_infrastructure_configuration_simplification
 
-### JobRegistry
+%%%%
+## JobRegistry
 
 Spring Batch 6.0부터는 `JobRegistry`가 선택적으로 사용하도록 변경되었다.  
 ApplicationContext에 있는 `Job` Bean들을 스스로 찾아 등록한다.  
@@ -94,6 +90,141 @@ public class BatchConfig {
     }  
 }
 ```
+
+## Step
+
+- Chunk 방식 (Read → Process → Write)
+- Tasklet 방식: Tasklet 방식은 아주 간단한 동작만 수행, 데이터 조건을 걸어야 하는 경우 거의 사용하지 않음
+	- 사용 예시: 단순한 파일 삭제, 값 초기화 등등
+
+### Chunk 단위 처리 과정
+
+청크값을 10으로 설정했다면 아래와 같이 작업을 수행한다.  
+
+> (Read) x 10 → (Write) x 10 → Write
+
+#### Skip
+
+> [!CAUTION] `noSkip()` 메서드 미지원
+> Spring Batch 6 부터는 책임 단순화를 위해 `noSkip()`을 지원하지 않는다.  
+> 그렇기에 `SkipPolicy`를 중심으로 Skip 동작의 세부 동작을 제어하도록 한다.  
+> 
+> `FaultTolerantStepBuilder` → `ChunkOrientedStepBuilder`
+
+SKip은 과정 중 예외가 발생하게 되면 예외를 특정 수 까지 건너 뛸 수 있도록 설정하는 방식이다.  
+
+```java
+@Bean
+public Step sixthStep() {
+    return new StepBuilder("sixthStep", jobRepository)
+            .<BeforeEntity, AfterEntity> chunk(10, platformTransactionManager)
+            .reader(beforeSixthReader())
+            .processor(middleSixthProcessor())
+            .writer(afterSixthWriter())
+            .faultTolerant()
+            .skip(Exception.class) // EXception을 Skip
+            .noSkip(FileNotFoundException.class) // 그러나 해당 Exception은 Skip하지 않음
+            .noSkip(IOException.class) // 그러나 해당 Exception은 Skip하지 않음
+            .skipLimit(10) // 스킵할 구간
+            .build();
+}
+```
+
+`SkipPolicy`를 구현하여 스킵 정책을 커스텀할 수 있다.  
+
+```java
+@Configuration  
+public class CustomSkipPolicy implements SkipPolicy {  
+    @Override  
+    public boolean shouldSkip(@NonNull Throwable t, long skipCount) throws SkipLimitExceededException {  
+        if (t instanceof FileNotFoundException) return false;  
+        if (t instanceof IOException) return false;  
+        return true;  
+    }  
+}
+```
+
+```java
+@Bean  
+public SkipPolicy fourthSkipPolicy() {  
+    return (t, skipCount) ->  {  
+        if (t instanceof FileNotFoundException) return false;  
+        if (t instanceof IOException) return skipCount < 10;  
+        return true;  
+    };  
+}
+```
+
+#### Retry
+
+> [!CAUTION] `noRetry()` 메서드 미지원
+> Spring Batch 6부터는 `noRetry()` 메서드 또한 기본 구현체에서 지원하지 않기에 `RetryPolicy` Bean을 등록하여 `retryPolicy()`에 추가하자. 의존성은 `org.springframework.core.retry.RetryPolicy` 이다.  
+> 
+> `FaultTolerantStepBuilder` → `ChunkOrientedStepBuilder`
+
+Retry는 Step의 과정 중 예외가 발생했을 때 특정 수까지 반복 시도할 수 있도록 설정하는 방법이다.  
+
+```java
+@Bean  
+public Step fourthStep() {  
+    System.out.println("fourth step");  
+    return new StepBuilder("fourthStep", jobRepository)  
+            .<Row, AfterEntity>chunk(10)  
+            .transactionManager(transactionManager)  
+            .reader(excelReader())  
+            .processor(fourthProcessor())  
+            .writer(fourthAfterWriter())  
+            .skipPolicy(fourthSkipPolicy())  
+            .retryLimit(3) // 몇번 재시도
+            .retry(BatchCustomException.class) // 재시도할 예외  
+            .noRetry(FileNotFoundException.class)
+            .build();  
+}
+```
+
+`RetryPolicy`를 통해서도 재시도 정책을 구현할 수 있다.  
+
+```java
+@Bean  
+public RetryPolicy fourthRetryPolicy() {  
+    return RetryPolicy.builder()  
+            .maxRetries(3)  
+            .includes(IOException.class, SQLException.class) // 포함
+            .excludes(FileNotFoundException.class) // 제외
+            .build();  
+}
+```
+
+%%### Writer 롤백 제어%%
+%% 더 알아보기  %%
+
+#### Step Listener
+
+stepListener는 Step의 실행 전후에 특정 작업을 수행 시킬 수 있는 방법이다.  
+로그를 남기거나 다음 Step이 준비가 되었는지, 이번 Step과 다음 Step이 의존되는 경우 변수 정리를 진행힐 수 있다.  
+
+```java
+@Bean  
+public StepExecutionListener stepExecutionListener() {  
+    return new StepExecutionListener() {  
+        @Override  
+        public void beforeStep(StepExecution stepExecution) {  
+            System.out.println("before step");  
+            StepExecutionListener.super.beforeStep(stepExecution);  
+        }  
+  
+        @Override  
+        public @Nullable ExitStatus afterStep(StepExecution stepExecution) {  
+            System.out.println("after step");  
+            return StepExecutionListener.super.afterStep(stepExecution);  
+        }  
+    };  
+}
+```
+
+## Job
+
+
 
 
 %%%%
