@@ -65,3 +65,7 @@ Worker & Pages → Settings → Deploy Hook
 - Active: 체크
 
 ![[IMG-20261104045250356.png]]
+
+이후 vault 저장소에서 push할때마다 quartz repo와 연동된 Cloudflare Page의 deploy가 동작한다.  
+
+![[IMG-20261104054019939.png]]
