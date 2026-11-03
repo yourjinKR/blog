@@ -5,29 +5,6 @@ tags:
 ---
 [[AOP]]는 여러 기능에 걸쳐 필요한 부가 기능을 분리하는 방법이다. Spring AOP는 이를 **Spring Bean의 메서드 실행**에 적용한다. 로깅이나 실행 시간 측정을 서비스 메서드마다 작성하지 않고, 적용할 메서드와 실행할 코드를 따로 정의할 수 있다.
 
-## 동작 방식
-
-Spring AOP는 대상 Bean을 감싸는 **프록시 객체**를 만든다. 다른 객체가 해당 Bean의 메서드를 호출하면 프록시가 먼저 요청을 받는다. 프록시는 Pointcut에 맞는 Advice를 실행하고, 실제 대상 메서드로 호출을 전달한다.
-
-![[IMG-20260929220126962.png]]
-
-```text
-호출자 → 프록시 → Advice → 대상 Bean의 메서드
-```
-
-메서드가 끝난 뒤에도 Advice 종류에 따라 반환값이나 예외를 처리할 수 있다. Spring의 선언적 트랜잭션이 대표적인 활용 사례다. `@Transactional`을 처리하는 기본 방식도 프록시를 이용해 메서드 호출 전후에 트랜잭션 동작을 적용한다.
-
-Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다.  
-
-|           | JDK Dynamic Proxy         | CGLIB 기반 Proxy  |
-| --------- | ------------------------- | --------------- |
-| 기반        | Java Reflection Proxy API | 클래스 기반 Proxy    |
-| 방식        | Interface 구현              | Target Class 상속 |
-| Interface | 필요                        | 필수 아님           |
-| Proxy 타입  | Interface 타입              | Target 하위 타입    |
-Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-target-class=false`로 설정하면 JDK 동적 프록시를 사용할 수 있다.
-
-%%%%
 ## 주요 용어와 Advice 종류
 
 [[AOP]]의 개념 중 Spring AOP에서 특히 중요한 것은 다음과 같다.
@@ -53,6 +30,45 @@ Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-
 | `@Around`         | Target 실행 전후 전체                  |
 
 필요한 동작을 구현할 수 있는 가장 단순한 Advice를 선택하는 편이 좋다. 실행 전에 로그만 남긴다면 `@Before`로 충분하다. 실행 전후의 시간을 함께 측정해야 한다면 `@Around`를 사용할 수 있다.
+
+## 동작 방식
+
+- **애플리케이션 시작 시 `@Aspect`가 붙은 Aspect Bean을 탐색한다.**
+    - `@Before`, `@After`, `@Around` 등에 선언된 Pointcut과 Advice 정보를 분석한다.
+- **Spring이 Bean을 생성하면서 AOP 적용 대상인지 검사한다.**
+    - [[BeanPostProcessor]] 계열의 `AutoProxyCreator`가 각 Bean의 메서드가 Pointcut 조건에 해당하는지 확인한다.
+    - AOP 적용 대상이 아니라면 원래 Bean을 그대로 등록한다.
+- **AOP 적용 대상 Bean이라면 원본 객체 대신 Proxy 객체를 생성한다.**
+    - 인터페이스 기반의 **JDK Dynamic Proxy**
+    - 클래스 상속 기반의 **CGLIB Proxy**
+    - Spring Boot에서는 일반적으로 CGLIB 기반 프록시가 기본 설정이다.
+- **Spring Container에는 Proxy 객체가 Bean으로 등록된다.**
+    - 따라서 다른 Bean에서 의존성 주입을 받을 때 실제 객체가 아니라 **Proxy 객체를 주입받는다.**
+- **클라이언트가 Bean의 메서드를 호출하면 먼저 Proxy가 요청을 받는다.**
+
+![[IMG-20260929220126962.png]]
+
+```text
+호출자 → 프록시 → Advice → 대상 Bean의 메서드
+```
+
+메서드가 끝난 뒤에도 Advice 종류에 따라 반환값이나 예외를 처리할 수 있다.  
+Spring의 선언적 트랜잭션이 대표적인 활용 사례다.  
+`@Transactional`을 처리하는 기본 방식도 프록시를 이용해 메서드 호출 전후에 트랜잭션 동작을 적용한다.
+
+### JDK Dynamic Proxy vs CGLIB
+
+Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다.  
+
+|           | JDK Dynamic Proxy         | CGLIB 기반 Proxy  |
+| --------- | ------------------------- | --------------- |
+| 기반        | Java Reflection Proxy API | 클래스 기반 Proxy    |
+| 방식        | Interface 구현              | Target Class 상속 |
+| Interface | 필요                        | 필수 아님           |
+| Proxy 타입  | Interface 타입              | Target 하위 타입    |
+Spring Boot의 기본 자동 설정은 CGLIB를 사용하며, `spring.aop.proxy-target-class=false`로 설정하면 JDK 동적 프록시를 사용할 수 있다.
+
+%%%%
 
 ## 적용 예시: 서비스 메서드 실행 시간 측정
 

@@ -244,6 +244,23 @@ Hibernate 로깅(Statistics 포함)은 **ORM 애플리케이션 계층**에서 �
 
 ## 출처 및 참고자료
 
-https://github.com/jdbc-observations/datasource-proxy
+```cardlink
+url: https://github.com/jdbc-observations/datasource-proxy
+title: "GitHub - jdbc-observations/datasource-proxy: Provide listener framework for JDBC interactions and query executions  via proxy."
+description: "Provide listener framework for JDBC interactions and query executions  via proxy. - jdbc-observations/datasource-proxy"
+host: github.com
+favicon: https://github.githubassets.com/favicons/favicon.svg
+image: https://opengraph.githubassets.com/32f327667771902054033a3520c3ea69981342b73a1e983e981f42dc1fcbc419/jdbc-observations/datasource-proxy
+```
+
+```cardlink
+url: https://yeoon.tistory.com/138
+title: "[springboot] Datasource Proxy로 SQL query logging 하기"
+description: "1. Hibernate 기본 쿼리 로그 기본적으로 JPA를 사용하면 쿼리가 어떻게 찍히는지 확인이 필요하다. application.yml에 hibernate 옵션을 넣어주면 가독성 좋은 query를 찍어보며 개발할 수 있다. 아래는 쿼리찍히는 예시 2. Datasource Proxy 운영 환경에서 유용한 확장 기능을 제공하는 Datasource proxy(https://github.com/jdbc-observations/datasource-proxy)를 사용하면 더 풍부한 SQL query를 찍을 수 있다. [대표적으로 쓸만한 기능] slow query가 발생하면 INFO대신 WARN이나 ERROR로 로그를 찍수 있다. 쿼리 호출 앞뒤로 어떤 작업 하도록 설정 할 수 있다. hibernate에서는 ?표로.."
+host: yeoon.tistory.com
+favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
+image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FW2aHI%2FbtsDnxL8XAT%2FAAAAAAAAAAAAAAAAAAAAAMGocDakhaEMbgs1iuuGpSkkzp9mQKqxeAZoEb_kBJhs%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1796050799%26allow_ip%3D%26allow_referer%3D%26signature%3DUob9IN%252BzHej8GtnJnqHKluBZiPE%253D
+```
+
 [모니터링 솔루션 개선하기](https://medium.com/@hc07car/datasource-proxy%EB%A1%9C-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EC%86%94%EB%A3%A8%EC%85%98-%EC%BF%BC%EB%A6%AC-%EB%A1%9C%EA%B9%85-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%ED%95%98%EA%B8%B0-3e6162a4c6b0)  
-https://yeoon.tistory.com/138  
+  
