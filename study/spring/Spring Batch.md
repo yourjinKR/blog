@@ -224,8 +224,136 @@ public StepExecutionListener stepExecutionListener() {
 
 ## Job
 
+### 순차적으로 Step 실행
 
+```java
+@Bean
+public Job footballJob(JobRepository jobRepository) {
+    return new JobBuilder("footballJob", jobRepository)
+                     .start(playerLoad())
+                     .next(gameLoad())
+                     .next(playerSummarization())
+                     .build();
+}
+```
 
+### 조건에 따라 실행
+
+간단히 문자열로도 대체 가능
+
+- `ExitStatus.COMPLETED.getExitCode()` = `"COMPLETED"`
+- `ExitStatus.FAILED.getExitCode()` = `"FAILED"`
+
+```java
+@Bean  
+public Job firstJob() {  
+    System.out.println("first job");  
+    Step firstStep = firstStep();  
+    return new JobBuilder("firstJob", jobRepository)  
+            .start(firstStep)  
+            .on("*").to(anywayStep())  
+            .from(failStep()).on(ExitStatus.COMPLETED.getExitCode()).to(failStep())  
+            .from(firstStep).on(ExitStatus.FAILED.getExitCode()).to(completeStep())  
+            .end()  
+            .build();  
+}
+```
+
+JobBuilder 내부에 Step의 제어를 담당하는 Flow를 FlowBuilder를 통해 설정
+
+![[IMG-20261104185244511.png]]
+
+자세한 내용은 공식문서 참고
+
+```cardlink
+url: https://docs.spring.io/spring-batch/reference/step/controlling-flow.html
+title: "Controlling Step Flow :: Spring Batch Reference"
+host: docs.spring.io
+favicon: ../_/img/favicon.ico
+```
+
+### JobListener
+
+Job 실행 전후로 동작이 필요할때 JobListener를 선언하여 등록
+
+```java
+@Bean  
+public Job firstJob() {  
+    System.out.println("first job");  
+    Step firstStep = firstStep();  
+    return new JobBuilder("firstJob", jobRepository)  
+            .start(firstStep)  
+            .listener(jobExecutionListener())  
+            .build();  
+}
+```
+
+```java
+// JobListener  
+@Bean  
+public JobExecutionListener jobExecutionListener() {  
+    return new JobExecutionListener() {  
+        @Override  
+        public void beforeJob(JobExecution jobExecution) {  
+            System.out.println("Job Started");  
+            JobExecutionListener.super.beforeJob(jobExecution);  
+        }  
+  
+        @Override  
+        public void afterJob(JobExecution jobExecution) {  
+            System.out.println("Job Finished");  
+            JobExecutionListener.super.afterJob(jobExecution);  
+        }  
+    };  
+}
+```
+
+## JPA 성능 문제
+
+JDBC 대비 JPA는 성능이 좋지 않다.  
+Spring Batch에서 다량의 데이터를 Write하는 작업은 특히 속도가 더 느리다.  
+
+- [[JPA Entity ID]] 생성 전략은 보통 `IDENTITY` (MySQL의 기본 전략이 `IDENTITY`이다.)
+- `IDENTITY` 방식을 사용하게 되면 INSERT시 데이터 10개 저장시 10개의 쿼리가 날라감
+
+그렇기에 다량의 데이터를 다룰 땐 Reader/Writer를 JDBC 기반으로 구성하자.  
+
+```java
+@Bean  
+public JdbcPagingItemReader<BeforeEntity> beforeSixthReader() {  
+    try {  
+        return new JdbcPagingItemReaderBuilder<BeforeEntity>()  
+                .name("beforeSixthReader")  
+                .dataSource(dataSource)  
+                .selectClause("SELECT id, username")  
+                .fromClause("FROM BeforeEntity")  
+                .sortKeys(Map.of("id", Order.ASCENDING))  
+                .rowMapper(new CustomBeforeRowMapper())  
+                .pageSize(10)  
+                .build();  
+    } catch (Exception e) {  
+        throw new RuntimeException(e);  
+    }  
+}
+```
+
+```java
+@Bean  
+public JdbcBatchItemWriter<AfterEntity> afterSixthWriter() {  
+  
+    String sql = "INSERT INTO AfterEntity (username) VALUES (:username)";  
+  
+    return new JdbcBatchItemWriterBuilder<AfterEntity>()  
+            .dataSource(dataSource)  
+            .sql(sql)  
+            .itemSqlParameterSourceProvider(  
+                    new BeanPropertyItemSqlParameterSourceProvider<>()  
+            )  
+            .build();  
+}
+```
+
+Job 실행 시간: 2.7234582 초 → Job 실행 시간: 0.8050731 초
 
 %%%%
 ## 출처 및 참고자료
