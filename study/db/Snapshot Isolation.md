@@ -2,6 +2,8 @@
 date: 2026-09-24
 tags:
   - DB
+aliases:
+  - 스냅샷 격리
 ---
 ## Snapshot Isolation
 

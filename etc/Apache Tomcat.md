@@ -3,9 +3,17 @@ date: 2026-10-30
 aliases:
   - 아파치 톰캣
   - 톰캣
+  - Tomcat
 ---
+자바기반의 웹 애플리케이션을 구동하기 위한 **오픈소스 WAS이자 서블릿 컨테이너**이다.  
 
-기본적으로 아파치와 톰캣의 기능은 나뉘어져 있지만 톰캣 안에 있는 컨테이너를 통해 일부 아파치의 기능을 발휘하기에 보통 아파치 톰캣으로 둘을 묶어 부른다.  
+아파치 톰캣의 주요 기능
+
+- WAS: 동적인 웹 콘텐츠를 처리
+- [[Servlet#Servlet Container|Servlet Container]]: 서블릿을 실행하고 관리
+- JSP Container: JSP 페이지를 실행 및 서블릿으로 변환한 후 HTML로 출력
+
+> 기본적으로 아파치와 톰캣의 기능은 나뉘어져 있지만 톰캣 안에 있는 컨테이너를 통해 일부 아파치의 기능을 발휘하기에 보통 아파치 톰캣으로 둘을 묶어 부른다.  
 
 ## Apache (Apache HTTP Server)
 
@@ -14,7 +22,6 @@ aliases:
 ## Tomcat
 
 DB 조회나 비즈니스 로직 처리가 필요한 동적인(Dynamic) 데이터를 생성하기 위해 자바(JSP, [[Servlet]]) 코드를 실행하는 역할을 합니다.
-
 
 ## 출처 및 참고자료
 
@@ -34,4 +41,13 @@ description: "HTTP 네트워크의 핵심은 \"요청\"하고 \"응답\" 받기�
 host: communication-with-it.tistory.com
 favicon: https://t1.daumcdn.net/tistory_admin/favicon/tistory_favicon_32x32.ico
 image: https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbXoIFd%2Fbtsk833YeXM%2FAAAAAAAAAAAAAAAAAAAAAIqNYt2-TvdAuzG3FVPJN7V6nH6vYu0joyKgkdr-5wyr%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1790780399%26allow_ip%3D%26allow_referer%3D%26signature%3DnnQhI8QdUg1WEGfWeTB8QUSkPWQ%253D
+```
+
+```cardlink
+url: https://www.elancer.co.kr/blog/detail/828
+title: "Apache Tomcat(아파치 톰캣), 개발자를 위한 필수 가이드 I 이랜서 블로그"
+description: "스타트업부터 대기업까지 수많은 기업들이 시스템 호환성 등을 이유로 Apache Tomcat을 적극 활용하고 있는데요, Apache Tomcat의 특징부터 사용법까지 자세히 알려드립니다."
+host: www.elancer.co.kr
+favicon: https://www.elancer.co.kr/icon.ico?3088922e6fbc1871
+image: https://img-svr.elancer.co.kr/storage/app/blog/828_mo_1.jpg
 ```

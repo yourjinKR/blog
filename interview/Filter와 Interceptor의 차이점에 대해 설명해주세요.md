@@ -7,7 +7,7 @@ tags:
   - Web
 ai: true
 ---
-Filter, Interceptor, AOP는 공통 관심사를 분리하기 위해 사용하지만 적용 위치가 다릅니다. 
+Filter, Interceptor, [[AOP]]는 공통 관심사를 분리하기 위해 사용하지만 적용 위치가 다릅니다. 
 
 Filter는 서블릿 컨테이너에서 DispatcherServlet 전후로 동작하므로 전체 HTTP 요청의 인코딩, CORS, 보안 처리 등에 적합합니다. 
 

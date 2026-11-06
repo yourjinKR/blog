@@ -197,7 +197,7 @@ public Slice<BoardListDto.Response> getBoardList(...) {
 ```
 
 그렇기에 `@Transactional`에 `readOnly` 속성을 활용하지 못한다는 단점이 있다.  
-Spring, JPA 환경에서 [[Transactional#읽기 전용 트랜잭션|읽기 전용 트랜잭션]]의 특징은 다음과 같다.  
+Spring, JPA 환경에서 [[Transactional#읽기 전용|읽기 전용 트랜잭션]]의 특징은 다음과 같다.  
 추가로 현재 [[Replication]] 도입을 고려 중이기에 이 작업은 필연적이다.  
 
 - 변경 감지 비활성화(스냅샷 비활성화를 통해 스냅샷을 생성하기 위한 메모리를 사용하지 않아 성능 상 이점을 가져갈 수 있음)

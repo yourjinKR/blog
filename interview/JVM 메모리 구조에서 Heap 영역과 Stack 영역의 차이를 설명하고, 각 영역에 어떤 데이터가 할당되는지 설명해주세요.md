@@ -7,7 +7,7 @@ tags:
   - Java
 ai: true
 ---
-Heap 영역과 Stack 영역의 가장 큰 차이는 공유 범위와 데이터의 생명주기입니다.
+[[runtime-data-area#Heap|Heap]] 영역과 [[runtime-data-area#Heap|Heap]] 영역의 가장 큰 차이는 공유 범위와 데이터의 생명주기입니다.
 
 Heap은 JVM의 모든 스레드가 공유하는 영역으로, 클래스의 인스턴스와 배열이 할당됩니다. 객체가 가진 인스턴스 필드도 객체의 일부이기 때문에 Heap에 포함됩니다. Heap에 생성된 객체는 가비지 컬렉터가 관리하며, 사용할 수 있는 Heap 메모리가 부족해지면 OutOfMemoryError가 발생할 수 있습니다.
 
