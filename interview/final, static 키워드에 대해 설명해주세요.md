@@ -6,7 +6,6 @@ tags:
   - 스터디
   - Java
 ai: true
-unlisted: true
 ---
 
 final은 적용 대상에 따라 변경이나 확장을 제한하는 키워드입니다.

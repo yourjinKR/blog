@@ -6,7 +6,6 @@ tags:
   - 스터디
   - Java
 ai: true
-unlisted: true
 ---
 [[JVM|JVM]]이란 컴파일된 바이트 코드를 OS가 읽을 수 있는 네이티브 언어로 변환하는 가상 머신입니다.
 
