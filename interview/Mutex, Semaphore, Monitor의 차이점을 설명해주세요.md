@@ -5,6 +5,7 @@ tags:
   - 스터디
   - OS
 ai: true
+unlisted: true
 ---
 **[[Mutex]]는 하나의 실행 흐름만 진입시키는 락, [[Semaphore]]는 허용 개수를 관리하는 동기화 도구, Monitor는 공유 데이터와 동기화 규칙을 묶은 고수준 구조입니다.**
 

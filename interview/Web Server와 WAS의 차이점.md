@@ -3,6 +3,7 @@ date: 2026-10-01
 tags:
   - 면접
 ai: true
+unlisted: true
 ---
 Web Server는 **클라이언트의 HTTP 요청을 받아 정적 콘텐츠를 제공하거나, 동적 처리가 필요한 요청을 WAS 등의 애플리케이션 서버로 전달하는 서버**이다.
 

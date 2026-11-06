@@ -6,6 +6,7 @@ tags:
   - Network
   - Web
 ai: true
+unlisted: true
 ---
 [[HTTP]]란 하이퍼 텍스트 전송 프로토콜로 오늘날 웹에서 가장 널리 사용되는 프로토콜입니다.  
 

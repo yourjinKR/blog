@@ -5,6 +5,7 @@ tags:
   - 스터디
   - DB
 ai: true
+unlisted: true
 ---
 Replication을 운영할 때는 복제 지연, 일관성, 장애 조치, 데이터 손실 가능성과 운영 복잡성을 함께 고려해야 합니다.
 

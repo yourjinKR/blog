@@ -7,6 +7,7 @@ tags:
   - Security
   - Authentication
 ai: true
+unlisted: true
 ---
 무상태 구조에서 JWT는 강제로 토큰을 만료시킬 수 어렵기에 탈취시 해결방안이 뚜렷하지는 않지만 몇몇 방식들로 피해를 최소화할 수 있을거 같습니다.
 

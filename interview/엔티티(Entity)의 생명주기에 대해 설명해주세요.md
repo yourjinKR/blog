@@ -5,6 +5,7 @@ tags:
   - 스터디
   - JPA
 ai: true
+unlisted: true
 ---
 JPA 엔티티의 생명주기는 비영속, 영속, 준영속, 삭제의 네 가지 상태로 구분됩니다.
 
