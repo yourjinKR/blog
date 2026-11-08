@@ -22,17 +22,9 @@ aliases:
 	- `TransactionSynchronizationManager`
 	- DB 접근 작업이 있을때마다 커넥션을 꺼내다 씀
 
-## 속성
+## 전파 속성
 
-- [[#전파 속성]]
-- [[#격리 수준]]
-- [[#읽기 전용]]
-- 제한 시간
-- [[#예외 처리]]
-
-### 전파 속성
-
-기본적으로 여러 트랜잭션을 묶어서 커다란 하나의 트랜잭션 경계를 만든다. (`REQUIRED`)  
+기본적으로 여러 트랜잭션을 묶어서 커다란 하나의 트랜잭션 경계를 만든다. (`REQUIRED`)
 이때 기존에 트랜잭션이 진행중일 때 추가적인 트랜잭션을 어떻게 수행할지를 결정하는 것이 **전파 속성**이다.  
 
 | Propagation     | 기존 트랜잭션 O              | 기존 트랜잭션 X  |
@@ -55,19 +47,7 @@ aliases:
 | 내부 Commit      | 실제 Commit 가능  | 독립 Commit 아님 |
 | 외부 Rollback 영향 | 내부 Commit 유지  | 전체 Rollback됨 |
 
-### 격리 수준
-
-트랜잭션의 [[Isolation Level|격리 수준]]을 지정한다.  
-
-| **Isolation 속성 값**             | **설명**                                  |
-| ------------------------------ | --------------------------------------- |
-| **Isolation.DEFAULT**          | 기본 격리 수준을 사용합니다.                        |
-| **Isolation.READ_UNCOMMITTED** | 커밋되지 않은 데이터에 대한 읽기를 허용합니다.              |
-| **Isolation.READ_COMMITTED**   | 커밋된 데이터만 읽기를 허용합니다.                     |
-| **Isolation.REPEATABLE_READ**  | 같은 쿼리를 반복해서 실행할 때 같은 결과를 보장합니다.         |
-| **Isolation.SERIALIZABLE**     | 동시성 문제를 완전히 막기 위해 모든 트랜잭션을 순차적으로 처리합니다. |
-
-### 읽기 전용
+## 읽기 전용 트랜잭션
 
 읽기 작업을 위한 트랜잭션도 제공하며 속성에 `readOnly = true`를 추가 (기본값은 `false`)
 
@@ -91,7 +71,7 @@ aliases:
 > > https://docs.spring.io/spring-framework/docs/6.2.14/javadoc-api/org/springframework/transaction/annotation/Transactional.html?utm_source=chatgpt.com
 
 %%%%
-#### 이점
+### 이점
 
 > 주로 사용하는 환경인 Spring + JPA + Hibernate을 기준으로 설명
 
@@ -100,59 +80,28 @@ aliases:
 - 락 획득 최소화, 모든 락이 아닌 읽기 락만 획득함
 - 트랜잭션 로그 생성 생략
 
-### 예외 처리
+## 추가로
 
-기본적으로 트랜잭션은 `RuntimeException` 및 오류가 발생하면 롤백되지만 확인된 예외는 롤백되지 않는다.  
-
-- `rollbackFor`: 해당 예외에 트랜잭션 롤백이 동작하도록 설정
-- `noRollbackFor`: 해당 예외 발생시에도 트랜잭션 롤백이 동작하지 않도록 설정 
+`SimpleJpaRepository`와 같은 경우 기본적으로 `save`메서드에 트랜잭션 어노테이션이 붙어있다.  
 
 ```java
-@Transactional(rollbackFor = Exception.class, noRollbackFor = RuntimeException.class)  
-public void findMember() throws IOException {  
-    try {  
-        throw new IOException();  
-    } catch (IOException e) {  
-        throw new IOException(e);  
+@Override  
+@Transactional  
+public <S extends T> S save(S entity) {  
+  
+    Assert.notNull(entity, ENTITY_MUST_NOT_BE_NULL);  
+  
+    if (entityInformation.isNew(entity)) {  
+       entityManager.persist(entity);  
+       return entity;  
+    } else {  
+       return entityManager.merge(entity);  
     }  
 }
 ```
 
-#### Unchecked Exception이 기본 롤백 전략인 이유
-
-왜 Unchecked Exception만 트랜잭션이 롤백되도록 규정했을까? 
-
-![[IMG-20261106191626781.png]]
-
-Spring은 과거 EJB의 트랜잭션 처리 관례를 계승하여 Unchecked Exception을 예상하지 못한 실패로, Checked Exception을 비즈니스적으로 예상 가능한 결과로 간주했다.
-
-> [!quote]
-> While the Spring default behavior for declarative transaction management follows EJB convention (roll back is automatic only on unchecked exceptions)
-> 
-> https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html
-
-따라서 Unchecked Exception과 Error가 발생하면 기본적으로 롤백하고, Checked Exception이 발생하면 정상적인 트랜잭션 종료가 가능하다고 판단하여 커밋하도록 설계했다.
-
-> [!quote]
-> For declarative transactions, we expect checked exceptions to be intentionally declared as business exceptions, leading to a commit by default.
-> 
-> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/interceptor/DefaultTransactionAttribute.html?utm_source=chatgpt.com#rollbackOn(java.lang.Throwable)
-
-다만 이 구분은 모든 애플리케이션에 적합한 절대적인 규칙이 아니므로, Spring Framework 6.2부터는 `ALL_EXCEPTIONS`를 통한 전역 롤백 정책 변경을 지원하며, 공식 문서에서도 이를 권장한다.
-
-> [!quote]
-> Unless you rely on EJB-style business exceptions with commit behavior, it is advisable to switch to `ALL_EXCEPTIONS`
-> 
-> https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html?utm_source=chatgpt.com#transaction-declarative-attransactional-settings
 
 ## 출처 및 참고자료
-
-```cardlink
-url: https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html?utm_source=chatgpt.com#transaction-declarative-attransactional-settings
-title: "Using @Transactional :: Spring Framework"
-host: docs.spring.io
-favicon: ../../../_/img/favicon.ico
-```
 
 ```cardlink
 url: https://mangkyu.tistory.com/269

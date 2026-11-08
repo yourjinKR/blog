@@ -23,10 +23,3 @@ Spring은 `@Transactional`이 적용된 빈을 등록할 때 해당 빈의 프�
 
 > [!QUESTION]- private 메서드에 트랜잭션 어노테이션을 붙이면 어떤 일이 일어나는가요?
 > 트랜잭션이 전혀 적용되지 않습니다. Spring Boot는 기본적으로 [[CGLIB]] 방식을 사용하여 타겟 클래스를 상속받아 메서드를 오버라이딩하는 방식으로 프록시를 생성합니다. 하지만 자바에서 `private` 메서드는 하위 클래스에서 오버라이딩할 수 없기 때문에, 프록시 객체가 트랜잭션 처리 로직을 주입할 수 없습니다. 따라서 에러가 발생하지는 않지만, 트랜잭션이 없는 상태로 원본 메서드가 그냥 실행되게 됩니다.   
-
-> [!QUESTION]- 왜 Spring은 트랜잭션 기본 롤백 전략은 RuntimeException으로 한정지었나요?
-> Spring은 과거 EJB의 트랜잭션 처리 관례를 계승하여 Unchecked Exception을 예상하지 못한 실패로, Checked Exception을 비즈니스적으로 예상 가능한 결과로 간주했다.
-> 
-> 따라서 Unchecked Exception과 Error가 발생하면 기본적으로 롤백하고, Checked Exception이 발생하면 정상적인 트랜잭션 종료가 가능하다고 판단하여 커밋하도록 설계했다.
-> 
-> 다만 이 구분은 모든 애플리케이션에 적합한 절대적인 규칙이 아니므로, Spring Framework 6.2부터는 `ALL_EXCEPTIONS`를 통한 전역 롤백 정책 변경을 지원하며, 공식 문서에서도 이를 권장한다.
