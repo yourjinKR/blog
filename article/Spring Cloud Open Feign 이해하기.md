@@ -25,7 +25,7 @@ https://developers.kakao.com/docs/ko/kakaologin/common#unlink
 
 ### RestTemplate로 API 호출
 
-그래서 기존에는 `RestTemplate`를 사용하여 카카오측 외부 API를 직접 호출했다.  
+그래서 기존에는 [[RestTemplate]]를 사용하여 카카오측 외부 API를 직접 호출했다.  
 
 ```java
 @Override  
