@@ -38,8 +38,24 @@ Spring Batch에서는 아래와 같은 기능들을 제공한다.
 
 ## 동작 방식
 
-> [!caution] 
-> 해당 방식은 Spring Batch 6.0을 기반으로 작성됐습니다.  
+Spring Batch는 청크 기반 처리 방식으로 동작한다.  
+데이터를 한번에 처리하는 것이 아닌 일정 단위로 나누어 처리한다.  
+
+청크값을 10으로 설정했다면 아래와 같이 작업을 수행한다.  
+
+```mermaid
+flowchart LR
+    A["ItemReader<br/>데이터 1건 읽기"]
+    B["ItemProcessor<br/>데이터 1건 처리"]
+    C{"10건 읽었는가?"}
+    D["ItemWriter<br/>최대 10건 일괄 쓰기"]
+    E["트랜잭션 커밋"]
+
+    A --> B --> C
+    C -->|No| A
+    C -->|Yes| D --> E
+```
+> (Reader) x 10 → (Processer) x 10 → Writer
 
 ![[IMG-20261102203959355.png]]
 
@@ -98,10 +114,6 @@ public class BatchConfig {
 	- 사용 예시: 단순한 파일 삭제, 값 초기화 등등
 
 ### Chunk 단위 처리 과정
-
-청크값을 10으로 설정했다면 아래와 같이 작업을 수행한다.  
-
-> (Read) x 10 → (Write) x 10 → Write
 
 #### Skip
 
