@@ -104,44 +104,6 @@ flowchart LR
 
 단, 실제 작업 할당 방식은 Thread Pool의 구현과 설정에 따라 달라진다.
 
-### Java ThreadPoolExecutor의 작업 처리 과정
-
-Java의 `ThreadPoolExecutor`는 `corePoolSize`, `maximumPoolSize`, `workQueue` 설정에 따라 작업을 처리한다.
-
-```mermaid
-flowchart TD
-    A["Task 제출"] --> B{"현재 Worker 수가<br/>corePoolSize 미만인가?"}
-
-    B -->|Yes| C["Core Worker 생성 및 실행"]
-    B -->|No| D{"Work Queue에<br/>작업 삽입 가능한가?"}
-
-    D -->|Yes| E["Work Queue에서 대기"]
-    D -->|No| F{"현재 Worker 수가<br/>maximumPoolSize 미만인가?"}
-
-    F -->|Yes| G["추가 Worker 생성 및 실행"]
-    F -->|No| H["RejectedExecutionHandler 실행"]
-
-    E --> I["Worker가 Task를 가져와 실행"]
-    C --> J["Task 완료"]
-    G --> J
-    I --> J
-
-    J --> K["Worker 재사용 또는 유휴 상태 유지"]
-```
-
-핵심적으로 다음 순서에 따라 동작한다.
-
-1. 현재 Worker 수가 `corePoolSize` 미만이면 새로운 Worker를 생성한다.
-2. Core Worker가 모두 생성된 상태라면 새로운 Task를 Queue에 삽입한다.
-3. Queue가 가득 차면 `maximumPoolSize`까지 Worker를 추가로 생성할 수 있다.
-4. Worker와 Queue가 모두 한계에 도달하면 작업 거부 정책을 적용한다.
-
-> [!NOTE]
-> 위 흐름은 Executor가 실행 중인 일반적인 상황을 기준으로 한다.
->
-> 특히 Queue가 무제한이라면 작업을 계속 대기시킬 수 있으므로 `maximumPoolSize`까지 Worker가 증가하지 않을 수 있다.
-
-%%%%
 ## Thread Pool의 주요 사용 사례
 
 ### Thread-per-Request
@@ -222,98 +184,7 @@ Thread Pool을 사용할 때는 스레드 개수뿐 아니라 Work Queue의 크�
 4. Queue에 저장된 Task 객체들이 메모리를 계속 차지한다.
 5. 최악의 경우 메모리 고갈로 OOM이 발생할 수 있다.
 
-### Executors.newFixedThreadPool()의 문제점
-
-Java에서 고정된 개수의 스레드를 사용하는 대표적인 방법은 `Executors.newFixedThreadPool()`이다.
-
-```java
-ExecutorService executorService = Executors.newFixedThreadPool(10);
-```
-
-위 코드는 최대 10개의 Worker Thread를 사용하는 Thread Pool을 생성한다.
-이 때 `LinkedBlockingQueue`가 사용된다.  
-
-```java
-public static ExecutorService newFixedThreadPool(int nThreads) {
-    return new ThreadPoolExecutor(
-            nThreads,
-            nThreads,
-            0L,
-            TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>()
-    );
-}
-```
-
-`LinkedBlockingQueue`의 기본 생성자는 다음과 같으며 Queue의 최대 크기가 `Integer.MAX_VALUE`로 설정된다.
-
-```java
-public LinkedBlockingQueue() {
-    this(Integer.MAX_VALUE);
-}
-```
-
-$$
-Integer.MAX\_VALUE = 2^{31}-1 = 2,147,483,647
-$$
-
-현실적인 메모리 환경에서는 사실상 무제한에 가깝다.  
-따라서 `newFixedThreadPool()`을 사용하면 Worker Thread 수는 제한되지만 대기 Task는 계속 증가할 수 있다.
-
-> [!WARNING] 주의사항
-> `newFixedThreadPool()`이 항상 잘못된 선택이라는 의미는 아니다.  
-> 제출되는 Task 수가 제한되어 있거나 작업 유입량을 충분히 통제할 수 있다면 적절하게 사용할 수 있다.  
-> 그러나 작업 유입량을 예측하기 어려운 시스템에서는 Queue의 무제한 증가를 고려해야 한다.  
-
-%%%%
-## Bounded Queue를 통한 개선
-
-Queue의 최대 크기를 제한하여 과도한 Task 적재를 방지할 수 있다.  
-Java에서는 `ThreadPoolExecutor`를 직접 생성하여 스레드 수와 Queue 용량을 설정할 수 있다.
-
-```java
-ExecutorService executorService = new ThreadPoolExecutor(
-        4,                              // corePoolSize
-        8,                              // maximumPoolSize
-        60L,                            // keepAliveTime
-        TimeUnit.SECONDS,
-        new ArrayBlockingQueue<>(100), // Queue Capacity
-        new ThreadPoolExecutor.AbortPolicy()
-);
-```
-
-각 설정의 의미는 다음과 같다.
-
-| 옵션 | 설정값 | 설명 |
-|---|---|---|
-| corePoolSize | 4 | 기본적으로 유지할 Worker 수 |
-| maximumPoolSize | 8 | 허용하는 최대 Worker 수 |
-| keepAliveTime | 60초 | 초과 Worker가 유휴 상태로 유지되는 시간 |
-| workQueue | 100 | 대기할 수 있는 Task의 최대 개수 |
-| RejectedExecutionHandler | AbortPolicy | 작업 거부 시 예외 발생 |
-
-### 작업 거부 정책
-
-Worker와 Queue가 모두 한계에 도달하면 `RejectedExecutionHandler`를 통해 작업 거부 정책을 적용한다.  
-Java에서 제공하는 대표적인 정책은 다음과 같다.
-
-| 정책 | 동작 |
-|---|---|
-| AbortPolicy | `RejectedExecutionException` 발생 |
-| CallerRunsPolicy | 작업을 제출한 스레드가 직접 실행 |
-| DiscardPolicy | 새로 제출된 작업을 조용히 버림 |
-| DiscardOldestPolicy | Queue에서 가장 오래 대기한 작업을 제거하고 재제출 시도 |
-
-각 정책은 서로 다른 특성을 가지므로 작업의 중요도와 시스템 요구사항에 맞게 선택해야 한다.
-
-특히 `CallerRunsPolicy`는 Executor가 실행 중일 때 작업을 제출한 스레드가 직접 실행하도록 하여 작업 제출 속도를 늦추는 효과를 기대할 수 있다.
-
-다만 제출 스레드의 처리 지연이 발생하므로 항상 적절한 방식은 아니다.
-
-> [!NOTE] Backpressure
-> Backpressure는 작업을 소비하는 속도보다 생산하는 속도가 빠를 때 생산자 측에 압력을 전달하여 작업 유입 속도를 조절하는 개념이다.
->
-> Bounded Queue와 적절한 거부 정책을 함께 활용하면 과도한 작업 유입으로부터 시스템을 보호하는 데 도움이 된다.
+자바에서는 [[java-thread#Executors.newFixedThreadPool()의 문제점|Executors.newFixedThreadPool]]이 대표적이다.    
 
 %%%%
 ## 핵심 정리
