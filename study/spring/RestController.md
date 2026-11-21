@@ -4,6 +4,7 @@ tags:
   - Spring
 aliases:
   - "@RestController"
+  - REST API
 ---
 Spring에서 **[[REST|RESTful]] 웹 서비스의 컨트롤러**를 만들 때 사용하는 어노테이션이다.  
 

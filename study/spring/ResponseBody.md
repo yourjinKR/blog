@@ -5,10 +5,11 @@ tags:
 aliases:
   - "@ResponseBody"
 ---
-- ViewResolver 대신에 HttpMessageConverter가 동작된다.
-- 기본 문자 처리의 경우, StringHttpMessageConverter를 사용한다.
-- 기본 객체 처리의 경우, MappingJackson2 HttpMessageConverter를 사용한다.
-- byte 처리 및 기타 여러 가지의 HttpMessageConverter가 기본으로 등록되어 있다.
+- ViewResolver 대신에 `HttpMessageConverter`가 동작된다.
+- 기본 문자 처리의 경우, `StringHttpMessageConverter`를 사용한다.
+- 기본 객체 처리의 경우, `MappingJackson2HttpMessageConverter`를 사용한다.
+	- Spring 7.0 이후로는 `JacksonXmlHttpMessageConverter`를 사용
+- byte 처리 및 기타 여러 가지의 `HttpMessageConverter`가 기본으로 등록되어 있다.
 
 ```java
 @GetMapping("/members")

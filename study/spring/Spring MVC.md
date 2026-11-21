@@ -24,11 +24,12 @@ Spring Web [[MVC]]는 [[Servlet|서블릿]] API를 기반으로 구축된 웹 �
 > [!TIP]
 > [[RestController]]라면 **5~6번이 `HttpMessageConverter`를 이용한 JSON/XML 직렬화 과정으로 대체**
 
+![[IMG-20261030013644590.png]]
+
 > [!QUESTION] 왜 DispatcherServlet이 Controller를 직접 호출하지 않는가?
 > HandlerAdapter가 존재하는 이유는 Spring이 여러 형태의 Handler/Controller를 동일한 DispatcherServlet 구조에서 처리할 수 있도록 하기 위해서다. HandlerAdapter가 존재하는 이유는 Spring이 여러 형태의Handler/Controller를 동일한 DispatcherServlet 구조에서 처리할 수 있도록 하기 위해서다.
 
-![[IMG-20261030013644590.png]]
-
+%%%%
 ## DispatcherServlet
 
 > Dispatch(보내다/파견하다) + Servlet = Servlet을 보내는 객체
