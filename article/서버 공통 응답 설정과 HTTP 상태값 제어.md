@@ -112,31 +112,30 @@ ResponseFacade로 의해 Response의 status가 설정되는데 이 부분은 Tom
 그렇기에 `RequestResponseBodyMethodProcessor`를 먼저 확장하는 방식을 우선적으로 시도했다.  
 
 ```java
-public class CustomRequestResponseBodyMethodProcessor extends RequestResponseBodyMethodProcessor {
-	@Override  
-	public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,  
-	                              ModelAndViewContainer mavContainer, NativeWebRequest webRequest)  
-	        throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {  
-	  
-	    mavContainer.setRequestHandled(true);  
-	    ServletServerHttpRequest inputMessage = createInputMessage(webRequest);  
-	    ServletServerHttpResponse outputMessage = createOutputMessage(webRequest);  
-	  
-	    if (returnValue instanceof CommonResponse<?> response) {  
-	        outputMessage.setStatusCode(HttpStatusCode.valueOf(response.status()));  
-	        ProblemDetail detail = ProblemDetail.forStatus(response.status());  
-	        invokeErrorResponseInterceptors(detail, null, inputMessage);  
-	        if (resolveErrorView(detail, null, HttpStatusCode.valueOf(detail.getStatus()), mavContainer, webRequest)) {  
-	            return;  
-	        }  
-	    }  
-	  
-	    writeWithMessageConverters(returnValue, returnType, inputMessage, outputMessage);  
+@Override
+public boolean supportsReturnType(MethodParameter returnType) {
+	return super.supportsReturnType(returnType)
+			&& CommonResponse.class.isAssignableFrom(
+			returnType.getParameterType()
+	);
+}
+
+@Override
+public void handleReturnValue(@Nullable Object returnValue, MethodParameter returnType,
+		ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException,
+		HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
+
+	if (returnValue instanceof CommonResponse<?> response) {
+		createOutputMessage(webRequest).setStatusCode(HttpStatusCode.valueOf(response.status()));
 	}
+
+	super.handleReturnValue(returnValue, returnType, mavContainer, webRequest);
 }
 ```
 
-> 내부적으로 [[ProblemDetail]]와 같은 경우는 우선 DTO의 status만 매핑했다.  
+기존 Processor에는 [[ProblemDetail]]에 대한 제어가 있는데 이는 에러 핸들링 영역이며 `resolveErrorView`와 같은 경우도 json 형식이 아닌 html 방식의 view를 resolve 하기에 해당 구현에 대한 부분은 고려하지 않아도 된다.  
+
+![[IMG-20261121223228069.png]]
 
 ### WebConfig
 
@@ -218,8 +217,7 @@ handlers.add(
 - `RequestBodyAdvice`: 요청 본문을 Java 객체로 변환하기 전후에 개입한다.
 - `ResponseBodyAdvice`: 컨트롤러의 반환 객체를 HTTP 응답 본문으로 변환하기 직전에 개입한다.
 
-Spring Boot에서 기본적으로 등록되는 Advice는 다음과 같다.  
-이 중 `ResponseAdvice`는 `JsonViewResponseBodyAdvice` 밖에 없다.  
+`RequestResponseBodyAdviceChain` 내부를 확인해보면 Spring Boot에서 기본적으로 등록되는 Advice는 다음과 같다. 이 중 `ResponseAdvice`는 `JsonViewResponseBodyAdvice` 밖에 없다.  
 
 ![[IMG-20261121201826046.png]]
 
