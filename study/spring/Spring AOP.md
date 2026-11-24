@@ -58,7 +58,7 @@ Spring의 선언적 트랜잭션이 대표적인 활용 사례다.
 
 ### JDK Dynamic Proxy vs CGLIB
 
-Spring AOP는 인터페이스 기반 [[JDK Dynamic Proxy]] 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다.  
+Spring AOP는 인터페이스 기반 **[[JDK Dynamic Proxy]]** 또는 클래스 기반 **[[CGLIB]] 프록시**를 사용한다.  
 
 |           | JDK Dynamic Proxy         | CGLIB 기반 Proxy  |
 | --------- | ------------------------- | --------------- |
