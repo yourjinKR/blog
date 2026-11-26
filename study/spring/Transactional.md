@@ -27,15 +27,15 @@ aliases:
 기본적으로 여러 트랜잭션을 묶어서 커다란 하나의 트랜잭션 경계를 만든다. (`REQUIRED`)
 이때 기존에 트랜잭션이 진행중일 때 추가적인 트랜잭션을 어떻게 수행할지를 결정하는 것이 **전파 속성**이다.  
 
-| Propagation     | 기존 트랜잭션 O              | 기존 트랜잭션 X  |
-| --------------- | ---------------------- | ---------- |
-| `REQUIRED`      | 참여                     | 새로 생성      |
-| `REQUIRES_NEW`  | 기존 트랜잭션 중단 + 새로 생성     | 새로 생성      |
-| `SUPPORTS`      | 참여                     | 트랜잭션 없이 실행 |
-| `NOT_SUPPORTED` | 기존 트랜잭션 중단             | 트랜잭션 없이 실행 |
-| `MANDATORY`     | 참여                     | 예외         |
-| `NEVER`         | 예외                     | 트랜잭션 없이 실행 |
-| `NESTED`        | 중첩 트랜잭션 (Savepoint 사용) | 새로 생성      |
+| Propagation     | 기존 트랜잭션 O              | 기존 트랜잭션 X                                  |
+| --------------- | ---------------------- | ------------------------------------------ |
+| `REQUIRED`      | 참여                     | 새로 생성                                      |
+| `REQUIRES_NEW`  | 기존 트랜잭션 중단 + 새로 생성     | 새로 생성                                      |
+| `SUPPORTS`      | 참여                     | 트랜잭션 없이 실행                                 |
+| `NOT_SUPPORTED` | 기존 트랜잭션 중단             | 트랜잭션 없이 실행                                 |
+| `MANDATORY`     | 참여                     | 예외 발생 (`IllegalTransactionStateException`) |
+| `NEVER`         | 예외                     | 트랜잭션 없이 실행                                 |
+| `NESTED`        | 중첩 트랜잭션 (Savepoint 사용) | 새로 생성                                      |
 
 `REQUIRES_NEW`와 `NESTED`를 비교한건 다음과 같다.  
 
@@ -99,6 +99,7 @@ public <S extends T> S save(S entity) {
     }  
 }
 ```
+
 
 
 ## 출처 및 참고자료

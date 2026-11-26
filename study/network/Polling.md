@@ -17,6 +17,22 @@ HTTP는 기본적으로 [[HTTP#비연결성|비연결성]]을 가진 프로토�
 3. 데이터가 없다면 `204 No Content`와 같은 상태 코드를 반환한다.
 4. 클라이언트는 일정 시간 대기 후 다시 요청을 반복한다.
 
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    loop 일정 주기마다 반복 (예: 3초)
+        C->>S: GET /notifications
+        S-->>C: 204 No Content
+        Note over C: 3초 대기
+
+        C->>S: GET /notifications
+        S-->>C: 200 OK (새로운 데이터)
+        Note over C: 데이터 처리 후 3초 대기
+    end
+```
+
 ## 폴링의 장단점
 
 실시간성 기능을 구현하는 방식들 중 가장 직관적이고 단순하다.  
